@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include "ft_printf.h"
 
 void foo(char *fmt, ...)
 {
@@ -30,6 +31,10 @@ void foo(char *fmt, ...)
 
 int main(void)
 {
+
+    ft_printf("hola %d hola %d hola\n", 8, 20);
+    ft_printf("hola %d hola %c hola\n", 8, 'z');
+    /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);
     printf("un decimal sin signo %u otro %u\n", 5, -1);
@@ -49,4 +54,5 @@ int main(void)
     printf("prueba de * %*s\n", 9, "uno");
     printf("prueba de * %-*s dos\n", 9, "uno");
     //    foo("ss", "hola", "hola tu");
+    */
 }
