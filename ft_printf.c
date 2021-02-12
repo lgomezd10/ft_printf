@@ -18,35 +18,33 @@ const char *ft_print_variable(const char *str, va_list ap)
 {
 	int d;
 	char c;
-	
+
 	switch (*(str + 1))
 	{
-		case 'c':
-		c = (char) va_arg(ap, int);
+	case 'c':
+		c = (char)va_arg(ap, int);
 		ft_putchar_fd(c, 1);
 		break;
-		case 's':
-			break;
-		case 'p':
-			break;
-		case 'd':
-		case 'i':
-			d = va_arg(ap, int);
-			ft_putnbr_fd(d, 1);
-			break;
-		case 'u':
-			break;
-		case 'x':
-		case 'X':
-			break;
-		
-		
-		default:
-			ft_putchar_fd(*(str + 1), 1);
-			ft_putendl_fd(" error", 1);
-			break;
+	case 's':
+		break;
+	case 'p':
+		break;
+	case 'd':
+	case 'i':
+		d = va_arg(ap, int);
+		ft_putnbr_fd(d, 1);
+		break;
+	case 'u':
+		break;
+	case 'x':
+	case 'X':
+		break;
+	default:
+		ft_putchar_fd(*(str + 1), 1);
+		ft_putendl_fd(" error", 1);
+		break;
 	}
-	return ((str + 2));
+	return ((str + 2));	
 }
 
 // ’-0.*’
