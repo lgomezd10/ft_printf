@@ -32,8 +32,19 @@ void foo(char *fmt, ...)
 int main(void)
 {
 
-    ft_printf("hola %d hola %d hola\n", 8, 20);
-    ft_printf("hola %d hola %c hola\n", 8, 'z');
+    ft_printf("PRUEBA i y d\n");
+    ft_printf("uno %d dos %d tres\n", 8, 20);
+    ft_printf("uno %d dos %c tres\n", 8, 'z');
+    ft_printf("uno %s dos %c tres\n", "pepito", 'z');
+    ft_printf("uno %9d dos %09d tres\n", 30, 30);
+    ft_printf("funo %*i dos %0*d tres\n", 9, 30, 3, 30);
+    printf("puno %*i dos %0*d tres\n", 9, 30, 3, 30);
+    printf("pprueba de punto %.9d uno\n", 30);
+    ft_printf("fprueba de punto %.9d uno\n", 30);
+    ft_printf("PRUEBA S\n");
+    ft_printf("uno %s dos %s tres\n", "string1", "string2");
+    printf("puno %15s dos %-15s tres %2s cuatro\n", "string1", "string2", "string3");
+    ft_printf("funo %15s dos %-15s tres %2s cuatro\n", "string1", "string2", "string3");
     /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);
@@ -44,7 +55,13 @@ int main(void)
     printf("una cosa %3s otra cosa\n", "prueba");
 
     printf("prueba del punto %.9s\n", "unomuylargoparaque recorte");
-    printf("prueba del digito %9d\n", 30);
+    printf("DIGITOS\n");
+    printf("prueba del digito %.9dfin\n", 30);
+    printf("prueba del digito %09dfin\n", 30);
+    printf("prueba del digito %.-9dfin\n", 30);
+    printf("prueba del digito %-.9dfin\n", 30);
+    printf("prueba del digito %-9dfin\n", 30);
+    printf("digito con 0 y menos %*9d\n", 10, 30);
     printf("prueba del digito %.*d\n", 2, 305456);
     printf("prueba del digito con menos %-9d hola\n", 30);
     //printf("prueba del digito %-09d\n", 30); // el menos no funciona con cero
