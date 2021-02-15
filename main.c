@@ -31,7 +31,10 @@ void foo(char *fmt, ...)
 
 int main(void)
 {
+    int len;
 
+    len = 0;
+/*
     ft_printf("PRUEBA i y d\n");
     ft_printf("uno %d dos %d tres\n", 8, 20);
     ft_printf("uno %d dos %c tres\n", 8, 'z');
@@ -43,8 +46,129 @@ int main(void)
     ft_printf("fprueba de punto %.9d uno\n", 30);
     ft_printf("PRUEBA S\n");
     ft_printf("uno %s dos %s tres\n", "string1", "string2");
-    printf("puno %15s dos %-15s tres %2s cuatro\n", "string1", "string2", "string3");
-    ft_printf("funo %15s dos %-15s tres %2s cuatro\n", "string1", "string2", "string3");
+    len = printf("puno %15s dos %-15s tres %2s cuatro %.2s cinco\n", "string1", "string2", "string3", "string4");
+    printf("len: %d\n", len);
+    len = ft_printf("funo %15s dos %-15s tres %2s cuatro %.2s cinco\n", "string1", "string2", "string3", "string4");
+    printf("len: %d\n", len);
+*/
+/*
+    int x = -1;
+    unsigned int z = (unsigned int)x;
+    printf("para el x: %d, tenemos %u\n", x, z);
+    printf("PRUEBA X\n");
+    printf("Hexa negativo: %x\n", -1);
+    printf("Hexa negativo: %u\n", -1);
+*/
+/*
+    printf("***********HEX**********\n");
+    len = ft_printf("funo %x dos\n", 265);
+    printf("len: %d\n", len);
+    len = printf("puno %x dos\n", 265);
+    printf("len: %d\n", len);
+    len = ft_printf("funo %x dos\n", 15);
+    printf("len: %d\n", len);
+    len = printf("puno %x dos\n", 15);
+    printf("len: %d\n", len);
+    len = ft_printf("funo %x dos\n", 10000);
+    printf("len: %d\n", len);
+    len = printf("puno %x dos\n", 10000);
+    printf("len: %d\n", len);
+    len = ft_printf("funo %x dos\n", 4095);
+    printf("len: %d\n", len);
+    len = printf("puno %x dos\n", 4095);
+    printf("len: %d\n", len);
+    len = ft_printf("funo %x dos\n", -1);
+    printf("len: %d\n", len);
+    len = printf("puno %x dos\n", -1);
+    printf("len: %d\n", len);
+    len = ft_printf("funo %X dos\n", -354);
+    printf("len: %d\n", len);
+    len = printf("puno %X dos\n", -354);
+    printf("len: %d\n", len);
+    len = ft_printf("***PRUEBA HEX CON FLAGS***\n");
+    printf("len: %d\n", len);
+    len = ft_printf("funo %09x dos\n", 265);
+    printf("len: %d\n", len);
+    len = printf("puno %09x dos\n", 265);
+    printf("len: %d\n", len);
+    len = ft_printf("funo %.9x dos\n", 265);
+    printf("len: %d\n", len);
+    len = printf("puno %.9x dos\n", 265);
+    printf("len: %d\n", len);
+    len = ft_printf("funo %9x dos\n", 265);
+    printf("len: %d\n", len);
+    len = printf("puno %9x dos\n", 265);
+    printf("len: %d\n", len);
+    ft_printf("funo %-9x dos\n", 265);
+    printf("puno %-9x dos\n", 265);
+    ft_printf("funo %-*x dos\n", 9, 265);
+    printf("puno %-*x dos\n", 9, 265);
+    ft_printf("funo %.*x dos\n", 9, 265);
+    printf("puno %.*x dos\n", 9, 265);
+    ft_printf("funo %.*x dos\n", 1, 265);
+    printf("puno %.*x dos\n", 1, 265);
+    ft_printf("funo %-.*x dos\n", 20, -1);
+    printf("puno %-.*x dos\n", 20, -1);
+    //ft_printf("funo %-09x dos\n", 265);
+    //printf("puno %-09x dos\n", 265);
+  */  
+/*
+    printf("*******DIGITS***********\n");
+
+    ft_printf("funo %09d dos\n", 265);
+    printf("puno %09d dos\n", 265);
+    ft_printf("funo %.9d dos\n", 265);
+    printf("puno %.9d dos\n", 265);
+    ft_printf("funo %9d dos\n", 265);
+    printf("puno %9d dos\n", 265);
+    ft_printf("funo %-9d dos\n", 265);
+    printf("puno %-9d dos\n", 265);
+    ft_printf("funo %-.*d dos\n", 20, -1);
+    printf("puno %-.*d dos\n", 20, -1);
+    ft_printf("funo %.*d dos\n", 20, -1);
+    printf("puno %.*d dos\n", 20, -1);
+   // ft_printf("funo %.*d dos\n", 20, -2147483648);
+   // printf("puno %.*d dos\n", 20, -2147483648);
+    len = ft_printf("funo %.*d dos\n", 20, -32769);
+    printf("len: %d\n", len);
+    len = printf("puno %.*d dos\n", 20, -32769);
+    printf("len: %d\n", len);
+    len = ft_printf("funo %*d dos\n", 20, -32769);
+    printf("len: %d\n", len);
+    len = printf("puno %*d dos\n", 20, -32769);
+    printf("len: %d\n", len);
+
+    printf("********* UNSIGNED **********\n");
+    ft_printf("funo %*u dos\n", 20, -32769);
+    printf("puno %*u dos\n", 20, -32769);
+    unsigned int h = 3678;
+    ft_printf("funo %*u dos\n", 20, h);
+    printf("puno %*u dos\n", 20, h);
+
+    printf("**********STR*************\n");
+    ft_printf("funo %*s dos\n", 20, "hola");
+    printf("puno %*s dos\n", 20, "hola");
+    len = ft_printf("funo %.*s dos\n", 2, "hola");
+    printf("len: %d\n", len);
+    len = printf("puno %.*s dos\n", 2, "hola");
+    printf("len: %d\n", len);
+  */  
+    printf("**********POINTER**********\n");
+    char prueba = 'a';
+    int h = 20;
+    len = ft_printf("f puntero: %p, char: %c\n", &prueba, prueba);
+    printf("len: %d\n", len);
+    len = printf("p puntero: %p, char: %c\n", &prueba, prueba);
+    printf("len: %d\n", len);
+    ft_printf("f puntero: %30p, char: %c\n", &prueba, prueba);
+    printf("p puntero: %30p, char: %c\n", &prueba, prueba);
+    ft_printf("f puntero: %-30p, char: %c\n", &prueba, prueba);
+    printf("p puntero: %-30p, char: %c\n", &prueba, prueba);
+    //ft_printf("f puntero: %030p, char: %c\n", &prueba, prueba);
+    //printf("p puntero: %030p, char: %c\n", &prueba, prueba);
+    //ft_printf("f puntero: %.5p, char: %c\n", &prueba, prueba);
+    //printf("p puntero: %.5p, char: %c\n", &prueba, prueba);
+     
     /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);

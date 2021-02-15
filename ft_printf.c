@@ -18,8 +18,10 @@ const char *ft_print_variable(const char *str, va_list ap, t_var *opt)
 		ft_print_nbr(ap, opt);
 	if (*str == 'u')
 		ft_print_unsig(ap, opt);
-	if (*str == 'x' || *str == 'X')
-		ft_print_hex(ap, opt);
+	if (*str == 'x')
+		ft_print_hex(ap, opt, 0);
+	if (*str == 'X')
+		ft_print_hex(ap, opt, 1);
 	if (*str == '%')
 		ft_putchar_fd(*str, 1);
 	return ((str + 1));	
@@ -34,6 +36,8 @@ const char *ft_get_flags(t_var *opt, const char *str)
 	opt->len = 0;
 	opt->right = 1;
 	opt->start = 0;
+	opt->dot = 0;
+	opt->out = 0;
 	while (str[i] == '-' || str[i] == '.' || str[i] == '0' || str[i] == '*')
 	{
 		if (str[i] == '-')
@@ -61,7 +65,9 @@ int ft_printf(const char *format, ...)
 	va_list ap;
 	int i;
 	t_var opt;
+	int out;
 
+	out = 0;
 	va_start(ap, format);
 	i = 0;
 	while (format[i])
@@ -71,14 +77,16 @@ int ft_printf(const char *format, ...)
 			i++;
 			format = ft_get_flags(&opt, &format[i]);
 			format = ft_print_variable(format, ap, &opt);
+			out += opt.out;
 			i = 0;
 		}
 		else
 		{
 			ft_putchar_fd(format[i], 1);
 			i++;
+			out++;
 		}
 	}
 	va_end(ap);
-	return (0);
+	return (out);
 }
