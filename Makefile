@@ -10,22 +10,27 @@ FLAGS	= -c -Wall -Wextra -Werror
 
 SRCS	= ft_printf.c print_no_numbers.c print_numbers.c utils.c
 
-OBJ		= ${SRCS:.c=.o}
+OBJS		= ${SRCS:.c=.o}
 
 all:	${NAME}
 
 ${LIBFT}:
 			${MAKE} -C ${DIR}
 
-${NAME}:	${OBJ} ${LIBFT}
-			ar rc ${NAME} ${OBJ} ${LIBFT}
+${NAME}:	${OBJS} ${LIBFT}
+			cp ${LIBFT} ${NAME}
+			ar rc ${NAME} ${OBJS}
+
+bonus:	${NAME}
 
 clean:
 		${MAKE} clean -C ${DIR}
-		${RM} ${OBJ}
+		${RM} ${OBJS}
 
 fclean:		clean
 			${MAKE} fclean -C ${DIR}
-			${RM} ${OBJ}
+			${RM} ${NAME}
 
 re:		fclean all
+
+.PHONY:	all bonus clean fclean re
