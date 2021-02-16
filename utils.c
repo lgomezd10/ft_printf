@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 15:12:53 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/16 18:00:53 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char *ft_to_hex(unsigned int nbr, int upper)
     return (str);
 }
 
-char *ft_pointer_str(unsigned long nbr, int upper)
+char *ft_pointer_str(unsigned long nbr, int upper, int zero)
 {
 	unsigned long div;
 	int i;
@@ -87,6 +87,8 @@ char *ft_pointer_str(unsigned long nbr, int upper)
     {
         i = 2;
         ft_memcpy(str, "0x", 2);
+        if (zero)
+            i = 0;
         while (div > 0)
         {
             str[i++] = ft_get_char(nbr / div, upper);

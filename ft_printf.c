@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 15:21:34 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/16 16:58:40 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 	int d;
 	char c;
 // nfge
+	if (*str == '%')
+		ft_print_percent(ap, opt);
 	if (*str == 'c')
 		ft_print_char(ap, opt);
 	if (*str == 's')
@@ -86,7 +88,7 @@ int		ft_printf(const char *format, ...)
 	i = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] != '%')
+		if (format[i] == '%')
 		{
 			format = ft_get_flags(&opt, &format[++i]);
 			format = ft_print_variable(format, ap, &opt);
@@ -94,8 +96,6 @@ int		ft_printf(const char *format, ...)
 		}
 		else
 		{
-			if (format[i] == '%')
-				i++;
 			ft_putchar_fd(format[i++], 1);
 			opt.out++;
 		}
