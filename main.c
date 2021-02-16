@@ -193,12 +193,7 @@ int main(void)
     printf("decima %g\n", 50000.2);
 
     float f = 55.32;
-    char *cosa;
-    cosa = &f;
-    for (int i = 0; i < 6; i++)
-    {
-        printf("cosa: %c\n", cosa[i]);
-    }
+    printf("fload %lu", (unsigned long)f);
     /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);
