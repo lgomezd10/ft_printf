@@ -7,7 +7,7 @@ const char *ft_print_variable(const char *str, va_list ap, t_var *opt)
 {
 	int d;
 	char c;
-
+// nfge
 	if (*str == 'c')
 		ft_print_char(ap, opt);
 	if (*str == 's')
@@ -22,9 +22,20 @@ const char *ft_print_variable(const char *str, va_list ap, t_var *opt)
 		ft_print_hex(ap, opt, 0);
 	if (*str == 'X')
 		ft_print_hex(ap, opt, 1);
-	if (*str == '%')
-		ft_putchar_fd(*str, 1);
+	if (*str == 'X')
+		ft_print_hex(ap, opt, 1);
+	if (*str == 'n')
+		ft_save_len(ap, opt);
 	return ((str + 1));	
+}
+
+void ft_init_opt(t_var *opt)
+{
+	opt->fill = ' ';
+	opt->len = 0;
+	opt->right = 1;
+	opt->start = 0;
+	opt->dot = 0;
 }
 
 const char *ft_get_flags(t_var *opt, const char *str)
@@ -32,12 +43,7 @@ const char *ft_get_flags(t_var *opt, const char *str)
 	int i;
 
 	i = 0;
-	opt->fill = ' ';
-	opt->len = 0;
-	opt->right = 1;
-	opt->start = 0;
-	opt->dot = 0;
-	opt->out = 0;
+	ft_init_opt(opt);
 	while (str[i] == '-' || str[i] == '.' || str[i] == '0' || str[i] == '*')
 	{
 		if (str[i] == '-')
@@ -62,31 +68,29 @@ const char *ft_get_flags(t_var *opt, const char *str)
 // ’-0.*’
 int ft_printf(const char *format, ...)
 {
-	va_list ap;
-	int i;
-	t_var opt;
-	int out;
+	va_list	ap;
+	int		i;
+	t_var	opt;
 
-	out = 0;
+	opt.out = 0;
 	va_start(ap, format);
 	i = 0;
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1] != '%')
 		{
-			i++;
-			format = ft_get_flags(&opt, &format[i]);
+			format = ft_get_flags(&opt, &format[++i]);
 			format = ft_print_variable(format, ap, &opt);
-			out += opt.out;
 			i = 0;
 		}
 		else
 		{
-			ft_putchar_fd(format[i], 1);
-			i++;
-			out++;
+			if (format[i] == '%')
+				i++;
+			ft_putchar_fd(format[i++], 1);
+			opt.out++;
 		}
 	}
 	va_end(ap);
-	return (out);
+	return (opt.out);
 }

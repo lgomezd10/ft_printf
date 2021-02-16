@@ -27,5 +27,6 @@ void ft_fill_and_print(char *str, t_var *opt);
 char *ft_to_hex(unsigned int n, int upper);
 char		*ft_utoa(unsigned int nbr);
 char *ft_pointer_str(unsigned long nbr, int upper);
+void ft_save_len(va_list ap, t_var *opt);
 
 # endif

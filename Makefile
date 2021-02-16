@@ -8,7 +8,7 @@ RM		= rm -f
 
 FLAGS	= -c -Wall -Wextra -Werror
 
-SRCS	= ft_printf.c print_no_numbers.c print_numbers.c utils.c
+SRCS	= ft_printf.c print_no_numbers.c print_numbers.c utils.c print_bonus.c
 
 OBJS		= ${SRCS:.c=.o}
 

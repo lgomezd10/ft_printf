@@ -152,7 +152,8 @@ int main(void)
     printf("len: %d\n", len);
     len = printf("puno %.*s dos\n", 2, "hola");
     printf("len: %d\n", len);
-  */  
+  */ 
+ /* 
     printf("**********POINTER**********\n");
     char prueba = 'a';
     int h = 20;
@@ -162,13 +163,42 @@ int main(void)
     printf("len: %d\n", len);
     ft_printf("f puntero: %30p, char: %c\n", &prueba, prueba);
     printf("p puntero: %30p, char: %c\n", &prueba, prueba);
-    ft_printf("f puntero: %-30p, char: %c\n", &prueba, prueba);
-    printf("p puntero: %-30p, char: %c\n", &prueba, prueba);
+    len = ft_printf("f puntero: %-30p, char: %c\n", &prueba, prueba);
+    printf("len: %d\n", len);
+    len = printf("p puntero: %-30p, char: %c\n", &prueba, prueba);
+    printf("len: %d\n", len);
+    len = ft_printf("f puntero: %-14p, char: %c\n", &prueba, prueba);
+    printf("len: %d\n", len);
+    len = printf("p puntero: %-14p, char: %c\n", &prueba, prueba);
+    printf("len: %d\n", len);
     //ft_printf("f puntero: %030p, char: %c\n", &prueba, prueba);
     //printf("p puntero: %030p, char: %c\n", &prueba, prueba);
     //ft_printf("f puntero: %.5p, char: %c\n", &prueba, prueba);
     //printf("p puntero: %.5p, char: %c\n", &prueba, prueba);
-     
+
+    ft_printf("hola%dtu%%%druru\n", 5, 6);
+ */
+/*
+    printf("********N*********\n");
+
+    int dato1;
+    int dato2;
+    len = ft_printf("123456789%s%nFIN\n", "1234", &dato1);
+    printf("cambio: %d len: %d\n", dato1, len);
+    len = ft_printf("123456789%s%nFIN\n", "1234", &dato2);
+    printf("cambio: %d len: %d\n", dato2, len);
+*/
+    printf("decima %e\n", 50000.2);
+    printf("decima %f\n", 5000000.2);
+    printf("decima %g\n", 50000.2);
+
+    float f = 55.32;
+    char *cosa;
+    cosa = &f;
+    for (int i = 0; i < 6; i++)
+    {
+        printf("cosa: %c\n", cosa[i]);
+    }
     /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);
