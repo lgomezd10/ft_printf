@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
+/*   Updated: 2021/02/16 15:21:34 by lgomez-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft/libft.h"
 #include <stdio.h>
 
 //cspdiuxX % x y X conversion hexadecimal sin signo
-const char *ft_print_variable(const char *str, va_list ap, t_var *opt)
+const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 {
 	int d;
 	char c;
@@ -26,10 +38,10 @@ const char *ft_print_variable(const char *str, va_list ap, t_var *opt)
 		ft_print_hex(ap, opt, 1);
 	if (*str == 'n')
 		ft_save_len(ap, opt);
-	return ((str + 1));	
+	return ((str + 1));
 }
 
-void ft_init_opt(t_var *opt)
+void	ft_init_opt(t_var *opt)
 {
 	opt->fill = ' ';
 	opt->len = 0;
@@ -38,7 +50,7 @@ void ft_init_opt(t_var *opt)
 	opt->dot = 0;
 }
 
-const char *ft_get_flags(t_var *opt, const char *str)
+const char	*ft_get_flags(t_var *opt, const char *str)
 {
 	int i;
 
@@ -57,16 +69,13 @@ const char *ft_get_flags(t_var *opt, const char *str)
 		i++;
 	}
 	if (ft_isdigit(str[i]))
-	{
 		opt->len = ft_atoi(&str[i]);
-	}
 	while (ft_isdigit(str[i]))
 		i++;
 	return (&str[i]);
 }
 
-// ’-0.*’
-int ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		i;
