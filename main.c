@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 18:55:37 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/16 20:06:19 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int main(void)
     //ft_printf("funo %-09x dos\n", 265);
     //printf("puno %-09x dos\n", 265);
   */  
-
+/*
     printf("*******DIGITS***********\n");
 
     ft_printf("funo %09d dos\n", 265);
@@ -170,7 +170,8 @@ int main(void)
     unsigned int h = 3678;
     ft_printf("funo %*u dos\n", 20, h);
     printf("puno %*u dos\n", 20, h);
-
+*/
+/*
     printf("**********STR*************\n");
     ft_printf("funo %*s dos\n", 20, "hola");
     printf("puno %*s dos\n", 20, "hola");
@@ -178,7 +179,23 @@ int main(void)
     printf("len: %d\n", len);
     len = printf("puno %.*s dos\n", 2, "hola");
     printf("len: %d\n", len);
-  
+    len = ft_printf("funo %.7s dos\n", "hola");
+    printf("len: %d\n", len);
+    len = printf("puno %.7s dos\n", "hola");
+    printf("len: %d\n", len);
+    
+    len = ft_printf("funo %0*s dos\n", 10, "hola");
+    printf("len: %d\n", len);
+    len = printf("puno %0*s dos\n", 10, "hola");
+    printf("len: %d\n", len);
+
+    len = ft_printf("funo %-0*s dos\n", 10, "hola");
+    printf("len: %d\n", len);
+    len = printf("puno %-0*s dos\n", 10, "hola");
+    printf("len: %d\n", len);
+    
+*/
+
  /*
     printf("**********POINTER**********\n");
     char prueba = 'a';
@@ -266,14 +283,42 @@ len = ft_printf("5ft %-.05%FIN\n", 'x');
 printf("lenp: %d\n", len);
 len = printf("5pr %-.05%FIN\n", 'x');
 printf("lenp: %d\n", len);
-
+*/
 printf("*********CHAR**********\n");
+
+/*
+int c_nullterm_basic(void){return test("%c", '\0');}
+int c_nullterm_5w(void){return test("%5c", '\0');}
+int c_nullterm_5wlj(void){return test("%-5c", '\0');}
+*/
+
+len = ft_printf("%c", 'x');
+printf("lenp: %d\n", len);
+len = printf("%c", 'x');
+printf("lenp: %d\n", len);
+
+len = ft_printf("%c", '\0');
+printf("lenp: %d\n", len);
+len = printf("%c", '\0');
+printf("lenp: %d\n", len);
+
+len = ft_printf("%5c", '\0');
+printf("lenp: %d\n", len);
+len = printf("%5c", '\0');
+printf("lenp: %d\n", len);
+
+len = ft_printf("%-5c", '\0');
+printf("lenp: %d\n", len);
+len = printf("%-5c", '\0');
+printf("lenp: %d\n", len);
 
 ft_printf("1ft %05cFIN\n", 'x');
 printf("1pr %05cFIN\n", 'x');
 
-ft_printf("2ft %.5cFIN\n", 'x');
-printf("2pr %.5cFIN\n", 'x');
+len = ft_printf("2ft %.5cFIN\n", 'x');
+printf("lenp: %d\n", len);
+len = printf("2pr %.5cFIN\n", 'x');
+printf("lenp: %d\n", len);
 
 ft_printf("3ft %*cFIN\n", 5, 'x');
 printf("3pr %*cFIN\n", 5, 'x');
@@ -290,7 +335,13 @@ len = ft_printf("5ft %-.05cFIN\n", 'x');
 printf("lenp: %d\n", len);
 len = printf("5pr %-.05cFIN\n", 'x');
 printf("lenp: %d\n", len);
-*/
+
+len = ft_printf("%cFIN\n", '\0');
+printf("lenf: %d\n", len);
+len = printf("%cFIN\n", '\0');
+printf("lenp: %d\n", len);
+
+
     /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);
@@ -318,4 +369,5 @@ printf("lenp: %d\n", len);
     printf("prueba de * %-*s dos\n", 9, "uno");
     //    foo("ss", "hola", "hola tu");
     */
+   system("leaks a.out");
 }

@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 18:00:53 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/16 20:01:35 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void ft_fill_and_print(char *str, t_var *opt)
     int i;
 
     len = ft_strlen(str);
-    opt->out += (len < opt->len) ? opt->len : len; 
+    opt->out += (len < opt->len) ? opt->len : len;
     len = (len < opt->len) ? (opt->len - len) : 0;
     if (!opt->right)
         ft_putstr_fd(str, 1);
