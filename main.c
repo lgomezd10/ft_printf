@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 15:12:53 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:56:06 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,12 +200,25 @@ int main(void)
     len = ft_printf("123456789%s%nFIN\n", "1234", &dato2);
     printf("cambio: %d len: %d\n", dato2, len);
 */
+/*
     printf("decima %e\n", 50000.2);
     printf("decima %f\n", 5000000.2);
     printf("decima %g\n", 50000.2);
 
     float f = 55.32;
     printf("fload %lu", (unsigned long)f);
+*/
+printf("*********NULL*************\n");
+
+ft_printf("fcaracter null:%cFIN\n", '\0');
+printf("pcaracter null:%cFIN\n", '\0');
+
+
+len = ft_printf("%s", (char *)0);
+printf("lenf: %d\n", len);
+len = printf("%s", (char *)0);
+printf("lenp: %d\n", len);
+
     /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);

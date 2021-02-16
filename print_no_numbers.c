@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 15:12:53 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:57:15 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void ft_print_str(va_list ap, t_var *opt)
         opt->len = va_arg(ap, int);
     str = va_arg(ap, const char *);
     if (!str)
+    {
         ft_putstr_fd("(null)", 1);
+        opt->out += 6;
+    }
     else
     {
         opt->fill = ' ';

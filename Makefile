@@ -6,7 +6,7 @@
 #    By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 15:11:25 by lgomez-d          #+#    #+#              #
-#    Updated: 2021/02/16 15:12:53 by lgomez-d         ###   ########.fr        #
+#    Updated: 2021/02/16 15:41:32 by lgomez-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS		= ${SRCS:.c=.o}
 all:	${NAME}
 
 ${LIBFT}:
-			${MAKE} -C ${DIR}
+			${MAKE} bonus -C ${DIR}
 
 ${NAME}:	${OBJS} ${LIBFT}
 			cp ${LIBFT} ${NAME}
