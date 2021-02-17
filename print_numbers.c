@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_numbers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:58 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/17 09:38:53 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/17 16:19:26 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void ft_print_nbr(va_list ap, t_var *opt)
 	if (opt->dot && opt->right)
 	{
 		opt->len = opt->decimal;
+		opt->dot = 0;
 		opt->fill = '0';
 	}
 	if (opt->fill == '0')

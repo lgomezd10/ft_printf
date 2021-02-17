@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/17 08:49:05 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/17 17:46:02 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,23 @@ void	ft_init_opt(t_var *opt)
 	opt->decimal = 0;
 }
 
+int ft_is_flags(char c)
+{
+	int out;
+
+	out = c == '-' || c == '.' || c == '*' || ft_isdigit(c);
+	out = out || c == ' ' || c == '+';
+
+	return (out);
+}
+
 const char	*ft_get_flags(t_var *opt, const char *str)
 {
 	int i;
 
 	i = 0;
 	ft_init_opt(opt);
-	while (str[i] == '-' || str[i] == '.' || str[i] == '*' || ft_isdigit(str[i]))
+	while (ft_is_flags(str[i]))
 	{
 		if (str[i] == '-')
 			opt->right = 0;

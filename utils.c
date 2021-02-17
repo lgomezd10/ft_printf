@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 20:01:35 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/17 16:44:52 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,21 @@
 void ft_fill_and_print(char *str, t_var *opt)
 {
     int len;
+    int rest;
     int i;
-
-    len = ft_strlen(str);
-    opt->out += (len < opt->len) ? opt->len : len;
-    len = (len < opt->len) ? (opt->len - len) : 0;
+   
+    i = ft_strlen(str);
+    len = (opt->dot && opt->decimal < i) ? opt->decimal : i;
+    rest = (len < opt->len) ? (opt->len - len) : 0;
+    opt->decimal = (opt->dot) ? opt->decimal : len;
+    opt->out += len + rest;
     if (!opt->right)
-        ft_putstr_fd(str, 1);
+        write(1, str, len);
     i = 0;
-    while (i++ < len)
+    while (i++ < rest)
         ft_putchar_fd(opt->fill, 1);
     if (opt->right)
-        ft_putstr_fd(str, 1);
+        write(1, str, len);
 }
 
 char ft_get_char(unsigned int nbr, int upper)
