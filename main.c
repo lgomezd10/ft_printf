@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 20:06:19 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/17 09:35:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int main(void)
     //ft_printf("funo %-09x dos\n", 265);
     //printf("puno %-09x dos\n", 265);
   */  
-/*
+
     printf("*******DIGITS***********\n");
 
     ft_printf("funo %09d dos\n", 265);
@@ -164,6 +164,7 @@ int main(void)
    ft_printf("2funo %.-0*d dos\n", 20, -2147483648);
    printf("2puno %.0-*d dos\n", 20, -2147483648);
 
+/*
     printf("********* UNSIGNED **********\n");
     ft_printf("funo %*u dos\n", 20, -32769);
     printf("puno %*u dos\n", 20, -32769);
@@ -171,8 +172,62 @@ int main(void)
     ft_printf("funo %*u dos\n", 20, h);
     printf("puno %*u dos\n", 20, h);
 */
-/*
+
     printf("**********STR*************\n");
+/*
+nt s_string_prec_width_notrunc(void){return test("%7.5s", "yolo");}
+int s_string_prec_width_trunc(void){return test("%7.5s", "bombastic");}
+int s_string_prec_width_notrunc_lj(void){return test("%-7.5s", "yolo");}
+*/
+
+/*
+    len = ft_printf("%3.7s%3.7s", "hello", "world");
+    printf("*len: %d\n", len);
+    len = printf("%3.7s%3.7s", "hello", "world");
+    printf("*len: %d\n", len);
+
+    len = ft_printf("%7.3s%7.7s", "hello", "world");
+    printf("*len: %d\n", len);
+    len = printf("%7.3s%7.7s", "hello", "world");
+    printf("*len: %d\n", len);
+
+    len = ft_printf("%3.3s%3.7s", "hello", "world");
+    printf("*len: %d\n", len);
+    len = printf("%3.3s%3.7s", "hello", "world");
+    printf("*len: %d\n", len);
+
+   
+    len = ft_printf("%7.5s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = printf("%7.5s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = ft_printf("%7.5s", "bombastic");
+    printf("\nlen: %d\n", len);
+    len = printf("%7.5s", "bombastic");
+    printf("\nlen: %d\n", len);
+    len = ft_printf("%-7.5sFIN", "yolo");
+    printf("\nlen: %d\n", len);
+    len = printf("%-7.5sFIN", "yolo");
+    printf("\nlen: %d\n", len);
+
+    len = ft_printf("%7.3s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = printf("%7.3s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = ft_printf("%3.5s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = printf("%3.5s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = ft_printf("%3.0s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = printf("%3.0s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = ft_printf("%3.s", "yolo");
+    printf("\nlen: %d\n", len);
+    len = printf("%3.s", "yolo");
+    printf("\nlen: %d\n", len);
+    */
+    /*
     ft_printf("funo %*s dos\n", 20, "hola");
     printf("puno %*s dos\n", 20, "hola");
     len = ft_printf("funo %.*s dos\n", 2, "hola");
@@ -193,8 +248,8 @@ int main(void)
     printf("len: %d\n", len);
     len = printf("puno %-0*s dos\n", 10, "hola");
     printf("len: %d\n", len);
-    
-*/
+    */
+
 
  /*
     printf("**********POINTER**********\n");
@@ -284,6 +339,8 @@ printf("lenp: %d\n", len);
 len = printf("5pr %-.05%FIN\n", 'x');
 printf("lenp: %d\n", len);
 */
+
+/*
 printf("*********CHAR**********\n");
 
 /*
@@ -291,7 +348,7 @@ int c_nullterm_basic(void){return test("%c", '\0');}
 int c_nullterm_5w(void){return test("%5c", '\0');}
 int c_nullterm_5wlj(void){return test("%-5c", '\0');}
 */
-
+/*
 len = ft_printf("%c", 'x');
 printf("lenp: %d\n", len);
 len = printf("%c", 'x');
@@ -340,7 +397,7 @@ len = ft_printf("%cFIN\n", '\0');
 printf("lenf: %d\n", len);
 len = printf("%cFIN\n", '\0');
 printf("lenp: %d\n", len);
-
+*/
 
     /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
@@ -369,5 +426,5 @@ printf("lenp: %d\n", len);
     printf("prueba de * %-*s dos\n", 9, "uno");
     //    foo("ss", "hola", "hola tu");
     */
-   system("leaks a.out");
+   //system("leaks a.out");
 }

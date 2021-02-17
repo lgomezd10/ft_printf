@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_numbers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:58 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 18:52:05 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/17 09:38:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void ft_print_nbr(va_list ap, t_var *opt)
 	if (opt->start)
 		opt->len = va_arg(ap, int);
 	d = (long int)va_arg(ap, int);
-	if (opt->dot)
+	if (opt->dot && opt->right)
+	{
+		opt->len = opt->decimal;
 		opt->fill = '0';
-	if (!opt->right)
-		opt->fill = ' ';
+	}
 	if (opt->fill == '0')
-		opt->right = 1;
-	
+		opt->right = 1;	
 	nbr = ft_itoa(d);
 	if (nbr)
 	{

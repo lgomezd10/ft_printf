@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_no_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 20:14:36 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/17 08:49:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void ft_print_percent(va_list ap, t_var *opt)
 
 void ft_print_str(va_list ap, t_var *opt)
 {
-	const *str;
+	char *str;
 	char *out;
 
 	if (opt->start)
@@ -73,11 +73,9 @@ void ft_print_str(va_list ap, t_var *opt)
 	}
 	else
 	{
-		if (opt->dot && opt->len > ft_strlen(str))
-			opt->len = ft_strlen(str);
-		if (opt->dot && opt->len < ft_strlen(str))
+		if (opt->dot)
 		{    
-			if ((str = ft_substr(str, 0, opt->len)))
+			if ((str = ft_substr(str, 0, opt->decimal)))
 			{
 				ft_fill_and_print(str, opt);
 				free(str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 17:57:58 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/17 07:51:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct  s_var
 {
     int right;
     int len;
+    int decimal;
     char fill;
     int dot;
     int start;

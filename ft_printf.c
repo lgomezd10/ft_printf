@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/16 16:58:40 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/17 08:49:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_init_opt(t_var *opt)
 	opt->right = 1;
 	opt->start = 0;
 	opt->dot = 0;
+	opt->decimal = 0;
 }
 
 const char	*ft_get_flags(t_var *opt, const char *str)
@@ -58,22 +59,26 @@ const char	*ft_get_flags(t_var *opt, const char *str)
 
 	i = 0;
 	ft_init_opt(opt);
-	while (str[i] == '-' || str[i] == '.' || str[i] == '0' || str[i] == '*')
+	while (str[i] == '-' || str[i] == '.' || str[i] == '*' || ft_isdigit(str[i]))
 	{
 		if (str[i] == '-')
 			opt->right = 0;
 		if (str[i] == '.')
 			opt->dot = 1;
-		if (str[i] == '0')
+		if (str[i] == '0' && !opt->dot)
 			opt->fill = '0';
 		if (str[i] == '*')
 			opt->start = '1';
+		if (ft_isdigit(str[i]) && (str[i] != 0 || opt->dot))
+		{
+			opt->len = (!opt->dot) ? ft_atoi(&str[i]) : opt->len;
+			opt->decimal = (opt->dot) ? ft_atoi(&str[i]) : opt->decimal;
+			while (ft_isdigit(str[i]))
+				i++;
+			i--;
+		}
 		i++;
 	}
-	if (ft_isdigit(str[i]))
-		opt->len = ft_atoi(&str[i]);
-	while (ft_isdigit(str[i]))
-		i++;
 	return (&str[i]);
 }
 
