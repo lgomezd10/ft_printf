@@ -6,46 +6,46 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/17 16:44:52 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:33:55 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_fill_and_print(char *str, t_var *opt)
+void	ft_fill_and_print(char *str, t_var *opt)
 {
-    int len;
-    int rest;
-    int i;
+	int len;
+	int rest;
+	int i;
    
-    i = ft_strlen(str);
-    len = (opt->dot && opt->decimal < i) ? opt->decimal : i;
-    rest = (len < opt->len) ? (opt->len - len) : 0;
-    opt->decimal = (opt->dot) ? opt->decimal : len;
-    opt->out += len + rest;
-    if (!opt->right)
-        write(1, str, len);
-    i = 0;
-    while (i++ < rest)
-        ft_putchar_fd(opt->fill, 1);
-    if (opt->right)
-        write(1, str, len);
+	len = ft_strlen(str);
+	rest = (len < opt->len) ? (opt->len - len) : 0;
+	opt->out += len + rest;
+	if (!opt->right)
+		ft_putstr_fd(str, 1);
+	i = 0;
+	while (i++ < rest)
+		ft_putchar_fd(opt->fill, 1);
+	if (opt->right)
+		ft_putstr_fd(str, 1);
 }
 
-char ft_get_char(unsigned int nbr, int upper)
+char	ft_get_char(unsigned int nbr, int upper)
 {
 	char c;
 	if (nbr < 10)
 		c = nbr + '0';
 	else
-        if (upper)
-            c = (nbr - 10) + 'A';
-        else
-		    c = (nbr - 10) + 'a';
+	{
+		if (upper)
+			c = (nbr - 10) + 'A';
+		else
+			c = (nbr - 10) + 'a';
+	}
 	return (c);
 }
 
-char *ft_to_hex(unsigned int nbr, int upper)
+char	*ft_to_hex(unsigned int nbr, int upper)
 {
 	int div;
 	int i;
@@ -59,20 +59,20 @@ char *ft_to_hex(unsigned int nbr, int upper)
 		i++;
 	}
 	str = ft_calloc(sizeof(char), i + 1);
-    if (str)
-    {
-        i = 0;
-        while (div > 0)
-        {
-            str[i++] = ft_get_char(nbr / div, upper);
-            nbr = nbr % div;
-            div = div / 16;
-        }
-    }
-    return (str);
+	if (str)
+	{
+		i = 0;
+		while (div > 0)
+		{
+			str[i++] = ft_get_char(nbr / div, upper);
+			nbr = nbr % div;
+			div = div / 16;
+		}
+	}
+	return (str);
 }
 
-char *ft_pointer_str(unsigned long nbr, int upper, int zero)
+char	*ft_pointer_str(unsigned long nbr, int upper, int zero)
 {
 	unsigned long div;
 	int i;
@@ -85,24 +85,24 @@ char *ft_pointer_str(unsigned long nbr, int upper, int zero)
 		div *= 16;
 		i++;
 	}
-	str = ft_calloc(sizeof(char), i + 3);
-    if (str)
-    {
-        i = 2;
-        ft_memcpy(str, "0x", 2);
-        if (zero)
-            i = 0;
-        while (div > 0)
-        {
-            str[i++] = ft_get_char(nbr / div, upper);
-            nbr = nbr % div;
-            div = div / 16;
-        }
-    }
-    return (str);
+	str = ft_calloc(sizeof(char), i + 1);
+	if (str)
+	{/*
+		i = 2;
+		ft_memcpy(str, "0x", 2);
+		if (zero)*/
+		i = 0;
+		while (div > 0)
+		{
+			str[i++] = ft_get_char(nbr / div, upper);
+			nbr = nbr % div;
+			div = div / 16;
+		}
+	}
+	return (str);
 }
 
-char		*ft_utoa(unsigned int nbr)
+char	*ft_utoa(unsigned int nbr)
 {
 	int div;
 	int i;
@@ -115,16 +115,15 @@ char		*ft_utoa(unsigned int nbr)
 		div *= 10;
 		i++;
 	}
-	str = ft_calloc(sizeof(char), i + 1);
-    if (str)
-    {
-        i = 0;
-        while (div > 0)
-        {
-            str[i++] = (nbr / div) + '0';
-            nbr = nbr % div;
-            div = div / 10;
-        }
-    }
-    return (str);
+	if ((str = ft_calloc(sizeof(char), i + 1)))
+	{
+		i = 0;
+		while (div > 0)
+		{
+			str[i++] = (nbr / div) + '0';
+			nbr = nbr % div;
+			div = div / 10;
+		}
+	}
+	return (str);
 }
