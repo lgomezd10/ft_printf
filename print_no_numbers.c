@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_no_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/17 18:44:31 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/18 08:50:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,20 @@ void ft_print_str(va_list ap, t_var *opt)
 	
 }
 
+void ft_check_decimal(void *p, t_var *opt)
+{
+	char *str;
+
+	if ((str = ft_pointer_str((unsigned long)p, 0, 0)))
+		if (opt->dot && ft_strlen(str) < opt->decimal)
+		{
+			opt->fill = '0';
+			opt->len = opt->decimal + 2;
+			opt->right = 1;
+			free(str);
+		}
+}
+
 void ft_print_pointer(va_list ap, t_var *opt)
 {
 	void *p;
@@ -96,32 +110,17 @@ void ft_print_pointer(va_list ap, t_var *opt)
 	if (opt->start)
 		opt->len = va_arg(ap, int);
 	p = va_arg(ap, void *);
-	
-	str = ft_pointer_str((unsigned long)p, 0, 0);
-	if (ft_strlen(str) < opt->decimal)
-		opt->fill == '0';
-		
-	free(str);
-	opt->dot = 0;
-	zero = (opt->fill == '0') ? 1 : 0;
-	if (zero)
+	opt->fill = (!opt->right) ? ' ' : opt->fill;
+	ft_check_decimal(p, opt);
+	opt->dot = 0;	
+	if ((zero = (opt->fill == '0') ? 1 : 0))
 	{
 		ft_putstr_fd("0x", 1);
 		opt->len -= 2;
 		opt->out += 2;
-	}
-	str = ft_pointer_str((unsigned long)p, 0, 0);
-	printf("lo devuelto: %s\n", str);
-	if (str)
+	}	
+	if ((str = ft_pointer_str((unsigned long)p, 0, zero)))
 	{
-		/*
-		if (opt->dot)
-		{
-			opt->fill = '0';
-			opt->len += 2;
-			
-		}
-		*/
 		ft_fill_and_print(str, opt);
 		free(str);
 	}

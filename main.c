@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/17 18:44:08 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/18 09:30:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ int main(void)
     int len;
 
     len = 0;
+
+    float f1;
+    float f2;
+    f1 = 5.2;
+    f1 *= 10;
+    printf("%f\n", f1);
+    f2 = (int)f1;
+    printf("%f\n", f2);
+    f1 = f1 - f2;
+    len = (int)(f1 * 10);
+    printf("%d\n", len);
 /*
     ft_printf("PRUEBA i y d\n");
     ft_printf("uno %d dos %d tres\n", 8, 20);
@@ -288,6 +299,11 @@ int s_string_prec_width_notrunc_lj(void){return test("%-7.5s", "yolo");}
     */
  
     printf("**********POINTER**********\n");
+/*
+    len = ft_printf("%010p", 1234);
+    printf("*len: %d\n", len);
+    len = printf("%010p", 1234);
+    printf("*len: %d\n\n", len);
 
     len = ft_printf("%9.3p", 1234);
     printf("*len: %d\n", len);
@@ -300,19 +316,52 @@ int s_string_prec_width_notrunc_lj(void){return test("%-7.5s", "yolo");}
     len = printf("%9.p", 1234);
     printf("*len: %d\n\n", len);
 
-    len = ft_printf("%9.10p", 1234);
+    printf("%%9.20p\n");
+    len = ft_printf("%9.20p", 1234);
     printf("*len: %d\n", len);
-    len = printf("%9.10p", 1234);
+    len = printf("%9.20p", 1234);
     printf("*len: %d\n\n", len);
 
+    printf("%%.10p\n");
     len = ft_printf("%.10p", 1234);
     printf("*len: %d\n", len);
     len = printf("%.10p", 1234);
     printf("*len: %d\n\n", len);
 
+    printf("%%10p\n");
     len = ft_printf("%10p", 1234);
     printf("*len: %d\n", len);
     len = printf("%10p", 1234);
+    printf("*len: %d\n\n", len);
+
+    printf("%%-10p\n");
+    len = ft_printf("%-10p", 1234);
+    printf("*len: %d\n", len);
+    len = printf("%-10p", 1234);
+    printf("*len: %d\n\n", len);
+
+    printf("%%-010p\n");
+    len = ft_printf("%-010p", 1234);
+    printf("*len: %d\n", len);
+    len = printf("%-010p", 1234);
+    printf("*len: %d\n\n", len);
+
+    printf("%%-010.20p\n");
+    len = ft_printf("%-010.20p", 1234);
+    printf("*len: %d\n", len);
+    len = printf("%-010.20p", 1234);
+    printf("*len: %d\n\n", len);
+
+    printf("%%-10.20p\n");
+    len = ft_printf("%-10.20p", 1234);
+    printf("*len: %d\n", len);
+    len = printf("%-10.20p", 1234);
+    printf("*len: %d\n\n", len);
+
+    printf("%%-10.3p\n");
+    len = ft_printf("%-10.3p", 1234);
+    printf("*len: %d\n", len);
+    len = printf("%-10.3p", 1234);
     printf("*len: %d\n\n", len);
 
     
@@ -322,7 +371,10 @@ int s_string_prec_width_notrunc_lj(void){return test("%-7.5s", "yolo");}
     len = ft_printf("f puntero: %9.2p, char: %c\n", &prueba, prueba);
     printf("len: %d\n", len);
     len = printf("p puntero: %9.2p, char: %c\n", &prueba, prueba);
+    
     printf("len: %d\n", len);
+*/
+
 /*
     len = ft_printf("f puntero: %p, char: %c\n", &prueba, prueba);
     printf("len: %d\n", len);
