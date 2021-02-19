@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_no_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/18 19:33:55 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/19 11:15:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void ft_print_char(va_list ap, t_var *opt)
 	char c;
 	char *str;
 
-	if (opt->start)
-		opt->len = va_arg(ap, int);
 	c = (char)va_arg(ap, int);
 	opt->len--;
 	if (opt->right)
@@ -59,32 +57,28 @@ void ft_print_percent(va_list ap, t_var *opt)
 void ft_print_str(va_list ap, t_var *opt)
 {
 	char *str;
-	char *out;
-
-	if (opt->start)
-		opt->len = va_arg(ap, int);
+	char *delete;
+	
+	delete = 0;
 	if (!opt->right)
 		opt->fill = ' ';
 	if (!(str = (char *)va_arg(ap, const char *)))
 	{
 		str = ft_strdup("(null)");
-		ft_fill_and_print(str, opt);
-		free (str);
+		delete = str;
+	}
+	if (opt->dot)
+	{    
+		if ((str = ft_substr(str, 0, opt->decimal)))
+		{
+			ft_fill_and_print(str, opt);
+			free(str);
+		}
 	}
 	else
-	{
-		if (opt->dot)
-		{    
-			if ((str = ft_substr(str, 0, opt->decimal)))
-			{
-				ft_fill_and_print(str, opt);
-				free(str);
-			}
-		}
-		else
-			ft_fill_and_print((char *)str, opt);
-	}
-	
+		ft_fill_and_print((char *)str, opt);
+	if (delete)
+		free(delete);
 }
 
 void ft_print_pointer(va_list ap, t_var *opt)
@@ -93,14 +87,12 @@ void ft_print_pointer(va_list ap, t_var *opt)
 	char *str;
 	char *temp;
 	int zero;
-
-	if (opt->start)
-		opt->len = va_arg(ap, int);
+	
 	p = va_arg(ap, void *);
 	
 	if ((temp = ft_pointer_str((unsigned long)p, 0, zero)))
 	{
-		str = ft_load_digit_nbr("0x", temp, opt);
+		str = (p) ? ft_load_digit_nbr("0x", temp, opt) : ft_load_digit_nbr("", temp, opt);
 		if (!str)
 			str = temp;
 		else

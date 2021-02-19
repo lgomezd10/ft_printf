@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/17 17:46:02 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/19 10:01:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int ft_is_flags(char c)
 	return (out);
 }
 
-const char	*ft_get_flags(t_var *opt, const char *str)
+const char	*ft_get_flags(va_list ap, t_var *opt, const char *str)
 {
 	int i;
 
@@ -77,8 +77,10 @@ const char	*ft_get_flags(t_var *opt, const char *str)
 			opt->dot = 1;
 		if (str[i] == '0' && !opt->dot)
 			opt->fill = '0';
-		if (str[i] == '*')
-			opt->start = '1';
+		if (str[i] == '*' && !opt->dot)
+			opt->len = va_arg(ap, int);
+		if (str[i] == '*' && opt->dot)
+			opt->decimal = va_arg(ap, int);			
 		if (ft_isdigit(str[i]) && (str[i] != 0 || opt->dot))
 		{
 			opt->len = (!opt->dot) ? ft_atoi(&str[i]) : opt->len;
@@ -105,7 +107,7 @@ int		ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			format = ft_get_flags(&opt, &format[++i]);
+			format = ft_get_flags(ap, &opt, &format[++i]);
 			format = ft_print_variable(format, ap, &opt);
 			i = 0;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_numbers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:58 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/18 19:34:16 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/19 10:14:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,21 @@ char *ft_load_digit_nbr(char *before, char *nbr, t_var *opt)
 	char *new;
 	
 	new = 0;
-	if (opt->dot)
+	opt->fill = (!opt->right) ? ' ' : opt->fill;
+	if (opt->dot || (!opt->dot && opt->fill != '0'))
 	{
 		lbefore = ft_strlen(before);
 		lnbr = ft_strlen(nbr);
-		lzeros = (opt->dot && lbefore < opt->decimal) ? opt->decimal - lnbr : 0;
+		lzeros = (opt->dot && lnbr < opt->decimal) ? opt->decimal - lnbr : 0;
 		new = ft_calloc(sizeof(char), lbefore + lnbr + lzeros + 1);
 		ft_memset(new, '0', lbefore + lnbr + lzeros);
 		ft_memcpy(new, before, ft_strlen(before));
 		ft_memcpy(&new[lbefore + lzeros], nbr, lnbr);
-		opt->fill = ' ';
-		opt->dot = 0;		
+		if (opt->dot)
+		{
+			opt->fill = ' ';
+			opt->dot = 0;
+		}
 	}
 	return (new);
 }
@@ -43,8 +47,6 @@ void ft_print_nbr(va_list ap, t_var *opt)
 	char *nbr;
 	char *temp;
 
-	if (opt->start)
-		opt->len = va_arg(ap, int);
 	d = (long int)va_arg(ap, int);
 	nosigne = (d < 0) ? d * -1 : d;	
 	if ((temp = ft_itoa(nosigne)))
@@ -71,8 +73,6 @@ void ft_print_unsig(va_list ap, t_var *opt)
 	char *nbr;
 	char *nbr2;
 
-	if (opt->start)
-		opt->len = va_arg(ap, int);
 	ud = va_arg(ap, unsigned int);
 	if (opt->dot)
 		opt->fill = '0';
@@ -91,8 +91,6 @@ void ft_print_hex(va_list ap, t_var *opt, int upper)
 	unsigned int nbr;
 	char *str;
 
-	if (opt->start)
-		opt->len = va_arg(ap, int);
 	nbr = va_arg(ap, unsigned int);
 	str = ft_to_hex(nbr, upper);
 	if (str)

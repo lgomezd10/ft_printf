@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/18 19:41:26 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/19 11:06:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,43 @@
 #include <stdarg.h>
 #include "ft_printf.h"
 
-void foo(char *fmt, ...)
+void check_nbr(char *str, int dato)
 {
-    va_list ap;
-    int d;
-    char c, *s;
+    static int item = 0;
+    int len;
 
-   va_start(ap, fmt);
-    while (*fmt)
-        switch (*fmt++) {
-        case 's':              /* string */
-            s = va_arg(ap, char *);
-            printf("string %s\n", s);
-            break;
-        case 'd':              /* int */
-            d = va_arg(ap, int);
-            printf("int %d\n", d);
-            break;
-        case 'c':              /* char */
-            /* need a cast here since va_arg only
-               takes fully promoted types */
-            c = (char) va_arg(ap, int);
-            printf("char %c\n", c);
-            break;
-        }
-    va_end(ap);
+    item++;
+    printf("\n%d: %s\n", item, str);
+    len = ft_printf(str, dato);
+    printf("*len: %d\n", len);
+    len = printf(str, dato);
+    printf("*len: %d\n", len);
+}
+
+void check_str(char *str, char *dato)
+{
+    static int item = 0;
+    int len;
+
+    item++;
+    printf("\n%d: %s\n", item, str);
+    len = ft_printf(str, dato);
+    printf("*len: %d\n", len);
+    len = printf(str, dato);
+    printf("*len: %d\n", len);
+}
+
+void check_pointer(char *str, void *dato)
+{
+    static int item = 0;
+    int len;
+
+    item++;
+    printf("\n%d: %s\n", item, str);
+    len = ft_printf(str, dato);
+    printf("*len: %p\n", len);
+    len = printf(str, dato);
+    printf("*len: %p\n", len);
 }
 
 int main(void)
@@ -188,45 +200,13 @@ void	ft_fill_and_print(char *str, t_var *opt)
     printf("len: %d\n", len);
     len = printf("%07d", -54);
     printf("len: %d\n", len);
-*/
-    
 
-    ft_printf("funo %09d dos\n", 265);
-    printf("puno %09d dos\n", 265);
-    ft_printf("funo %.9d dos\n", 265);
-    printf("puno %.9d dos\n", 265);
-    ft_printf("funo %9d dos\n", 265);
-    printf("puno %9d dos\n", 265);
-    ft_printf("funo %-9d dos\n", 265);
-    printf("puno %-9d dos\n", 265);
-    ft_printf("funo %-.*d dos\n", 20, -1);
-    printf("puno %-.*d dos\n", 20, -1);
-    ft_printf("funo %.*d dos\n", 20, -1);
-    printf("puno %.*d dos\n", 20, -1);
-    len = ft_printf("funo %.*d dos\n", 20, -32769);
-    printf("len: %d\n", len);
-    len = printf("puno %.*d dos\n", 20, -32769);
-    printf("len: %d\n", len);
-    len = ft_printf("funo %*d dos\n", 20, -32769);
-    printf("len: %d\n", len);
-    len = printf("puno %*d dos\n", 20, -32769);
-    printf("len: %d\n", len);
-
-
-   ft_printf("1funo %.*d dos\n", 20, -2147483648);
-   printf("1puno %.*d dos\n", 20, -2147483648);
-
-   ft_printf("1funo %0*d dos\n", 20, -2147483648);
-   printf("1puno %0*d dos\n", 20, -2147483648);
-
-   ft_printf("1funo %-0*d dos\n", 20, -2147483648);
-   printf("1puno %-0*d dos\n", 20, -2147483648);
-
-   ft_printf("2funo %-0*d dos\n", 20, -2147483648);
-   printf("2puno %0-*d dos\n", 20, -2147483648);
-
-   ft_printf("2funo %.-0*d dos\n", 20, -2147483648);
-   printf("2puno %.0-*d dos\n", 20, -2147483648);
+    check_nbr("%09d", -265);
+    check_nbr("%.9d", -265);
+    check_nbr("%9d", -265);
+    check_nbr("%-9d", -265);
+    check_nbr("%.*d", -2147483648);
+*/    
 
 /*
     printf("********* UNSIGNED **********\n");
@@ -239,10 +219,16 @@ void	ft_fill_and_print(char *str, t_var *opt)
 
     printf("**********STR*************\n");
 /*
-nt s_string_prec_width_notrunc(void){return test("%7.5s", "yolo");}
-int s_string_prec_width_trunc(void){return test("%7.5s", "bombastic");}
-int s_string_prec_width_notrunc_lj(void){return test("%-7.5s", "yolo");}
-*/
+    check_str("*%.03s", NULL);
+    check_str("*%3.s", NULL);
+    check_str("*%10.s", NULL);
+    check_str("*%-3.s", NULL);
+    check_str("*%-8.s", NULL);
+    check_str("*%3.1s", NULL);
+    check_str("*%9.1s", NULL);
+    check_str("*%-3.1s", NULL);
+    check_str("*%-9.1s", NULL);
+*/ 
 /*
     printf("t %d n %d v %d f %d r %d\n", '\t', '\n', '\v', '\f', '\r');
     len = ft_printf("%+- 06.06s", "hello world");
@@ -353,6 +339,10 @@ int s_string_prec_width_notrunc_lj(void){return test("%-7.5s", "yolo");}
  
     printf("**********POINTER**********\n");
 
+
+    check_pointer("%p", NULL);
+    check_pointer("%.0p", 0);
+    check_pointer("%5p", 0);
 /*
 
     len = ft_printf("%.5p", 0);
