@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/19 11:06:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/20 11:17:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,35 @@ void check_pointer(char *str, void *dato)
     item++;
     printf("\n%d: %s\n", item, str);
     len = ft_printf(str, dato);
-    printf("*len: %p\n", len);
+    printf("*len: %d\n", len);
     len = printf(str, dato);
-    printf("*len: %p\n", len);
+    printf("*len: %d\n", len);
+}
+
+void check_char(char *str, char dato)
+{
+    static int item = 0;
+    int len;
+
+    item++;
+    printf("\n%d: %s\n", item, str);
+    len = ft_printf(str, dato);
+    printf("*len: %d\n", len);
+    len = printf(str, dato);
+    printf("*len: %d\n", len);
+}
+
+void check_percent(char *str)
+{
+    static int item = 0;
+    int len;
+
+    item++;
+    printf("\n%d: %s\n", item, str);
+    len = ft_printf(str);
+    printf("*len: %d\n", len);
+    len = printf(str);
+    printf("*len: %d\n", len);
 }
 
 int main(void)
@@ -95,128 +121,125 @@ int main(void)
     printf("Hexa negativo: %x\n", -1);
     printf("Hexa negativo: %u\n", -1);
 */
-/*
+
     printf("***********HEX**********\n");
-    len = ft_printf("funo %x dos\n", 265);
-    printf("len: %d\n", len);
-    len = printf("puno %x dos\n", 265);
-    printf("len: %d\n", len);
-    len = ft_printf("funo %x dos\n", 15);
-    printf("len: %d\n", len);
-    len = printf("puno %x dos\n", 15);
-    printf("len: %d\n", len);
-    len = ft_printf("funo %x dos\n", 10000);
-    printf("len: %d\n", len);
-    len = printf("puno %x dos\n", 10000);
-    printf("len: %d\n", len);
-    len = ft_printf("funo %x dos\n", 4095);
-    printf("len: %d\n", len);
-    len = printf("puno %x dos\n", 4095);
-    printf("len: %d\n", len);
-    len = ft_printf("funo %x dos\n", -1);
-    printf("len: %d\n", len);
-    len = printf("puno %x dos\n", -1);
-    printf("len: %d\n", len);
-    len = ft_printf("funo %X dos\n", -354);
-    printf("len: %d\n", len);
-    len = printf("puno %X dos\n", -354);
-    printf("len: %d\n", len);
-    len = ft_printf("***PRUEBA HEX CON FLAGS***\n");
-    printf("len: %d\n", len);
-    len = ft_printf("funo %09x dos\n", 265);
-    printf("len: %d\n", len);
-    len = printf("puno %09x dos\n", 265);
-    printf("len: %d\n", len);
-    len = ft_printf("funo %.9x dos\n", 265);
-    printf("len: %d\n", len);
-    len = printf("puno %.9x dos\n", 265);
-    printf("len: %d\n", len);
-    len = ft_printf("funo %9x dos\n", 265);
-    printf("len: %d\n", len);
-    len = printf("puno %9x dos\n", 265);
-    printf("len: %d\n", len);
-    ft_printf("funo %-9x dos\n", 265);
-    printf("puno %-9x dos\n", 265);
-    ft_printf("funo %-*x dos\n", 9, 265);
-    printf("puno %-*x dos\n", 9, 265);
-    ft_printf("funo %.*x dos\n", 9, 265);
-    printf("puno %.*x dos\n", 9, 265);
-    ft_printf("funo %.*x dos\n", 1, 265);
-    printf("puno %.*x dos\n", 1, 265);
-    ft_printf("funo %-.*x dos\n", 20, -1);
-    printf("puno %-.*x dos\n", 20, -1);
-    //ft_printf("funo %-09x dos\n", 265);
-    //printf("puno %-09x dos\n", 265);
-  */  
+/*
+    check_nbr("%x", 265);
+    check_nbr("%x", 15);
+    check_nbr("%x", 1000);
+    check_nbr("%x", -265);
+    check_nbr("%x", -15);
+    check_nbr("%x", -1000);
+    check_nbr("%20x", -1000);
+    check_nbr("%20.18x", -1000);
+    check_nbr("%-20x", -1000);
+    check_nbr("%-20.18x", -1000);
+    check_nbr("%20x", 1000);
+    check_nbr("%20.18x", 1000);
+    check_nbr("%-20x", 1000);
+    check_nbr("%-20.18x", 1000);
+    check_nbr("%20.2x", 1000);
+    check_nbr("%-20x", 1000);
+    check_nbr("%-20.2x", 1000);
+    check_nbr("%020.18x", 1000);
+    check_nbr("%-020x", 1000);
+    check_nbr("%-020.2x", 1000);
+    check_nbr("%-020.2x", 0);
+*/
+/*
+    check_nbr("%X", 265);
+    check_nbr("%X", 15);
+    check_nbr("%X", 1000);
+    check_nbr("%X", -265);
+    check_nbr("%X", -15);
+    check_nbr("%X", -1000);
+    check_nbr("%20X", -1000);
+    check_nbr("%20.18X", -1000);
+    check_nbr("%-20X", -1000);
+    check_nbr("%-20.18X", -1000);
+    check_nbr("%20X", 1000);
+    check_nbr("%20.18X", 1000);
+    check_nbr("%-20X", 1000);
+    check_nbr("%-20.18X", 1000);
+    check_nbr("%20.2X", 1000);
+    check_nbr("%-20X", 1000);
+    check_nbr("%-20.2X", 1000);
+    check_nbr("%020.18X", 1000);
+    check_nbr("%-020X", 1000);
+    check_nbr("%-020.2X", 1000);
+    check_nbr("%-020.2X", 0);
+    check_nbr("%-020.X", 0);
+    check_nbr("%-020.X", 1000);
+    check_nbr("%-020.X", -1000);
+*/
 
     printf("*******DIGITS***********\n");
 
-
 /*
-void	ft_fill_and_print(char *str, t_var *opt)
-{
-	int len;
-	int rest;
-	int i;
-   
-	len = ft_strlen(str);
-	rest = (len < opt->len) ? (opt->len - len) : 0;
-	opt->out += len + rest;
-	if (!opt->right)
-		ft_putstr_fd(str, 1);
-	i = 0;
-	while (i++ < rest)
-		ft_putchar_fd(opt->fill, 1);
-	if (opt->right)
-		ft_putstr_fd(str, 1);
-}*/
-/*
-    printf("%%9.6d\n");
-    len = ft_printf("%9.6d", -321);
-    printf("len: %d\n", len);
-    len = printf("%9.6d", -321);
-    printf("len: %d\n", len);
-
-    printf("%%9.2d\n");
-    len = ft_printf("%9.2d", -355);
-    printf("len: %d\n", len);
-    len = printf("%9.2d", -355);
-    printf("len: %d\n", len);
-
-    printf("%%09.6d\n");
-    len = ft_printf("%09.6d", -355);
-    printf("len: %d\n", len);
-    len = printf("%09.6d", -355);
-    printf("len: %d\n", len);
-
-    printf("%%.6d\n");
-    len = ft_printf("%.6d", -3);
-    printf("len: %d\n", len);
-    len = printf("%.6d", -3);
-    printf("len: %d\n", len);
-
-    printf("%%07d\n");
-    len = ft_printf("%07d", -54);
-    printf("len: %d\n", len);
-    len = printf("%07d", -54);
-    printf("len: %d\n", len);
-
+    check_nbr("this %d number", -267);
+    check_nbr("%d", -1);
+    check_nbr("%7d", -14);
+    check_nbr("%5d", -2562);
+    check_nbr("%4d", -2464);
+    check_nbr("%-7d", -14);
+    check_nbr("%-5d", -2562);
+    check_nbr("%-4d", -2464);
+    check_nbr("%.3d", 13862);
+    check_nbr("%.3d",-23646);
+    check_nbr("%8.3d", 8375);
+    check_nbr("%10.8d", 8375);
+    check_nbr("%-10.8d", 8375);
+    check_nbr("%-010.8d", 8375);
+    check_nbr("%10.8d", -8375);
+    check_nbr("%-10.8d", -8375);
+    check_nbr("%-010.8d", -8375);
+    check_nbr("%8.3d", -8473);
+    check_nbr("%03.3d", 6983);
+    check_nbr("%.0d", 0);
+    check_nbr("%.0d", 1);
+    check_nbr("%9.6d", -355);
+    check_nbr("%9.2d", -355);
+    check_nbr("%09.6d", -355);
+    check_nbr("%.6d", -3);
+    check_nbr("%07d", -54);
     check_nbr("%09d", -265);
     check_nbr("%.9d", -265);
     check_nbr("%9d", -265);
     check_nbr("%-9d", -265);
     check_nbr("%.*d", -2147483648);
-*/    
+*/
 
-/*
+
     printf("********* UNSIGNED **********\n");
+/*
+    check_nbr("%u", 265);
+    check_nbr("%u", 15);
+    check_nbr("%u", 1000);
+    check_nbr("%u", -265);
+    check_nbr("%u", -15);
+    check_nbr("%u", -1000);
+    check_nbr("%20u", -1000);
+    check_nbr("%20.18u", -1000);
+    check_nbr("%-20u", -1000);
+    check_nbr("%-20.18u", -1000);
+    check_nbr("%20u", 1000);
+    check_nbr("%20.18u", 1000);
+    check_nbr("%-20u", 1000);
+    check_nbr("%-20.18u", 1000);
+    check_nbr("%20.2u", 1000);
+    check_nbr("%-20u", 1000);
+    check_nbr("%-20.2u", 1000);
+    check_nbr("%020.18u", 1000);
+    check_nbr("%-020u", 1000);
+    check_nbr("%-020.2u", 1000);
+
     ft_printf("funo %*u dos\n", 20, -32769);
     printf("puno %*u dos\n", 20, -32769);
     unsigned int h = 3678;
     ft_printf("funo %*u dos\n", 20, h);
     printf("puno %*u dos\n", 20, h);
-*/
 
+*/
     printf("**********STR*************\n");
 /*
     check_str("*%.03s", NULL);
@@ -228,46 +251,36 @@ void	ft_fill_and_print(char *str, t_var *opt)
     check_str("*%9.1s", NULL);
     check_str("*%-3.1s", NULL);
     check_str("*%-9.1s", NULL);
-*/ 
-/*
-    printf("t %d n %d v %d f %d r %d\n", '\t', '\n', '\v', '\f', '\r');
-    len = ft_printf("%+- 06.06s", "hello world");
-    printf("*len: %d\n", len);
-    len = printf("%+- 06.06s", "hello world");
-    //len = printf("printf %\t\n\v\f\r 06.06s", "hello world");
-    printf("*len: %d\n", len);
-
-    len = ft_printf("%.7s", "hello");
-    printf("*len: %d\n", len);
-    len = printf("%.7s", "hello");
-    printf("*len: %d\n", len);
-    
-    len = ft_printf("%32s", NULL);
-    printf("*len: %d\n", len);
-    len = printf("%32s", NULL);
-    printf("*len: %d\n", len);
-
-     len = ft_printf("%-32s", NULL);
-    printf("*len: %d\n", len);
-    len = printf("%-32s", NULL);
-    printf("*len: %d\n", len);
-
-    len = ft_printf("%032s", NULL);
-    printf("*len: %d\n", len);
-    len = printf("%032s", NULL);
-    printf("*len: %d\n", len);
-
-     len = ft_printf("%-032s", NULL);
-    printf("*len: %d\n", len);
-    len = printf("%-032s", NULL);
-    printf("*len: %d\n", len);
-
-    len = ft_printf("%7.3s", NULL);
-    printf("*len: %d\n", len);
-    len = printf("%7.3s", NULL);
-    printf("*len: %d\n", len);
+    check_str("%7.5s", "yolo");    
+    check_str("%7.5s", "bombastic");
+    check_str("%-7.5sFIN", "yolo");
+    check_str("%7.3s", "yolo");
+    check_str("%3.5s", "yolo");
+    check_str("%3.0s", "yolo");
+    check_str("%3.s", "yolo");
+    check_str("%020.06s", "hello world");
+    check_str("%030.020s", "hello world");
+    check_str("%-030.020s", "hello world");
+    check_str("%030s", "hello world");
+    check_str("%30.020s", "hello world");
 */
 /*
+    check_str("%+- 06.06s", "hello world");
+    check_str("%+- \t 06.06s", "hello world");
+    check_str("%+-  -06.06s", "hello world");
+    check_str("%- \t -06.06s", "hello world");
+    check_str("%- \t 06.06s", "hello world");
+    check_str("% \t -06.06s", "hello world");
+    check_str("%-  -06.06s", "hello world");
+    check_str("%- jk-06.06s", "hello world");
+    check_str("%- jkss", "hello world");
+*/
+/*
+    printf("t %d n %d v %d f %d r %d\n", '\t', '\n', '\v', '\f', '\r');
+    
+*/
+/*
+ 
     len = ft_printf("%3.7s%3.7s", "hello", "world");
     printf("*len: %d\n", len);
     len = printf("%3.7s%3.7s", "hello", "world");
@@ -282,39 +295,9 @@ void	ft_fill_and_print(char *str, t_var *opt)
     printf("*len: %d\n", len);
     len = printf("%3.3s%3.7s", "hello", "world");
     printf("*len: %d\n", len);
-
-   
-    len = ft_printf("%7.5s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = printf("%7.5s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = ft_printf("%7.5s", "bombastic");
-    printf("\nlen: %d\n", len);
-    len = printf("%7.5s", "bombastic");
-    printf("\nlen: %d\n", len);
-    len = ft_printf("%-7.5sFIN", "yolo");
-    printf("\nlen: %d\n", len);
-    len = printf("%-7.5sFIN", "yolo");
-    printf("\nlen: %d\n", len);
-
-    len = ft_printf("%7.3s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = printf("%7.3s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = ft_printf("%3.5s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = printf("%3.5s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = ft_printf("%3.0s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = printf("%3.0s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = ft_printf("%3.s", "yolo");
-    printf("\nlen: %d\n", len);
-    len = printf("%3.s", "yolo");
-    printf("\nlen: %d\n", len);
-    */
-    /*
+*/
+ /*  
+    
     ft_printf("funo %*s dos\n", 20, "hola");
     printf("puno %*s dos\n", 20, "hola");
     len = ft_printf("funo %.*s dos\n", 2, "hola");
@@ -338,11 +321,22 @@ void	ft_fill_and_print(char *str, t_var *opt)
     */
  
     printf("**********POINTER**********\n");
-
+/*
+    char a01 = 'a';
+    char a02= 'a';
+    char a03 = 'a';
+    int h = 20;
 
     check_pointer("%p", NULL);
     check_pointer("%.0p", 0);
     check_pointer("%5p", 0);
+    check_pointer("%5p", &a01);
+
+    len = ft_printf("%p%p%p", &a01, &a02, &a03);
+    printf("*len: %d\n", len);
+    len = printf("%p%p%p", &a01, &a02, &a03);
+    printf("*len: %d\n\n", len);
+*/
 /*
 
     len = ft_printf("%.5p", 0);
@@ -429,8 +423,7 @@ void	ft_fill_and_print(char *str, t_var *opt)
     printf("*len: %d\n\n", len);
 
   */
-    char prueba = 'a';
-    int h = 20;
+    
 /* UNDEFINE
     len = ft_printf("f puntero: %9.2p, char: %c\n", &prueba, prueba);
     printf("len: %d\n", len);
@@ -528,88 +521,39 @@ printf("lenp: %d\n", len);
 printf("*********CHAR**********\n");
 
 /*
-int c_nullterm_basic(void){return test("%c", '\0');}
-int c_nullterm_5w(void){return test("%5c", '\0');}
-int c_nullterm_5wlj(void){return test("%-5c", '\0');}
+check_char("%c", '\0');
+check_char("%5c", '\0');
+check_char("%-5c", '\0');
+check_char("%c", 'j');
+check_char("%10c", 'j');
+check_char("%10.5c", 'j');
+check_char("%010.5c", 'j');
+check_char("%-10c", 'j');
+check_char("%-010c", 'j');
+check_char("%-010.c", 'j');
+check_char("%.10c", 'j');
+check_char("%.1c", 'j');
+check_char("%.0c", 'j');
+check_char("%10.0c", 'j');
+check_char("%-10.0c", 'j');
+check_char("%10-.0c", 'j');
 */
+
 /*
-len = ft_printf("%c", 'x');
-printf("*1lenp: %d\n", len);
-len = printf("%c", 'x');
-printf("*1lenp: %d\n", len);
-
-len = ft_printf("%5c", 'x');
-printf("*1lenp: %d\n", len);
-len = printf("%5c", 'x');
-printf("*1lenp: %d\n", len);
-
-len = ft_printf("%-5c", 'x');
-printf("*1lenp: %d\n", len);
-len = printf("%-5c", 'x');
-printf("*1lenp: %d\n", len);
-
-len = ft_printf("%c", '\0');
-printf("*2lenp: %d\n", len);
-len = printf("%c", '\0');
-printf("*2lenp: %d\n", len);
-
-len = ft_printf("%5c", '\0');
-printf("*3lenp: %d\n", len);
-len = printf("%5c", '\0');
-printf("*3lenp: %d\n", len);
-
-len = ft_printf("%-5c", 'x');
-printf("*4lenp: %d\n", len);
-len = printf("%-5c", 'x');
-printf("*4lenp: %d\n", len);
-
-len = ft_printf("%05c", 'x');
-printf("*5lenp: %d\n", len);
-len = printf("%05c", 'x');
-printf("*5lenp: %d\n", len);
-
-len = ft_printf("%-05c", 'x');
-printf("*6lenp: %d\n", len);
-len = printf("%-05c", 'x');
-printf("*6lenp: %d\n", len);
-
-
-len = ft_printf("%-5.2c", '\0');
-printf("*7lenp: %d\n", len);
-len = printf("%-5.2c", '\0');
-printf("*7lenp: %d\n", len);
+check_percent("%%");
+check_percent("%10%");
+check_percent("%10.5%");
+check_percent("%010.5%");
+check_percent("%-10%");
+check_percent("%-010%");
+check_percent("%-010.%");
+check_percent("%.10%");
+check_percent("%.1%");
+check_percent("%.0%");
+check_percent("%10.0%");
+check_percent("%-10.0%");
+check_percent("%10-.0%");
 */
-/*
-ft_printf("1ft %05cFIN\n", 'x');
-printf("1pr %05cFIN\n", 'x');
-
-len = ft_printf("2ft %.5cFIN\n", 'x');
-printf("lenp: %d\n", len);
-len = printf("2pr %.5cFIN\n", 'x');
-printf("lenp: %d\n", len);
-
-ft_printf("3ft %*cFIN\n", 5, 'x');
-printf("3pr %*cFIN\n", 5, 'x');
-
-ft_printf("4ft %-5cFIN\n", 'x');
-printf("4pr %-5cFIN\n", 'x');
-
-len = ft_printf("5ft %-05cFIN\n", 'x');
-printf("lenp: %d\n", len);
-len = printf("5pr %-05cFIN\n", 'x');
-printf("lenp: %d\n", len);
-
-len = ft_printf("5ft %-.05cFIN\n", 'x');
-printf("lenp: %d\n", len);
-len = printf("5pr %-.05cFIN\n", 'x');
-printf("lenp: %d\n", len);
-
-len = ft_printf("%cFIN\n", '\0');
-printf("lenf: %d\n", len);
-len = printf("%cFIN\n", '\0');
-printf("lenp: %d\n", len);
-*/
-
     /*
     //cspdiuxX % x y X conversion hexadecimal sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/19 11:15:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/20 11:19:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ void ft_print_char(va_list ap, t_var *opt)
 	char *str;
 
 	c = (char)va_arg(ap, int);
+	opt->fill = ' ';
 	opt->len--;
 	if (opt->right)
 	{		
-		ft_fill_and_print("", opt);	
+		ft_fill_and_print("", opt);
 		ft_putchar_fd(c, 1);
 	}
 	else
@@ -37,7 +38,11 @@ void ft_print_char(va_list ap, t_var *opt)
 
 void ft_print_percent(va_list ap, t_var *opt)
 {
+	ft_putchar_fd('%', 1);
+	opt->out++;
+	/*
 	char *str;
+
 
 	str = ft_calloc(sizeof(char), 2);
 	if (str)
@@ -52,6 +57,7 @@ void ft_print_percent(va_list ap, t_var *opt)
 		ft_fill_and_print(str, opt);
 		free(str);
 	}
+	*/
 }
 
 void ft_print_str(va_list ap, t_var *opt)
@@ -60,8 +66,7 @@ void ft_print_str(va_list ap, t_var *opt)
 	char *delete;
 	
 	delete = 0;
-	if (!opt->right)
-		opt->fill = ' ';
+	opt->fill = ' ';
 	if (!(str = (char *)va_arg(ap, const char *)))
 	{
 		str = ft_strdup("(null)");
@@ -83,14 +88,12 @@ void ft_print_str(va_list ap, t_var *opt)
 
 void ft_print_pointer(va_list ap, t_var *opt)
 {
-	void *p;
-	char *str;
-	char *temp;
-	int zero;
+	void	*p;
+	char	*str;
+	char	*temp;
 	
-	p = va_arg(ap, void *);
-	
-	if ((temp = ft_pointer_str((unsigned long)p, 0, zero)))
+	p = va_arg(ap, void *);	
+	if ((temp = ft_pointer_str((unsigned long)p, 0)))
 	{
 		str = (p) ? ft_load_digit_nbr("0x", temp, opt) : ft_load_digit_nbr("", temp, opt);
 		if (!str)
@@ -102,7 +105,7 @@ void ft_print_pointer(va_list ap, t_var *opt)
 			ft_putstr_fd("0x", 1);
 			opt->len -= 2;
 			opt->out += 2;
-		}	
+		}
 		ft_fill_and_print(str, opt);
 		free(str);
 	}

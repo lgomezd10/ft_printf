@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/19 10:01:40 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/20 10:41:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 		ft_print_unsig(ap, opt);
 	if (*str == 'x')
 		ft_print_hex(ap, opt, 0);
-	if (*str == 'X')
-		ft_print_hex(ap, opt, 1);
 	if (*str == 'X')
 		ft_print_hex(ap, opt, 1);
 	if (*str == 'n')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/18 19:33:55 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/20 11:19:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*ft_to_hex(unsigned int nbr, int upper)
 	return (str);
 }
 
-char	*ft_pointer_str(unsigned long nbr, int upper, int zero)
+char	*ft_pointer_str(unsigned long nbr, int upper)
 {
 	unsigned long div;
 	int i;

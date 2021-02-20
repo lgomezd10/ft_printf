@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/18 17:26:13 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/20 11:19:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void            ft_print_hex(va_list ap, t_var *opt, int upper);
 void            ft_fill_and_print(char *str, t_var *opt);
 char            *ft_to_hex(unsigned int n, int upper);
 char            *ft_utoa(unsigned int nbr);
-char            *ft_pointer_str(unsigned long nbr, int upper, int zero);
+char            *ft_pointer_str(unsigned long nbr, int upper);
 void            ft_save_len(va_list ap, t_var *opt);
 char            *ft_load_digit_nbr(char *before, char *nbr, t_var *opt);
 
