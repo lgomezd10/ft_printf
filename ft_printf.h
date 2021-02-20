@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/20 11:19:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/20 12:34:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct  s_var
 	int decimal;
 	char fill;
 	int dot;
-	int start;
+	int pound;
 	int out;
 }               t_var;
 

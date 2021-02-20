@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:58 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/20 09:22:40 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/20 12:48:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,17 @@ void ft_print_hex(va_list ap, t_var *opt, int upper)
 	nbr = va_arg(ap, unsigned int);
 	if ((temp = ft_to_hex(nbr, upper)))
 	{
-		if (!(str = ft_load_digit_nbr("", temp, opt)))
+		str = (opt->pound) ? ft_load_digit_nbr("0x", temp, opt) : ft_load_digit_nbr("", temp, opt);
+		if (!str)
 			str = temp;
 		else
 			free(temp);
+		if (opt->pound && opt->fill == '0')
+		{
+			ft_putstr_fd("0x", 1);
+			opt->len -= 2;
+			opt->out += 2;
+		}
 		ft_fill_and_print(str, opt);
 		free(str);
 	}

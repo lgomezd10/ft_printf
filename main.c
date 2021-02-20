@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/20 11:17:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/20 12:40:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,13 @@ int main(void)
     len = (int)(f1 * 10);
     printf("%d\n", len);
 */
+
+    check_nbr("%#x", 300);
+    check_nbr("%-#x", 300);
+    check_nbr("%0#x", 300);
+    check_nbr("%#0x", 300);
+    check_nbr("%#010x", 300);
+
 /*
     ft_printf("PRUEBA i y d\n");
     ft_printf("uno %d dos %d tres\n", 8, 20);
@@ -207,8 +214,8 @@ int main(void)
     check_nbr("%9d", -265);
     check_nbr("%-9d", -265);
     check_nbr("%.*d", -2147483648);
-*/
 
+*/
 
     printf("********* UNSIGNED **********\n");
 /*
