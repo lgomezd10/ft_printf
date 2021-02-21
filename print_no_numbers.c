@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/20 11:19:52 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/21 08:45:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void ft_print_percent(va_list ap, t_var *opt)
 		if (!opt->right)
 			opt->fill = ' ';
 		if (opt->dot)
-			opt->len = opt->decimal;
+			opt->len = opt->deci;
 		str[0] = '%';
 		ft_fill_and_print(str, opt);
 		free(str);
@@ -74,7 +74,7 @@ void ft_print_str(va_list ap, t_var *opt)
 	}
 	if (opt->dot)
 	{    
-		if ((str = ft_substr(str, 0, opt->decimal)))
+		if ((str = ft_substr(str, 0, opt->deci)))
 		{
 			ft_fill_and_print(str, opt);
 			free(str);

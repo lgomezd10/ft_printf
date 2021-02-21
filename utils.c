@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/20 11:19:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/20 13:26:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,19 @@ char	*ft_utoa(unsigned int nbr)
 		}
 	}
 	return (str);
+}
+
+void ft_print_data(char **str, t_var *opt)
+{
+	int len;
+
+	if (str && *str)
+	{
+		len = ft_strlen(*str);
+		ft_putstr_fd(*str, 1);
+		opt->len -= len;
+		opt->out += len;
+		free(*str);
+		*str = 0;
+	}
 }

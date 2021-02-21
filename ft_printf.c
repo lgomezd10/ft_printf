@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/20 12:34:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/21 08:45:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-//cspdiuxX % x y X conversion hexadecimal sin signo
+//cspdiuxX % x y X conversion hexadeci sin signo
 const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 {
 	int d;
@@ -47,7 +47,9 @@ void	ft_init_opt(t_var *opt)
 	opt->len = 0;
 	opt->right = 1;
 	opt->dot = 0;
-	opt->decimal = 0;
+	opt->deci = 0;
+	opt->hash = 0;
+	opt->sign = 0;
 }
 
 int ft_is_flags(char c)
@@ -73,17 +75,21 @@ const char	*ft_get_flags(va_list ap, t_var *opt, const char *str)
 		if (str[i] == '.')
 			opt->dot = 1;
 		if (str[i] == '#')
-			opt->pound = 1;
+			opt->hash = 1;
+		if (str[i] == '+')
+			opt->sign = 1;
+		if (str[i] == ' ')
+			opt->space = 1;
 		if (str[i] == '0' && !opt->dot)
 			opt->fill = '0';
 		if (str[i] == '*' && !opt->dot)
 			opt->len = va_arg(ap, int);
 		if (str[i] == '*' && opt->dot)
-			opt->decimal = va_arg(ap, int);			
+			opt->deci = va_arg(ap, int);			
 		if (ft_isdigit(str[i]) && (str[i] != 0 || opt->dot))
 		{
 			opt->len = (!opt->dot) ? ft_atoi(&str[i]) : opt->len;
-			opt->decimal = (opt->dot) ? ft_atoi(&str[i]) : opt->decimal;
+			opt->deci = (opt->dot) ? ft_atoi(&str[i]) : opt->deci;
 			while (ft_isdigit(str[i]))
 				i++;
 			i--;

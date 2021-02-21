@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/20 12:40:02 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/21 08:48:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,33 @@ int main(void)
     len = (int)(f1 * 10);
     printf("%d\n", len);
 */
-
+/********BONUS***********/
+printf("********BONUS**********");
+/*
     check_nbr("%#x", 300);
     check_nbr("%-#x", 300);
     check_nbr("%0#x", 300);
     check_nbr("%#0x", 300);
     check_nbr("%#010x", 300);
-
+    check_nbr("%+d", 300);
+    check_nbr("%+d", -300);
+    check_nbr("%+010d", 300);
+    check_nbr("%+010d", -300);
+    check_nbr("%010d", 300);
+    check_nbr("%010d", -300);
+    check_nbr("%+u", 300);
+    check_nbr("%+u", -300);
+    check_str("%+s", "hola");
+    check_nbr("%+010x", 300);
+*/
+    check_nbr("% d", 55);
+    check_nbr("% d", -55);
+    check_nbr("% +d", 55);
+    check_nbr("% +d", -55);
+    check_nbr("% u", 55);
+    check_nbr("% u", -55);
+    check_nbr("% x", 55);
+    check_nbr("% x", -55);
 /*
     ft_printf("PRUEBA i y d\n");
     ft_printf("uno %d dos %d tres\n", 8, 20);
@@ -152,6 +172,12 @@ int main(void)
     check_nbr("%-020x", 1000);
     check_nbr("%-020.2x", 1000);
     check_nbr("%-020.2x", 0);
+    check_nbr("%-020.X", 0);
+    check_nbr("%-020.X", 1000);
+    check_nbr("%-020.X", -1000);
+    check_nbr("%-#020.X", 1000);
+    check_nbr("%-#020.X", -1000);
+    check_nbr("%#020X", -1000);
 */
 /*
     check_nbr("%X", 265);
@@ -181,7 +207,6 @@ int main(void)
 */
 
     printf("*******DIGITS***********\n");
-
 /*
     check_nbr("this %d number", -267);
     check_nbr("%d", -1);
@@ -202,7 +227,6 @@ int main(void)
     check_nbr("%-010.8d", -8375);
     check_nbr("%8.3d", -8473);
     check_nbr("%03.3d", 6983);
-    check_nbr("%.0d", 0);
     check_nbr("%.0d", 1);
     check_nbr("%9.6d", -355);
     check_nbr("%9.2d", -355);
@@ -213,10 +237,13 @@ int main(void)
     check_nbr("%.9d", -265);
     check_nbr("%9d", -265);
     check_nbr("%-9d", -265);
-    check_nbr("%.*d", -2147483648);
-
+    check_nbr("%30.20d", -2147483648);
+    check_nbr("%020d", -2147483648);
+    check_nbr("%5d", 0);
+    check_nbr("%.0d", 0);
+    check_nbr("%5.2d", 0);
+    check_nbr("%5.0d", 0);
 */
-
     printf("********* UNSIGNED **********\n");
 /*
     check_nbr("%u", 265);
@@ -562,9 +589,9 @@ check_percent("%-10.0%");
 check_percent("%10-.0%");
 */
     /*
-    //cspdiuxX % x y X conversion hexadecimal sin signo
+    //cspdiuxX % x y X conversion hexadeci sin signo
     printf("un hexadecima %x otro %x\n", -2147483647 , -2);
-    printf("un decimal sin signo %u otro %u\n", 5, -1);
+    printf("un deci sin signo %u otro %u\n", 5, -1);
 
     printf("una cosa %9s otra cosa\n", "prueba");
     printf("una cosa %-9s otra cosa\n", "prueba");
