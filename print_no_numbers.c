@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/21 08:45:16 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/21 09:21:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,23 @@ void ft_print_pointer(va_list ap, t_var *opt)
 	void	*p;
 	char	*str;
 	char	*temp;
+	char	*before;
 	
 	p = va_arg(ap, void *);	
+	before = (opt->space && !opt->sign) ? ft_strdup(" 0x") : 0;
+	before = (opt->sign) ? ft_strdup("+0x") : before;
+	before = (!before) ? ft_strdup("0x") : before;
 	if ((temp = ft_pointer_str((unsigned long)p, 0)))
 	{
-		str = (p) ? ft_load_digit_nbr("0x", temp, opt) : ft_load_digit_nbr("", temp, opt);
-		if (!str)
+		if (!(str = ft_load_digit_nbr(before, temp, opt)))
 			str = temp;
 		else
 			free(temp);
 		if (opt->fill == '0')
-		{
-			ft_putstr_fd("0x", 1);
-			opt->len -= 2;
-			opt->out += 2;
-		}
+			ft_print_data(&before, opt);
 		ft_fill_and_print(str, opt);
 		free(str);
 	}
+	if (before)
+		free(before);
 }

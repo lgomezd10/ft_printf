@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/21 08:48:20 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/21 10:20:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int main(void)
     printf("%d\n", len);
 */
 /********BONUS***********/
-printf("********BONUS**********");
+printf("********BONUS**********\n");
 /*
     check_nbr("%#x", 300);
     check_nbr("%-#x", 300);
@@ -115,6 +115,7 @@ printf("********BONUS**********");
     check_str("%+s", "hola");
     check_nbr("%+010x", 300);
 */
+/*
     check_nbr("% d", 55);
     check_nbr("% d", -55);
     check_nbr("% +d", 55);
@@ -123,6 +124,24 @@ printf("********BONUS**********");
     check_nbr("% u", -55);
     check_nbr("% x", 55);
     check_nbr("% x", -55);
+    check_nbr("% p", 55);
+    check_nbr("%+p", 55);
+    check_nbr("%+5.7p", 55);
+    check_nbr("%020p", 55);
+    check_nbr("%020.10p", 55);
+    check_percent("prueba \" hola \" tu");
+    check_percent("prueba \% tu");
+    check_percent("prueba \\ tu");
+*/
+printf("********** l ll h hh **********\n");
+
+    int a = 'a';
+    printf("%hhdFIN\n", (char)45);
+    printf("%hhdFIN\n", (char)-45);
+    printf("%dFIN\n", (char)45);
+    printf("%hdFIN\n", (short)385);
+    printf("%hdFIN\n", (short)-385);
+
 /*
     ft_printf("PRUEBA i y d\n");
     ft_printf("uno %d dos %d tres\n", 8, 20);
