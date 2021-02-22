@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/20 13:26:42 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/22 18:13:05 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	ft_fill_and_print(char *str, t_var *opt)
 {
@@ -45,9 +46,9 @@ char	ft_get_char(unsigned int nbr, int upper)
 	return (c);
 }
 
-char	*ft_to_hex(unsigned int nbr, int upper)
+char	*ft_to_hex(unsigned long long int nbr, int upper)
 {
-	int div;
+	unsigned long long int div;
 	int i;
 	char *str;
 
@@ -105,6 +106,32 @@ char	*ft_pointer_str(unsigned long nbr, int upper)
 char	*ft_utoa(unsigned int nbr)
 {
 	int div;
+	int i;
+	char *str;
+
+	div = 1;
+	i = 1;
+	while (nbr / div > 9)
+	{
+		div *= 10;
+		i++;
+	}
+	if ((str = ft_calloc(sizeof(char), i + 1)))
+	{
+		i = 0;
+		while (div > 0)
+		{
+			str[i++] = (nbr / div) + '0';
+			nbr = nbr % div;
+			div = div / 10;
+		}
+	}
+	return (str);
+}
+
+char	*ft_ultoa(unsigned long int nbr)
+{
+	long int div;
 	int i;
 	char *str;
 

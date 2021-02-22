@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/22 08:51:33 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/22 18:09:28 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,19 @@ void check_float(char *str, double dato)
     printf("*len: %d\n", len);
 }
 
+void check_long(char *str, long int dato)
+{
+    static int item = 0;
+    int len;
+
+    item++;
+    printf("\n%d: %s\n", item, str);
+    len = ft_printf(str, dato);
+    printf("*len: %d\n", len);
+    len = printf(str, dato);
+    printf("*len: %d\n", len);
+}
+
 int main(void)
 {
     int len;
@@ -112,7 +125,13 @@ int main(void)
 /********BONUS***********/
 printf("********BONUS**********\n");
 /*
+    check_nbr("%#x", 0);
+    check_percent("%#");
+    check_nbr("%#d", 0);
+
     check_nbr("%#x", 300);
+    check_nbr("%#X", 300);
+
     check_nbr("%-#x", 300);
     check_nbr("%0#x", 300);
     check_nbr("%#0x", 300);
@@ -127,12 +146,16 @@ printf("********BONUS**********\n");
     check_nbr("%+u", -300);
     check_str("%+s", "hola");
     check_nbr("%+010x", 300);
-*/
-/*
+
+
+    check_nbr("% 05d", 43);
+    check_nbr("%07d", -54);
     check_nbr("% d", 55);
     check_nbr("% d", -55);
     check_nbr("% +d", 55);
     check_nbr("% +d", -55);
+*/
+/*
     check_nbr("% u", 55);
     check_nbr("% u", -55);
     check_nbr("% x", 55);
@@ -148,14 +171,14 @@ printf("********BONUS**********\n");
 */
 
 printf("************ REAL ***********\n");
-
+/*
     check_float("%f\n", 444444.444444444444);
     check_float("%f\n", (double)9223372036854775807);
     check_float("%f\n", 9223372036.854775);
     check_float("%f\n", 18446744073709551.615);
     check_float("%30.30f\n", 18446744073709551.615);
     check_float("%f\n", 4294967295);
-
+*/
 printf("********** l ll h hh **********\n");
 /*
     int a = 'a';
@@ -250,6 +273,33 @@ printf("********** l ll h hh **********\n");
     check_nbr("%-020.X", -1000);
 */
 
+    printf("******** LONG *************\n");
+
+    static char 		ch_pos_1 = 100, ch_neg_1 = -87;
+    static short		sh_pos_1 = 3047, sh_neg_1 = -8875;
+    static int			i_pos_1 = 878023;
+    static long			l_pos_1 = 22337203685477, l_neg_1 = -22337203685477;
+    static long long	ll_pos_1 = 22337203685477, ll_neg_1 = -22337203685477;
+    static long			lmax	= 9223372036854775807;
+    static long			lmin	= -9223372036854775807;
+    static long long	llmax = 9223372036854775807;
+    static long long	llmin = -9223372036854775807ll;
+    static unsigned char 		uch_pos_1 = 100;
+    static unsigned short		ush_pos_1 = 3047;
+    static unsigned int		ui_pos_1 = 878023;
+    static unsigned long		ul_pos_1 = 22337203685477;
+    static unsigned long long	ull_pos_1 = 22337203685477;
+    static unsigned long long  ullmax = 9223372036854775807;
+    static unsigned long  		ulmax = 9223372036854775807;
+
+    check_long("%d", ullmax);
+    printf("*%d\n", llmax);
+    check_long("%ld", ullmax);
+    check_long("%lld", llmax);
+    check_long("%lu", ul_pos_1);
+    check_long("%u", ul_pos_1);
+    check_long("%llu", ul_pos_1);
+
     printf("*******DIGITS***********\n");
 /*
     check_nbr("this %d number", -267);
@@ -257,6 +307,7 @@ printf("********** l ll h hh **********\n");
     check_nbr("%7d", -14);
     check_nbr("%5d", -2562);
     check_nbr("%4d", -2464);
+
     check_nbr("%-7d", -14);
     check_nbr("%-5d", -2562);
     check_nbr("%-4d", -2464);
@@ -287,7 +338,7 @@ printf("********** l ll h hh **********\n");
     check_nbr("%.0d", 0);
     check_nbr("%5.2d", 0);
     check_nbr("%5.0d", 0);
-*/
+/
     printf("********* UNSIGNED **********\n");
 /*
     check_nbr("%u", 265);
@@ -319,6 +370,7 @@ printf("********** l ll h hh **********\n");
 
 */
     printf("**********STR*************\n");
+
 /*
     check_str("*%.03s", NULL);
     check_str("*%3.s", NULL);
@@ -356,6 +408,45 @@ printf("********** l ll h hh **********\n");
 /*
     printf("t %d n %d v %d f %d r %d\n", '\t', '\n', '\v', '\f', '\r');
     
+*/
+
+/*
+    len = ft_printf("%*s", -32, "abc");
+    printf("*len: %d\n", len);
+    len = printf("%*s", -32, "abc");
+    printf("*len: %d\n", len);
+
+    len = ft_printf("%*.*s", 32, -5, "abc");
+    printf("*len: %d\n", len);
+    len = printf("%*.*s", 32, -5, "abc");
+    printf("*len: %d\n", len);
+
+    len = ft_printf("%*.*s", 32, -2, "abc");
+    printf("*len: %d\n", len);
+    len = printf("%*.*s", 32, -2, "abc");
+    printf("*len: %d\n", len);
+
+    len = ft_printf("%*.*s", 32, 2, "abc");
+    printf("*len: %d\n", len);
+    len = printf("%*.*s", 32, 2, "abc");
+    printf("*len: %d\n", len);
+
+    len = ft_printf("%*d", -32, 55);
+    printf("*len: %d\n", len);
+    len = printf("%*d", -32, 55);
+    printf("*len: %d\n", len);
+
+     len = ft_printf("%*.*d", 10, -5, 55);
+    printf("*len: %d\n", len);
+    len = printf("%*.*d", 10, -5, 55);
+    printf("*len: %d\n", len);
+
+    len = ft_printf("%*.*d", 10, 5, 55);
+    printf("*len: %d\n", len);
+    len = printf("%*.*d", 10, 5, 55);
+    printf("*len: %d\n", len);
+
+    check_str("%32s", "abc");
 */
 /*
  
@@ -399,6 +490,26 @@ printf("********** l ll h hh **********\n");
     */
  
     printf("**********POINTER**********\n");
+/*
+static char	a01;
+static unsigned char a02;
+static short a03;
+static unsigned short a04;
+static int a05;
+static unsigned int a06;
+static long a07;
+static unsigned long a08;
+static long long a09;
+static unsigned long long a10;
+static char *a11;
+static void *a12;
+
+len = ft_printf("%p%p%p%p%p%p%p%p%p%p%p%p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);
+printf("*len: %d\n", len);
+len = printf("%p%p%p%p%p%p%p%p%p%p%p%p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);
+printf("*len: %d\n", len);
+*/
+
 /*
     char a01 = 'a';
     char a02= 'a';
@@ -617,11 +728,15 @@ check_char("%-10.0c", 'j');
 check_char("%10-.0c", 'j');
 */
 
+printf("***************PERCENT*****************\n");
 /*
+check_percent("%5%");
+check_percent("%.5%");
 check_percent("%%");
 check_percent("%10%");
 check_percent("%10.5%");
 check_percent("%010.5%");
+check_percent("%05.10%");
 check_percent("%-10%");
 check_percent("%-010%");
 check_percent("%-010.%");

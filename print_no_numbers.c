@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_no_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/21 09:21:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/22 13:28:21 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void ft_print_char(va_list ap, t_var *opt)
 {
 	char c;
-	char *str;
 
 	c = (char)va_arg(ap, int);
 	opt->fill = ' ';
@@ -38,17 +37,29 @@ void ft_print_char(va_list ap, t_var *opt)
 
 void ft_print_percent(va_list ap, t_var *opt)
 {
-	ft_putchar_fd('%', 1);
-	opt->out++;
-	/*
-	char *str;
+	char c;
 
+	c = '%';
+	opt->len--;
+	if (opt->right)
+	{		
+		ft_fill_and_print("", opt);
+		ft_putchar_fd(c, 1);
+	}
+	else
+	{
+		opt->fill = ' ';
+		ft_putchar_fd(c, 1);
+		ft_fill_and_print("", opt);
+	}
+	opt->out++;
+
+/*
+	char *str;
 
 	str = ft_calloc(sizeof(char), 2);
 	if (str)
-	{
-		if (opt->start)
-			opt->len = va_arg(ap, int);
+	{			
 		if (!opt->right)
 			opt->fill = ' ';
 		if (opt->dot)
@@ -94,9 +105,13 @@ void ft_print_pointer(va_list ap, t_var *opt)
 	char	*before;
 	
 	p = va_arg(ap, void *);	
-	before = (opt->space && !opt->sign) ? ft_strdup(" 0x") : 0;
-	before = (opt->sign) ? ft_strdup("+0x") : before;
-	before = (!before) ? ft_strdup("0x") : before;
+	
+	//before = (opt->space && !opt->sign) ? ft_strdup(" 0x") : 0;
+	//before = (opt->sign) ? ft_strdup("+0x") : before;
+	//before = (!before) ? ft_strdup("0x") : before;
+	
+	before = ft_strdup("0x");
+
 	if ((temp = ft_pointer_str((unsigned long)p, 0)))
 	{
 		if (!(str = ft_load_digit_nbr(before, temp, opt)))

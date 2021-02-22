@@ -3,70 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   print_numbers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:58 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/21 08:46:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/22 18:36:47 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-char	*ft_load_digit_nbr(char *before, char *nbr, t_var *opt)
-{
-	int		lnbr;
-	int		lbefore;
-	int		lzeros;
-	char	*new;
 
-	new = 0;
-	opt->fill = (!opt->right || opt->dot) ? ' ' : opt->fill;
-	if (opt->dot || (!opt->dot && opt->fill != '0'))
-	{
-		lbefore = (before) ? ft_strlen(before) : 0;
-		lnbr = ft_strlen(nbr);
-		while (opt->dot && opt->deci < lnbr && *nbr == '0')
-		{
-			*nbr++;
-			lnbr--;
-		}
-		lzeros = (opt->dot && lnbr < opt->deci) ? opt->deci - lnbr : 0;
-		new = ft_calloc(sizeof(char), lbefore + lnbr + lzeros + 1);
-		ft_memset(new, '0', lbefore + lnbr + lzeros);
-		if (before)
-			ft_memcpy(new, before, lbefore);
-		ft_memcpy(&new[lbefore + lzeros], nbr, lnbr);
-		opt->dot = 0;
-	}
-	return (new);
-}
 
 void	ft_print_nbr(va_list ap, t_var *opt)
 {
-	long int	d;
-	long int	usig;
-	char		*nbr;
+	long long int lld;
+	unsigned long long int	usig;
 	char		*temp;
-	char		*before;
-
-	d = (long int)va_arg(ap, int);
-	usig = (d < 0) ? d * -1 : d;
-	before = (d < 0) ? ft_strdup("-") : 0;
-	before = (opt->space && !opt->sign && d >= 0) ? ft_strdup(" ") : before;
-	before = (opt->sign && d >= 0) ? ft_strdup("+") : before;
-	temp = (d == -2147483648) ? ft_strdup("2147483648") : ft_itoa(usig);
-	if (temp)
-	{
-		if (!(nbr = ft_load_digit_nbr(before, temp, opt)))
-			nbr = temp;
-		else
-			free(temp);
-		if (opt->fill == '0' && (d < 0 || opt->sign))
-			ft_print_data(&before, opt);
-		ft_fill_and_print(nbr, opt);
-		free(nbr);
-	}
+	char		*before;	
+	
+	if (!opt->islong)
+		lld = (long int)va_arg(ap, int);
+	else if (opt->islong == 1)
+		lld = va_arg(ap, long int);
+	else
+		lld = va_arg(ap, long int);
+	before = ft_load_before(opt, lld < 0);
+	usig = (lld < 0) ? lld * -1 : lld;
+	temp = ft_llitoa(usig);
+	ft_print_any_nbr(&before, &temp, opt, lld < 0);	
 	if (before)
 		free(before);
 }
@@ -74,12 +39,17 @@ void	ft_print_nbr(va_list ap, t_var *opt)
 void	ft_print_unsig(va_list ap, t_var *opt)
 {
 	int				d;
-	unsigned int	ud;
+	unsigned long int	ud;
 	char			*str;
 	char			*temp;
 
-	ud = va_arg(ap, unsigned int);
-	if ((temp = ft_utoa(ud)))
+	if (!opt->islong)
+		ud = va_arg(ap, unsigned int);
+	else if (opt->islong == 1)
+		ud = va_arg(ap, unsigned long int);
+	else
+		ud = va_arg(ap, unsigned long long int);
+	if ((temp = ft_ultoa(ud)))
 	{
 		if (!(str = ft_load_digit_nbr("", temp, opt)))
 			str = temp;
@@ -92,13 +62,19 @@ void	ft_print_unsig(va_list ap, t_var *opt)
 
 void	ft_print_hex(va_list ap, t_var *opt, int upper)
 {
-	unsigned int	nbr;
+	unsigned long long int	nbr;
 	char			*str;
 	char			*temp;
 	char			*before;
 
-	nbr = va_arg(ap, unsigned int);
-	before = (opt->hash) ? ft_strdup("0x") : 0;
+	if (!opt->islong)
+		nbr = va_arg(ap, unsigned int);
+	else if (opt->islong == 1)
+		nbr = va_arg(ap, unsigned long int);
+	else
+		nbr = va_arg(ap, unsigned long long int);
+	before = (opt->hash && nbr && !upper) ? ft_strdup("0x") : 0;
+	before = (opt->hash && nbr && upper) ? ft_strdup("0X") : before;
 	if ((temp = ft_to_hex(nbr, upper)))
 	{
 		if (!(str = ft_load_digit_nbr(before, temp, opt)))

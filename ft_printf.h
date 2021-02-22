@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/22 08:41:44 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/22 18:13:05 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ typedef struct  s_var
 	int hash;
 	int sign;
 	int space;
+	int islong;
 	int out;
 }               t_var;
 
 int             ft_printf(const char *format, ...);
+const char		*ft_get_flags(va_list ap, t_var *opt, const char *str);
 void            ft_print_percent(va_list ap, t_var *opt);
 void            ft_print_char(va_list ap, t_var *opt);
 void            ft_print_str(va_list ap, t_var *opt);
@@ -38,12 +40,16 @@ void            ft_print_nbr(va_list ap, t_var *opt);
 void            ft_print_unsig(va_list ap, t_var *opt);
 void            ft_print_hex(va_list ap, t_var *opt, int upper);
 void            ft_fill_and_print(char *str, t_var *opt);
-char            *ft_to_hex(unsigned int n, int upper);
+char			*ft_to_hex(unsigned long long int nbr, int upper);
 char            *ft_utoa(unsigned int nbr);
+char			*ft_ultoa(unsigned long int nbr);
+char			*ft_llitoa(long long int n);
 char            *ft_pointer_str(unsigned long nbr, int upper);
 void            ft_save_len(va_list ap, t_var *opt);
 char            *ft_load_digit_nbr(char *before, char *nbr, t_var *opt);
 void			ft_print_data(char **str, t_var *opt);
 void			ft_print_float(va_list ap, t_var *opt);
+char			*ft_load_before(t_var *opt, int isneg);
+void			ft_print_any_nbr(char **before, char **nbr, t_var *opt, int isneg);
 
 # endif

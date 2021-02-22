@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/22 08:47:45 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/22 13:02:48 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,63 +43,7 @@ const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 	return ((str + 1));
 }
 
-void	ft_init_opt(t_var *opt)
-{
-	opt->fill = ' ';
-	opt->len = 0;
-	opt->right = 1;
-	opt->dot = 0;
-	opt->deci = 0;
-	opt->hash = 0;
-	opt->sign = 0;
-}
 
-int ft_is_flags(char c)
-{
-	int out;
-
-	out = c == '-' || c == '.' || c == '*' || ft_isdigit(c);
-	out = out || c == ' ' || c == '+' || c == '#';
-
-	return (out);
-}
-
-const char	*ft_get_flags(va_list ap, t_var *opt, const char *str)
-{
-	int i;
-
-	i = 0;
-	ft_init_opt(opt);
-	while (ft_is_flags(str[i]))
-	{
-		if (str[i] == '-')
-			opt->right = 0;
-		if (str[i] == '.')
-			opt->dot = 1;
-		if (str[i] == '#')
-			opt->hash = 1;
-		if (str[i] == '+')
-			opt->sign = 1;
-		if (str[i] == ' ')
-			opt->space = 1;
-		if (str[i] == '0' && !opt->dot)
-			opt->fill = '0';
-		if (str[i] == '*' && !opt->dot)
-			opt->len = va_arg(ap, int);
-		if (str[i] == '*' && opt->dot)
-			opt->deci = va_arg(ap, int);			
-		if (ft_isdigit(str[i]) && (str[i] != 0 || opt->dot))
-		{
-			opt->len = (!opt->dot) ? ft_atoi(&str[i]) : opt->len;
-			opt->deci = (opt->dot) ? ft_atoi(&str[i]) : opt->deci;
-			while (ft_isdigit(str[i]))
-				i++;
-			i--;
-		}
-		i++;
-	}
-	return (&str[i]);
-}
 
 int		ft_printf(const char *format, ...)
 {
