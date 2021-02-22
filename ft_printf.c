@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/21 08:45:16 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/22 08:47:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 		ft_print_hex(ap, opt, 1);
 	if (*str == 'n')
 		ft_save_len(ap, opt);
+	if (*str == 'f')
+		ft_print_float(ap, opt);
 	return ((str + 1));
 }
 

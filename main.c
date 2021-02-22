@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/21 10:20:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/22 08:51:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,19 @@ void check_percent(char *str)
     printf("*len: %d\n", len);
 }
 
+void check_float(char *str, double dato)
+{
+    static int item = 0;
+    int len;
+
+    item++;
+    printf("\n%d: %s\n", item, str);
+    len = ft_printf(str, dato);
+    printf("*len: %d\n", len);
+    len = printf(str, dato);
+    printf("*len: %d\n", len);
+}
+
 int main(void)
 {
     int len;
@@ -133,15 +146,27 @@ printf("********BONUS**********\n");
     check_percent("prueba \% tu");
     check_percent("prueba \\ tu");
 */
-printf("********** l ll h hh **********\n");
 
+printf("************ REAL ***********\n");
+
+    check_float("%f\n", 444444.444444444444);
+    check_float("%f\n", (double)9223372036854775807);
+    check_float("%f\n", 9223372036.854775);
+    check_float("%f\n", 18446744073709551.615);
+    check_float("%30.30f\n", 18446744073709551.615);
+    check_float("%f\n", 4294967295);
+
+printf("********** l ll h hh **********\n");
+/*
     int a = 'a';
+    printf("%hhcFIN\n", (char)45);
+    printf("%hhsFIN\n", "hola");
     printf("%hhdFIN\n", (char)45);
     printf("%hhdFIN\n", (char)-45);
     printf("%dFIN\n", (char)45);
     printf("%hdFIN\n", (short)385);
     printf("%hdFIN\n", (short)-385);
-
+*/
 /*
     ft_printf("PRUEBA i y d\n");
     ft_printf("uno %d dos %d tres\n", 8, 20);
