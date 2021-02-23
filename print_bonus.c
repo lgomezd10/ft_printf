@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:33 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/23 12:40:00 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/23 20:03:19 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,38 @@ long long int get_mult(int len)
 	return result;
 }
 
-char *ft_format_decimal(char *str, t_var *opt)
+char *ft_get_decimal(double f, double origin, t_var *opt)
 {
-	char *deci;
-	int len;
-	int cpy;
+	int i;
+	int digit;
+	char *str;
 
-	len = ft_strlen(str);
-	cpy = (len > opt->deci) ? opt->deci : len;
-	deci = ft_calloc(sizeof(char), opt->deci + 2);
-	ft_memset(deci, '0', opt->deci + 1);
-	*deci = '.';
-	ft_memcpy((deci + 1), str, cpy);
-	if (len > opt->deci && str[opt->deci] > 4 + '0')
-		deci[opt->deci]++;
-	return (deci);
+	str = ft_calloc(sizeof(char), opt->deci + 2);
+	if (str)
+	{
+		i = 0;
+		str[i++] = '.';
+		while (i < opt->deci + 1)
+		{
+			f *= 10;
+			digit = f;
+			f -= digit;
+			str[i++] = digit + '0';
+		}
+		if (i > 0)
+		{
+			i--;
+			f *= 10;
+			if ((digit = f) > 4)
+			{
+				while (str[i] == '9' && i > 0)
+					str[i--] = '0';
+				if (i != 0)
+					str[i]++;
+			}			
+		}
+	}
+	return (str);
 }
 
 char	*ft_ftoa(double f, t_var *opt)
@@ -97,7 +114,7 @@ char	*ft_ftoa(double f, t_var *opt)
 	char *temp;
     int len;
 
-	max = 17;
+	max = 9;
 	nbr = f;
 	str_nbr = ft_llitoa(nbr);
     len = ft_strlen(str_nbr);
@@ -107,11 +124,7 @@ char	*ft_ftoa(double f, t_var *opt)
 		nbr *= -1;
 	}
 	f -= nbr;
-	nbr_deci = f * (get_mult(max - len));
-	str_deci = ft_llitoa(nbr_deci);
-	temp = ft_format_decimal(str_deci, opt);
-	free(str_deci);
-	str_deci = temp;
+	str_deci = ft_get_decimal(f, opt);
 	temp = ft_strjoin(str_nbr, str_deci);
 	free(str_deci);
 	free(str_nbr);
