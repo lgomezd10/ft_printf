@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/22 18:13:05 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/23 08:18:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+
+typedef long long int t_llint;
+typedef unsigned long long int t_ullint;
 
 typedef struct  s_var
 {

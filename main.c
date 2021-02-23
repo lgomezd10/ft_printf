@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/22 18:09:28 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/23 12:47:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void check_percent(char *str)
     printf("*len: %d\n", len);
 }
 
-void check_float(char *str, double dato)
+void check_double(char *str, double dato)
 {
     static int item = 0;
     int len;
@@ -110,18 +110,7 @@ int main(void)
     int len;
 
     len = 0;
-/*
-    float f1;
-    float f2;
-    f1 = 5.2;
-    f1 *= 10;
-    printf("%f\n", f1);
-    f2 = (int)f1;
-    printf("%f\n", f2);
-    f1 = f1 - f2;
-    len = (int)(f1 * 10);
-    printf("%d\n", len);
-*/
+
 /********BONUS***********/
 printf("********BONUS**********\n");
 /*
@@ -171,13 +160,41 @@ printf("********BONUS**********\n");
 */
 
 printf("************ REAL ***********\n");
+
 /*
-    check_float("%f\n", 444444.444444444444);
-    check_float("%f\n", (double)9223372036854775807);
-    check_float("%f\n", 9223372036.854775);
-    check_float("%f\n", 18446744073709551.615);
-    check_float("%30.30f\n", 18446744073709551.615);
-    check_float("%f\n", 4294967295);
+    float f1;
+    float f2;
+    f1 = 5.2;
+    f1 *= 10;
+    printf("%f\n", f1);
+    f2 = (int)f1;
+    printf("%f\n", f2);
+    f1 = f1 - f2;
+    len = (int)(f1 * 10);
+    printf("%d\n", len);
+*/
+/*
+    check_double("%g\n", 444444.444444444444);
+    check_double("%10.2g\n", 444444.444444444444);
+
+    check_double("%e\n", 444444.444444444444);
+    check_double("%10.2e\n", 444444.444444444444);
+    */
+/*
+    check_double("%f\n", 444444.444444444444);
+    check_double("%10.2f\n", 444444.444444444444);
+    check_double("%10.2f\n", 444444.5555555);
+    check_double("%10.2f\n", -444444.5555555);
+    check_double("%015.2f\n", -444444.5555555);
+    check_double("%f\n", 55345.123456789);
+    check_double("%f\n", 55345.123456123);
+    check_double("%f\n", 55345.823457523);
+    check_double("%f\n", 55345.823457223);
+
+    check_double("%f\n", (double)9223372036854775807);
+    check_double("%f\n", 9223372036.854775);
+    check_double("%f\n", 18446744073709551.615);
+    check_double("%30.30f\n", 18446744073709551.615);
 */
 printf("********** l ll h hh **********\n");
 /*
@@ -274,7 +291,7 @@ printf("********** l ll h hh **********\n");
 */
 
     printf("******** LONG *************\n");
-
+/*
     static char 		ch_pos_1 = 100, ch_neg_1 = -87;
     static short		sh_pos_1 = 3047, sh_neg_1 = -8875;
     static int			i_pos_1 = 878023;
@@ -299,7 +316,7 @@ printf("********** l ll h hh **********\n");
     check_long("%lu", ul_pos_1);
     check_long("%u", ul_pos_1);
     check_long("%llu", ul_pos_1);
-
+*/
     printf("*******DIGITS***********\n");
 /*
     check_nbr("this %d number", -267);
