@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/23 08:18:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/24 09:48:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char            *ft_pointer_str(unsigned long nbr, int upper);
 void            ft_save_len(va_list ap, t_var *opt);
 char            *ft_load_digit_nbr(char *before, char *nbr, t_var *opt);
 void			ft_print_data(char **str, t_var *opt);
-void			ft_print_float(va_list ap, t_var *opt);
+void			ft_print_double(va_list ap, t_var *opt, char t);
 char			*ft_load_before(t_var *opt, int isneg);
 void			ft_print_any_nbr(char **before, char **nbr, t_var *opt, int isneg);
 

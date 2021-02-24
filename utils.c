@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/22 18:13:05 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/24 09:59:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ void	ft_fill_and_print(char *str, t_var *opt)
 	int rest;
 	int i;
    
-	len = ft_strlen(str);
-	rest = (len < opt->len) ? (opt->len - len) : 0;
-	opt->out += len + rest;
-	if (!opt->right)
-		ft_putstr_fd(str, 1);
-	i = 0;
-	while (i++ < rest)
-		ft_putchar_fd(opt->fill, 1);
-	if (opt->right)
-		ft_putstr_fd(str, 1);
+	if (str)
+	{
+		len = ft_strlen(str);
+		rest = (len < opt->len) ? (opt->len - len) : 0;
+		opt->out += len + rest;
+		if (!opt->right)
+			ft_putstr_fd(str, 1);
+		i = 0;
+		while (i++ < rest)
+			ft_putchar_fd(opt->fill, 1);
+		if (opt->right)
+			ft_putstr_fd(str, 1);
+	}
 }
 
 char	ft_get_char(unsigned int nbr, int upper)

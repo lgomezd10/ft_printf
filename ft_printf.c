@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/22 13:02:48 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/24 10:58:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 		ft_print_hex(ap, opt, 1);
 	if (*str == 'n')
 		ft_save_len(ap, opt);
-	if (*str == 'f')
-		ft_print_float(ap, opt);
+	if (*str == 'f' || *str == 'e' || *str == 'g')
+		ft_print_double(ap, opt, *str);
 	return ((str + 1));
 }
 

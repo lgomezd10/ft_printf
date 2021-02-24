@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/23 20:00:12 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/24 12:31:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,23 +173,100 @@ printf("************ REAL ***********\n");
     len = (int)(f1 * 10);
     printf("%d\n", len);
 */
-    /*
-    check_double("%g", 444444.444444444444);
-    check_double("%10.2g", 444444.444444444444);
+
+double cosa = -0.0;
+double cosa2 = -0.0;
+int pos;
+
+if (1/cosa == 1/0.0)
+    pos = 1;
+else
+    pos = 0;
+
+printf("valor pos: %d\n", 1/cosa == 1/0.0);
+
+/*
+int isPositiveZero(double a) {
+    return 1/a == 1/0.0;
+}
+*/
+
+/*
+printf("para ya %lld\n", ((long long int)cosa & (long long int)cosa2));
+if (((long long int)cosa & (long)cosa2) == 1)
+    printf("no hay nada que hacer\n");
+cosa *= 1;
+printf("%f\n", cosa);
+
+
+int cosaint = -5;
+int signo;
+int sign_bit;
+// = ((unsigned int)cosa) >> 31;
+printf("size %lu\n", sizeof(int));
+ft_memcpy(&signo, &cosa, sizeof(int));
+sign_bit = ((unsigned int)signo) >> 31;
+
+printf("signo loco %d num: %d\n", sign_bit, signo);
+*/
+
+/*
+    double cosa;
+    unsigned int cosaint;
+    unsigned int desp;
+
+    cosa = -1.0;
+
+    cosaint = -0;
+    desp = (cosaint >> 3);
+    printf("cosa %u\n", desp);
+    */
+
+
+/*
+    check_double("%e", 444444.444444444444);
+    check_double("%e", 4.44444444444444444);    
+    check_double("%10.2e", 444444.444444444444);
+    check_double("%10.2e", 0.000444444444);
+    
 
     check_double("%e", 444444.444444444444);    
     check_double("%10.2e", 444444.444444444444);
-    */
+    check_double("%e", 9234.123456789);
+    check_double("%10.5e", 9234.123456789);
+    check_double("%30.20e", 9234.123456789);
+    check_double("%.20e", 9234.123456789);
+    check_double("%30e", 9234.123456789);
+    check_double("%10.20f", 9234.123456789);
+    check_double("%e", 9223372036854775807);
+    check_double("%g", 444444.444444444444);
+    check_double("%10.2g", 444444.444444444444);
+*/
     
+ /*   
     check_double("%f", 9.9999999);
+    check_double("%f", 9.8999999);
+
+    check_double("%f", 573.924);
+    check_double("%f", 573.923999);   
+    check_double("%.2f", 573.34552);  
+    check_double("%.2f", 573.34502);  
+    check_double("%.4f", 573.916256);
+    check_double("%.4f", 573.917250);
+    check_double("%.4f", 573.908250); 
+    check_double("%.4f", 573.906250);
+    check_double("%.4f", 573.905250);
     
+    check_double("%.4f", 573.904250); 
     check_double("%10.30f", 444444.5555555545543453);
+    check_double("%10.32f", 444444.5555555545543453);
+    check_double("%10.28f", 444444.5555555545543453);
+
     check_double("%f", -0.0);    
     check_double("%f", 57345.924);
     check_double("%f10.0", 57345.99999);
 
-    check_double("%f", 573.924);
-    check_double("%f", 573.923999);
+    
     check_double("%f", 444444.444444444444);
     check_double("%10.2f", 444444.444444444444);
     check_double("%10.2f", 444444.5555555);
@@ -202,10 +279,11 @@ printf("************ REAL ***********\n");
     check_double("%f", 55345.823457223);
 
     check_double("%f", (double)9223372036854775807);
+    check_double("%f", -9223372036854775809);
     check_double("%f", 9223372036.854775);
     check_double("%f", 18446744073709551.615);
     check_double("%30.30f", 18446744073709551.615);
-    
+  */  
 printf("********** l ll h hh **********\n");
 /*
     int a = 'a';
