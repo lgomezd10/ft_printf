@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/24 09:48:01 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/24 16:24:53 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ typedef struct  s_var
 	int islong;
 	int out;
 }               t_var;
+
+typedef struct  s_double
+{
+	double fnbr;
+	t_ullint nbr;
+	int isneg;
+	char *str_nbr;
+	char *str_deci;
+
+}               t_double;
 
 int             ft_printf(const char *format, ...);
 const char		*ft_get_flags(va_list ap, t_var *opt, const char *str);

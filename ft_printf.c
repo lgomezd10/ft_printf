@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/24 10:58:33 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/24 19:59:21 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-//cspdiuxX % x y X conversion hexadeci sin signo
 const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 {
 	int d;
 	char c;
-// nfge
+
 	if (*str == '%')
 		ft_print_percent(ap, opt);
 	if (*str == 'c')

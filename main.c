@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/24 12:31:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/24 20:00:50 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,9 @@ printf("************ REAL ***********\n");
     printf("%d\n", len);
 */
 
+//ft_printf("%02f\n", -0.0);
+
+/*
 double cosa = -0.0;
 double cosa2 = -0.0;
 int pos;
@@ -184,7 +187,7 @@ else
     pos = 0;
 
 printf("valor pos: %d\n", 1/cosa == 1/0.0);
-
+*/
 /*
 int isPositiveZero(double a) {
     return 1/a == 1/0.0;
@@ -242,8 +245,20 @@ printf("signo loco %d num: %d\n", sign_bit, signo);
     check_double("%g", 444444.444444444444);
     check_double("%10.2g", 444444.444444444444);
 */
-    
- /*   
+
+    check_double("%.0f", 0.0);
+    check_double("%5.0f", 0.0);
+    check_double("%5.f", 0.0);
+    check_double("%e", 0.0);
+    check_double("%e", 10.00556);
+    check_double("%e", 5.5);
+    check_double("%e", 5.5);
+    check_double("%10.0e", 0.0);
+    check_double("%10.0e", -0.0);
+    check_double("%+10.0e", 0.0);
+    check_double("%#10.0e", 0.0);
+    check_double("%10.0e", 5.5);
+  /*
     check_double("%f", 9.9999999);
     check_double("%f", 9.8999999);
 
@@ -283,7 +298,8 @@ printf("signo loco %d num: %d\n", sign_bit, signo);
     check_double("%f", 9223372036.854775);
     check_double("%f", 18446744073709551.615);
     check_double("%30.30f", 18446744073709551.615);
-  */  
+    check_double("%+10.2f", 5.20);
+  */
 printf("********** l ll h hh **********\n");
 /*
     int a = 'a';

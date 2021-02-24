@@ -1,76 +1,24 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void ft_add_one(char *deci, t_ullint *nbr)
+void	ft_add_one(t_double *data)
 {
 	int len;
 
-	len = ft_strlen(deci);
+	len = ft_strlen(data->str_deci);
 	len--;
-	while (len > 1 && deci[len] == '9')
-		deci[len--] = '0';
-	if (deci[len] == '9')
+	while (len > 1 && data->str_deci[len] == '9')
+		data->str_deci[len--] = '0';
+	if (data->str_deci[len] == '9')
 	{
-		deci[len] = '0';
-		(*nbr)++;
+		data->str_deci[len] = '0';
+		data->nbr++;
 	}
 	else
-		deci[len]++;
+		data->str_deci[len]++;
 }
 
-char *ft_get_decimal(double f, t_ullint *nbr, t_var *opt)
-{
-	int i;
-	int digit;
-	char *str;
-
-	str = ft_calloc(sizeof(char), opt->deci + 2);
-	if (str)
-	{
-		i = 0;
-		str[i++] = '.';
-		while (i < opt->deci + 1)
-		{
-			f *= 10;
-			digit = f;
-			f -= digit;
-			str[i++] = digit + '0';
-		}
-		if (i > 0)
-		{
-			i--;
-			f *= 10;
-			if ((digit = f) > 4)
-				ft_add_one(str, nbr);
-		}
-	}
-	return (str);
-}
-
-char	*ft_ftoa(double f, t_var *opt)
-{
-	t_ullint nbr;
-	t_ullint nbr_deci;
-    char *str_nbr;
-    char *str_deci;
-	char *temp;
-
-	nbr = f;	
-	if (f < 0)
-	{
-		f *= -1;
-		nbr *= -1;
-	}
-	f -= nbr;
-	str_deci = ft_get_decimal(f, &nbr, opt);
-	str_nbr = ft_llitoa(nbr);
-	temp = ft_strjoin(str_nbr, str_deci);
-	free(str_deci);
-	free(str_nbr);
-	return (temp);
-}
-
-void ft_add_exp(char **str, int exp)
+void	ft_add_exp(char **str, int exp)
 {
 	char *str_exp;
 	char *out;
@@ -93,68 +41,117 @@ void ft_add_exp(char **str, int exp)
 		{
 			free(*str);
 			*str = out;
-		}		
+		}
 	}
 }
 
-void *ft_dtoa(double f, t_var *opt)
+void	ft_get_decimal(t_double *data, t_var *opt)
 {
-    t_ullint nbr;
-	t_ullint nbr_deci;
-    int exp;
-    char *str_nbr;
-    char *str_deci;
-    char *temp;
+	int		i;
+	int		digit;
 
-    nbr = f;
-    exp = 0;
-	while (nbr > 9)
+	data->str_deci = 0;
+	if ((data->str_deci = ft_calloc(sizeof(char), opt->deci + 2)))
 	{
-		exp++;
-		f = f / 10;
-		nbr = f;
+		i = 0;
+		if (opt->deci > 0)
+			data->str_deci[i] = '.';
+		i++;
+		while (i < opt->deci + 1)
+		{
+			data->fnbr *= 10;
+			digit = data->fnbr;
+			data->fnbr -= digit;
+			data->str_deci[i++] = digit + '0';
+		}
+		if (i > 0)
+		{
+			i--;
+			data->fnbr *= 10;
+			if ((digit = data->fnbr) > 4)
+				ft_add_one(data);
+		}
 	}
-	while (nbr == 0)
-	{
-		exp--;
-		f = f * 10;
-		nbr = f;
-	}
-		
-    f -= nbr;
-    str_deci = ft_get_decimal(f, &nbr, opt);
-	str_nbr = ft_llitoa(nbr);
-	temp = ft_strjoin(str_nbr, str_deci);
-	ft_add_exp(&temp, exp);
-	free(str_deci);
-	free(str_nbr);
+}
+
+char	*ft_ftoa(t_double *data, t_var *opt)
+{
+	char *temp;
+
+	temp = 0;
+	data->nbr = data->fnbr;	
+	data->fnbr -= data->nbr;
+	data->str_deci = 0;
+	ft_get_decimal(data, opt);
+	data->str_nbr = ft_llitoa(data->nbr);
+	if (data->str_nbr && data->str_deci)
+		temp = ft_strjoin(data->str_nbr, data->str_deci);
+	if (data->str_deci)
+		free(data->str_deci);
+	if (data->str_nbr)
+		free(data->str_nbr);
 	return (temp);
 }
 
-void ft_print_double(va_list ap, t_var *opt, char t)
+void	*ft_dtoa(t_double *data, t_var *opt)
 {
-    double  number;
-	char    *str;
-	char    *before;
-    int     isneg;
+	int exp;
+	char *temp;
 
-	number = va_arg(ap, double);
-	before = ((isneg = number < 0)) ? ft_load_before(opt, number < 0) : 0;
+	data->nbr = data->fnbr;
+	exp = 0;
+	temp = 0;
+	if (data->fnbr)
+	{
+		while (data->nbr > 9 || data->nbr == 0)
+		{
+			exp = (data->nbr == 0) ? exp - 1 : exp + 1;
+			data->fnbr = (data->nbr == 0) ? data->fnbr * 10 : data->fnbr / 10;
+			data->nbr = data->fnbr;
+		}
+	}
+	data->fnbr -= data->nbr;
+	data->str_nbr = 0;
+	ft_get_decimal(data, opt);
+	data->str_nbr = ft_llitoa(data->nbr);
+	if (data->str_nbr && data->str_deci)
+		temp = ft_strjoin(data->str_nbr, data->str_deci);
+	ft_add_exp(&temp, exp);
+	if (data->str_deci)
+		free(data->str_deci);
+	if (data->str_nbr)
+		free(data->str_nbr);
+	data->str_nbr = temp;
+	return (temp);
+}
+
+void	ft_print_double(va_list ap, t_var *opt, char t)
+{
+	char		*str;
+	char		*before;
+	t_double	data;
+
+	data.fnbr = va_arg(ap, double);
+	data.nbr = 0;
+	data.isneg = (data.fnbr == 0.0) ? (1 / data.fnbr) != (1 / 0.0)
+	: data.fnbr < 0;
+	before = ft_load_before(opt, data.isneg);
 	if (!opt->dot)
 		opt->deci = 6;
-    number = (isneg && opt->fill == '0') ? number * -1 : number;
-    str = (t == 'f') ? ft_ftoa(number, opt) : 0;
-    str = (t == 'e') ? ft_dtoa(number, opt) : str;
-    str = (t == 'g') ? ft_dtoa(number, opt) : str;
-	if (str && opt->fill == '0' && number < 0)
+	data.fnbr = (data.isneg) ? data.fnbr * -1 : data.fnbr;
+	str = (t == 'f') ? ft_ftoa(&data, opt) : 0;
+	str = (t == 'e') ? ft_dtoa(&data, opt) : str;
+	str = (t == 'g') ? ft_dtoa(&data, opt) : str;
+	if (opt->fill != '0' && before && (data.str_deci = ft_strjoin(before, str)))
 	{
-		ft_putstr_fd(before, 1);
-		opt->len--;
-		opt->out++;
+		free(str);
+		str = data.str_deci;
 	}
+	if (str && opt->fill == '0' && data.isneg)
+		ft_print_data(&before, opt);
 	ft_fill_and_print(str, opt);
 	if (before)
 		free(before);
-    if (str)
-        free(str);
+	if (str)
+		free(str);
 }
