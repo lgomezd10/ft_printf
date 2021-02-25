@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/24 20:00:50 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/25 12:43:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,50 @@ printf("signo loco %d num: %d\n", sign_bit, signo);
     check_double("%10.2g", 444444.444444444444);
 */
 
+    
+    check_double("%.3f", 0.4255);
+    check_double("%10.3f", 1.6685);
+    check_double("%10.3f", 9.9996);
+    check_double("this %.0f float", 1.6);
+    check_double("%.0f", -3.85);
+    check_double("%.0f", 573.924);    
+    check_double("%.10f", 0.87650894255);
+    check_double("%.16f",  0.999999999999999900);
+    check_double("%-05.0f", 7.3);
+    check_double("%-5.0f", 7.3);
+    check_double("%-05.0f", 0.0);
+    check_double("%-05.0f", -0.0);
+    
+    check_double("%#.0f", 0.0);
+    check_double("%#.0f", -0.0);
+    check_double("%#.0f", 7.4);
+    check_double("%#.0f", -7.4);
+
+    check_double("%0-5.0f", 0.0);
+    check_double("%0-5.1f", -7.3);
+    check_double("%#-5.0f", 0.0);
+    
+    check_double("%+05.3f", 0.0);
+    
+    check_double("%g", 44.666);
+    check_double("%g", 444444.666);
+    check_double("%g", 44.66666);
+    check_double("%g", 44.66600);
+    check_double("%g", 44.66606);
+    check_double("%20.5g", 44.666);
+    check_double("%020.5g", 44.666);
+    check_double("%g", 4444444.666);
+    check_double("%g", -44.66606);
+    check_double("%20.5g", -44.666);
+    check_double("%020.5g", -44.666);
+    check_double("%g", -4444444.666);
+    check_double("%g", 0.00567);
+    check_double("%g", 0.050);
+    check_double("%g", 0.000000050);
+    check_double("%g", 0.000050);
+    check_double("%g", 0.00050);
+
+/*
     check_double("%.0f", 0.0);
     check_double("%5.0f", 0.0);
     check_double("%5.f", 0.0);
@@ -258,6 +302,7 @@ printf("signo loco %d num: %d\n", sign_bit, signo);
     check_double("%+10.0e", 0.0);
     check_double("%#10.0e", 0.0);
     check_double("%10.0e", 5.5);
+    */
   /*
     check_double("%f", 9.9999999);
     check_double("%f", 9.8999999);

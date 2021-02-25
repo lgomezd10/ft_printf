@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/24 16:24:53 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/02/25 11:41:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct  s_double
 	int isneg;
 	char *str_nbr;
 	char *str_deci;
-
+	int	cut;
 }               t_double;
 
 int             ft_printf(const char *format, ...);

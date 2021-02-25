@@ -4,18 +4,27 @@
 void	ft_add_one(t_double *data)
 {
 	int len;
+	int i;
 
 	len = ft_strlen(data->str_deci);
-	len--;
-	while (len > 1 && data->str_deci[len] == '9')
-		data->str_deci[len--] = '0';
-	if (data->str_deci[len] == '9')
-	{
-		data->str_deci[len] = '0';
+	i = len;
+	if (!len)
 		data->nbr++;
-	}
 	else
-		data->str_deci[len]++;
+	{
+		len--;
+		while (len > 1 && data->str_deci[len] == '9')
+			data->str_deci[len--] = '0';
+		if (data->str_deci[len] == '9')
+		{
+			data->str_deci[len] = '0';
+			data->nbr++;
+		}
+		else
+			data->str_deci[len]++;
+		if (data->cut && data->str_deci[len - 1] == '0')
+			data->str_deci[len - 1] = '\0';
+	}
 }
 
 void	ft_add_exp(char **str, int exp)
@@ -49,28 +58,28 @@ void	ft_get_decimal(t_double *data, t_var *opt)
 {
 	int		i;
 	int		digit;
+	double	mult;
+	int end;
 
-	data->str_deci = 0;
+	end = ((int)data->fnbr == 0) ? -1 : 0;
+	mult = 10.0;
 	if ((data->str_deci = ft_calloc(sizeof(char), opt->deci + 2)))
 	{
 		i = 0;
-		if (opt->deci > 0)
+		if (opt->deci > 0 || opt->hash)
 			data->str_deci[i] = '.';
 		i++;
-		while (i < opt->deci + 1)
+		while (i <= opt->deci && end < 1)
 		{
-			data->fnbr *= 10;
+			data->fnbr *= 10.0;
 			digit = data->fnbr;
+			end = (end == -1 && digit > 0) ? 0 : end;
+			end = (end == 0 && data->cut && digit == 0) ? 1 : end;
 			data->fnbr -= digit;
-			data->str_deci[i++] = digit + '0';
+			data->str_deci[i++] = digit + '0';			
 		}
-		if (i > 0)
-		{
-			i--;
-			data->fnbr *= 10;
-			if ((digit = data->fnbr) > 4)
-				ft_add_one(data);
-		}
+		if (!(data->fnbr <= 0.5 && data->fnbr > 0.4999999) && data->fnbr > 0.49)
+			ft_add_one(data);
 	}
 }
 
@@ -125,6 +134,36 @@ void	*ft_dtoa(t_double *data, t_var *opt)
 	return (temp);
 }
 
+char	*ft_gtoa(t_double *data, t_var *opt)
+{
+	char *temp;
+	int len;
+
+	temp = 0;
+	data->cut = 1;
+	data->nbr = data->fnbr;
+	opt->deci = (opt->dot) ? opt->deci : 6;
+	if ((data->str_nbr = ft_llitoa(data->nbr)))
+	{
+		len = ft_strlen(data->str_nbr);
+		free(data->str_nbr);
+		data->str_nbr = 0;
+		if (len > opt->deci || data->fnbr < 0.00009)
+		{
+			opt->deci--;
+			temp = ft_dtoa(data, opt);
+		}
+		else
+		{
+			opt->deci -= len;
+			temp = ft_ftoa(data, opt);
+			if (temp && temp[ft_strlen(temp) - 1] == '0')
+				temp[ft_strlen(temp) - 1] = '\0';
+		}
+	}
+	return temp;
+}
+
 void	ft_print_double(va_list ap, t_var *opt, char t)
 {
 	char		*str;
@@ -133,21 +172,23 @@ void	ft_print_double(va_list ap, t_var *opt, char t)
 
 	data.fnbr = va_arg(ap, double);
 	data.nbr = 0;
+	data.cut = 0;
 	data.isneg = (data.fnbr == 0.0) ? (1 / data.fnbr) != (1 / 0.0)
 	: data.fnbr < 0;
+	opt->fill = (!opt->right && opt->fill == '0') ? ' ' : opt->fill;
 	before = ft_load_before(opt, data.isneg);
 	if (!opt->dot)
 		opt->deci = 6;
 	data.fnbr = (data.isneg) ? data.fnbr * -1 : data.fnbr;
 	str = (t == 'f') ? ft_ftoa(&data, opt) : 0;
 	str = (t == 'e') ? ft_dtoa(&data, opt) : str;
-	str = (t == 'g') ? ft_dtoa(&data, opt) : str;
+	str = (t == 'g') ? ft_gtoa(&data, opt) : str;
 	if (opt->fill != '0' && before && (data.str_deci = ft_strjoin(before, str)))
 	{
 		free(str);
 		str = data.str_deci;
 	}
-	if (str && opt->fill == '0' && data.isneg)
+	if (str && before && opt->fill == '0')
 		ft_print_data(&before, opt);
 	ft_fill_and_print(str, opt);
 	if (before)
