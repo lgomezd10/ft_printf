@@ -1,0 +1,67 @@
+Test 1129 (nocrash_notrequired_bonus_af_noarg_4) : FAILED.
+    (nocrash test: automatically passes provided no unexpected failure)
+    First line of code: {return test("%#"); }
+    SEGFAULT
+
+Test 1489 (nocrash_notrequired_bonus_length_noarg_11) : FAILED.
+    (nocrash test: automatically passes provided no unexpected failure)
+    First line of code: {return test("%hh"); }
+    SEGFAULT
+
+Test 1490 (nocrash_notrequired_bonus_length_noarg_12) : FAILED.
+    (nocrash test: automatically passes provided no unexpected failure)
+    First line of code: {return test("%h"); }
+    SEGFAULT
+
+Test 1491 (nocrash_notrequired_bonus_length_noarg_13) : FAILED.
+    (nocrash test: automatically passes provided no unexpected failure)
+    First line of code: {return test("%ll"); }
+    SEGFAULT
+
+Test 1492 (nocrash_notrequired_bonus_length_noarg_14) : FAILED.
+    (nocrash test: automatically passes provided no unexpected failure)
+    First line of code: {return test("%l"); }
+    SEGFAULT
+
+Test 1556 (bonus_f_rndd_neg) : FAILED.
+    First line of code: {return test("%f", -985.765426499);}
+      expected output : "-985.765426"
+      your output     : "-985.765427"
+      expected (nonprintable as hex) : "-985.765426"
+      actual   (nonprintable as hex) : "-985.765427"
+
+Test 1558 (bonus_f_rndu_neg) : FAILED.
+    First line of code: {return test("%f", -56.2012685);}
+      expected output : "-56.201268"
+      your output     : "-56.201269"
+      expected (nonprintable as hex) : "-56.201268"
+      actual   (nonprintable as hex) : "-56.201269"
+
+Test 1707 (bonus_f_stress_prec10_rndd_neg) : FAILED.
+    First line of code: {return test("%.10f", -985.2459765426499);}
+      expected output : "-985.2459765426"
+      your output     : "-985.2459765427"
+      expected (nonprintable as hex) : "-985.2459765426"
+      actual   (nonprintable as hex) : "-985.2459765427"
+
+Test 1745 (bonus_notrequired_f_stress_prec16_limits_big) : FAILED.
+    First line of code: {return test("%.16f",  0.999999999999999900);}
+      expected output : "0.9999999999999999"
+      your output     : "0.9999999999999998"
+      expected (nonprintable as hex) : "0.9999999999999999"
+      actual   (nonprintable as hex) : "0.9999999999999998"
+
+Test 1751 (bonus_notrequired_f_stress_prec18_rndd) : FAILED.
+    First line of code: {return test("%.18f",        0.125978548534310421);}
+      expected output : "0.125978548534310425"
+      your output     : "0.125978548534310431"
+      expected (nonprintable as hex) : "0.125978548534310425"
+      actual   (nonprintable as hex) : "0.125978548534310431"
+
+Test 2000 (bonus_notrequired_f_overprec_might_be_undefbehav_100) : FAILED.
+    First line of code: {return test("%.100f", 0.237);}
+      expected output : "0.2369999999999999884536805438983719795942306518554687500000000000000000000000000000000000000000000000"
+      your output     : "0.23700000000000001065814103640150"
+      expected (nonprintable as hex) : "0.2369999999999999884536805438983719795942306518554687500000000000000000000000000000000000000000000000"
+      actual   (nonprintable as hex) : "0.23700000000000001065814103640150"
+

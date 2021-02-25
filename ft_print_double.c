@@ -22,8 +22,6 @@ void	ft_add_one(t_double *data)
 		}
 		else
 			data->str_deci[len]++;
-		if (data->cut && data->str_deci[len - 1] == '0')
-			data->str_deci[len - 1] = '\0';
 	}
 }
 
@@ -58,28 +56,55 @@ void	ft_get_decimal(t_double *data, t_var *opt)
 {
 	int		i;
 	int		digit;
-	double	mult;
-	int end;
+	int		end;
+	int		plus;
 
 	end = ((int)data->fnbr == 0) ? -1 : 0;
-	mult = 10.0;
-	if ((data->str_deci = ft_calloc(sizeof(char), opt->deci + 2)))
+	plus = (!data->nbr && data->fnbr) ? 1 : 0;
+	if ((data->str_deci = ft_calloc(sizeof(char), 20)))
 	{
 		i = 0;
 		if (opt->deci > 0 || opt->hash)
 			data->str_deci[i] = '.';
 		i++;
-		while (i <= opt->deci && end < 1)
+		while (i <= opt->deci)
 		{
 			data->fnbr *= 10.0;
 			digit = data->fnbr;
-			end = (end == -1 && digit > 0) ? 0 : end;
+			end = (digit > 0) ? 0 : end;
+			opt->deci = (data->cut && plus && end < 0) ? opt->deci + 1 : opt->deci;
 			end = (end == 0 && data->cut && digit == 0) ? 1 : end;
 			data->fnbr -= digit;
-			data->str_deci[i++] = digit + '0';			
+			data->str_deci[i++] = digit + '0';
+
 		}
-		if (!(data->fnbr <= 0.5 && data->fnbr > 0.4999999) && data->fnbr > 0.49)
+		//if (/*!(data->fnbr <= 0.5 && data->fnbr > 0.4999999) && */data->fnbr > 0.499)
+		if (data->fnbr > 0.499)
 			ft_add_one(data);
+	}
+}
+
+void	ft_clear_zeros(t_double *data, t_var *opt)
+{
+	int i;
+	int len;
+
+	i = 0;
+	if (data->cut)
+	{
+		if (data->str_deci && (len = ft_strlen(data->str_deci)))
+		{
+			while (len > 0)
+			{
+				len--;
+				if (data->str_deci[len] == '0')
+					data->str_deci[len] = '\0';
+				else
+					len = 0;
+			}
+			if (ft_strlen(data->str_deci) == 1 && !opt->hash)
+				data->str_deci[0] = '\0';
+		}
 	}
 }
 
@@ -93,6 +118,7 @@ char	*ft_ftoa(t_double *data, t_var *opt)
 	data->str_deci = 0;
 	ft_get_decimal(data, opt);
 	data->str_nbr = ft_llitoa(data->nbr);
+	ft_clear_zeros(data, opt);
 	if (data->str_nbr && data->str_deci)
 		temp = ft_strjoin(data->str_nbr, data->str_deci);
 	if (data->str_deci)
@@ -123,6 +149,7 @@ void	*ft_dtoa(t_double *data, t_var *opt)
 	data->str_nbr = 0;
 	ft_get_decimal(data, opt);
 	data->str_nbr = ft_llitoa(data->nbr);
+	ft_clear_zeros(data, opt);
 	if (data->str_nbr && data->str_deci)
 		temp = ft_strjoin(data->str_nbr, data->str_deci);
 	ft_add_exp(&temp, exp);
@@ -136,8 +163,8 @@ void	*ft_dtoa(t_double *data, t_var *opt)
 
 char	*ft_gtoa(t_double *data, t_var *opt)
 {
-	char *temp;
-	int len;
+	char	*temp;
+	int		len;
 
 	temp = 0;
 	data->cut = 1;
@@ -148,20 +175,19 @@ char	*ft_gtoa(t_double *data, t_var *opt)
 		len = ft_strlen(data->str_nbr);
 		free(data->str_nbr);
 		data->str_nbr = 0;
-		if (len > opt->deci || data->fnbr < 0.00009)
+		if (data->fnbr < 0.0001 && data->fnbr && (len > opt->deci || data->fnbr < 0.00009))
 		{
 			opt->deci--;
 			temp = ft_dtoa(data, opt);
 		}
 		else
 		{
-			opt->deci -= len;
+			//opt->deci -= len;
+			opt->deci = ((int)data->fnbr == 0) ? opt->deci : opt->deci - len;
 			temp = ft_ftoa(data, opt);
-			if (temp && temp[ft_strlen(temp) - 1] == '0')
-				temp[ft_strlen(temp) - 1] = '\0';
 		}
 	}
-	return temp;
+	return (temp);
 }
 
 void	ft_print_double(va_list ap, t_var *opt, char t)
