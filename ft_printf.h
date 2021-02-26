@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:13 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/25 11:41:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/26 08:27:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-
-typedef long long int t_llint;
-typedef unsigned long long int t_ullint;
 
 typedef struct  s_var
 {
@@ -32,16 +29,6 @@ typedef struct  s_var
 	int islong;
 	int out;
 }               t_var;
-
-typedef struct  s_double
-{
-	double fnbr;
-	t_ullint nbr;
-	int isneg;
-	char *str_nbr;
-	char *str_deci;
-	int	cut;
-}               t_double;
 
 int             ft_printf(const char *format, ...);
 const char		*ft_get_flags(va_list ap, t_var *opt, const char *str);

@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 15:11:25 by lgomez-d          #+#    #+#              #
-#    Updated: 2021/02/24 09:48:01 by user42           ###   ########.fr        #
+#    Updated: 2021/02/26 08:34:39 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM		= rm -f
 FLAGS	= -c -Wall -Wextra -Werror
 
 SRCS	= ft_printf.c handle_flags.c print_no_numbers.c print_numbers.c utils.c \
-handle_number.c print_bonus.c ft_print_double.c
+handle_number.c print_bonus.c ft_print_double.c ft_utils_double.c
 
 OBJS		= ${SRCS:.c=.o}
 
