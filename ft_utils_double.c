@@ -87,7 +87,7 @@ void	ft_clear_zeros(t_double *data, t_var *opt)
 	int len;
 
 	i = 0;
-	if (data->cut)
+	if (data->cut && !opt->hash)
 	{
 		if (data->str_deci && (len = ft_strlen(data->str_deci)))
 		{

@@ -224,6 +224,15 @@ printf("signo loco %d num: %d\n", sign_bit, signo);
     desp = (cosaint >> 3);
     printf("cosa %u\n", desp);
     */
+
+   check_double("%#-5.3g", 0.0);
+check_double("%#-5.3g", -0.0);
+check_double("%#-5.3g", 7.3);
+check_double("%#-5.6g", 7.3);
+check_double("%#-5.3g", -7.3);
+check_double("%#-5.6g", -7.3);
+check_double("%#.0g", 0.0);
+check_double("%#.0g", -0.0);
 /*
 check_double("%.8g", 23.375094499);
  check_double("%.8g", -985.765426499);
