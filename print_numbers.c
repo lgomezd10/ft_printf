@@ -17,10 +17,10 @@
 
 void	ft_print_nbr(va_list ap, t_var *opt)
 {
-	long long int lld;
+	long long int 			lld;
 	unsigned long long int	usig;
-	char		*temp;
-	char		*before;	
+	char					*temp;
+	char					*before;	
 	
 	if (!opt->islong)
 		lld = (long int)va_arg(ap, int);
@@ -38,10 +38,9 @@ void	ft_print_nbr(va_list ap, t_var *opt)
 
 void	ft_print_unsig(va_list ap, t_var *opt)
 {
-	int				d;
 	unsigned long int	ud;
-	char			*str;
-	char			*temp;
+	char				*str;
+	char				*temp;
 
 	if (!opt->islong)
 		ud = va_arg(ap, unsigned int);

@@ -62,7 +62,7 @@ char	*ft_to_hex(unsigned long long int nbr, int upper)
 		div *= 16;
 		i++;
 	}
-	str = ft_calloc(sizeof(char), i + 1);
+	str = (char *)ft_calloc(sizeof(char), i + 1);
 	if (str)
 	{
 		i = 0;
@@ -89,44 +89,15 @@ char	*ft_pointer_str(unsigned long nbr, int upper)
 		div *= 16;
 		i++;
 	}
-	str = ft_calloc(sizeof(char), i + 1);
+	str = (char *)ft_calloc(sizeof(char), i + 1);
 	if (str)
-	{/*
-		i = 2;
-		ft_memcpy(str, "0x", 2);
-		if (zero)*/
+	{
 		i = 0;
 		while (div > 0)
 		{
 			str[i++] = ft_get_char(nbr / div, upper);
 			nbr = nbr % div;
 			div = div / 16;
-		}
-	}
-	return (str);
-}
-
-char	*ft_utoa(unsigned int nbr)
-{
-	int div;
-	int i;
-	char *str;
-
-	div = 1;
-	i = 1;
-	while (nbr / div > 9)
-	{
-		div *= 10;
-		i++;
-	}
-	if ((str = ft_calloc(sizeof(char), i + 1)))
-	{
-		i = 0;
-		while (div > 0)
-		{
-			str[i++] = (nbr / div) + '0';
-			nbr = nbr % div;
-			div = div / 10;
 		}
 	}
 	return (str);
@@ -145,7 +116,7 @@ char	*ft_ultoa(unsigned long int nbr)
 		div *= 10;
 		i++;
 	}
-	if ((str = ft_calloc(sizeof(char), i + 1)))
+	if ((str = (char *)ft_calloc(sizeof(char), i + 1)))
 	{
 		i = 0;
 		while (div > 0)

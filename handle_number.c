@@ -23,14 +23,14 @@ char    *ft_load_digit_nbr(char *before, char *nbr, t_var *opt)
 	if (opt->dot || (!opt->dot && opt->fill != '0'))
 	{
 		lbefore = (before) ? ft_strlen(before) : 0;
-		lnbr = ft_strlen(nbr);
+		lnbr = (nbr) ? ft_strlen(nbr) : 0;
 		while (opt->dot && opt->deci < lnbr && *nbr == '0')
 		{
 			nbr++;
 			lnbr--;
 		}
 		lzeros = (opt->dot && lnbr < opt->deci) ? opt->deci - lnbr : 0;
-		new = ft_calloc(sizeof(char), lbefore + lnbr + lzeros + 1);
+		new = (char *)ft_calloc(sizeof(char), lbefore + lnbr + lzeros + 1);
 		ft_memset(new, '0', lbefore + lnbr + lzeros);
 		if (before)
 			ft_memcpy(new, before, lbefore);

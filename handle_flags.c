@@ -45,7 +45,7 @@ void    ft_check_start(va_list ap, t_var *opt)
 void    ft_check_bonus(char c, t_var *opt)
 {
     if (c == '#')
-			opt->hash = 1;
+		opt->hash = 1;
     if (c == '+')
         opt->sign = 1;
     if (c == ' ')
@@ -60,7 +60,7 @@ const char	*ft_get_flags(va_list ap, t_var *opt, const char *str)
 
 	i = 0;
 	ft_init_opt(opt);
-	while (ft_is_flags(str[i]))
+	while (str[i] && ft_is_flags(str[i]))
 	{
 		if (str[i] == '-')
 			opt->right = 0;

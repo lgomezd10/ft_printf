@@ -53,22 +53,6 @@ void ft_print_percent(va_list ap, t_var *opt)
 		ft_fill_and_print("", opt);
 	}
 	opt->out++;
-
-/*
-	char *str;
-
-	str = ft_calloc(sizeof(char), 2);
-	if (str)
-	{			
-		if (!opt->right)
-			opt->fill = ' ';
-		if (opt->dot)
-			opt->len = opt->deci;
-		str[0] = '%';
-		ft_fill_and_print(str, opt);
-		free(str);
-	}
-	*/
 }
 
 void ft_print_str(va_list ap, t_var *opt)
@@ -105,13 +89,7 @@ void ft_print_pointer(va_list ap, t_var *opt)
 	char	*before;
 	
 	p = va_arg(ap, void *);	
-	
-	//before = (opt->space && !opt->sign) ? ft_strdup(" 0x") : 0;
-	//before = (opt->sign) ? ft_strdup("+0x") : before;
-	//before = (!before) ? ft_strdup("0x") : before;
-	
 	before = ft_strdup("0x");
-
 	if ((temp = ft_pointer_str((unsigned long)p, 0)))
 	{
 		if (!(str = ft_load_digit_nbr(before, temp, opt)))
@@ -121,7 +99,8 @@ void ft_print_pointer(va_list ap, t_var *opt)
 		if (opt->fill == '0')
 			ft_print_data(&before, opt);
 		ft_fill_and_print(str, opt);
-		free(str);
+		if (str)
+			free(str);
 	}
 	if (before)
 		free(before);

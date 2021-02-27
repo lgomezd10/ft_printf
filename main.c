@@ -225,6 +225,27 @@ printf("signo loco %d num: %d\n", sign_bit, signo);
     printf("cosa %u\n", desp);
     */
 
+   check_percent("%#");
+check_percent("%hh");
+check_percent("%h");
+check_percent("%ll");
+check_percent("%l");
+
+len = ft_printf("%*.*d", 10, -20, 453);
+printf("*len: %d\n", len);
+len = printf("%*.*d", 10, -20, 453);
+printf("*len: %d\n", len);
+len = ft_printf("%*.*f", 3, -5, 45.62);
+printf("*len: %d\n", len);
+len = printf("%*.*f", 3, -5, 45.62);
+printf("*len: %d\n", len);
+len = ft_printf("%*.*f", 3, 5, 45.62);
+printf("*len: %d\n", len);
+len = printf("%*.*f", 3, 5, 45.62);
+printf("*len: %d\n", len);
+check_nbr("%10d\n", 43);
+check_str("%10.100s", "");
+/* TODO
    check_double("%#-5.3g", 0.0);
 check_double("%#-5.3g", -0.0);
 check_double("%#-5.3g", 7.3);
@@ -233,6 +254,7 @@ check_double("%#-5.3g", -7.3);
 check_double("%#-5.6g", -7.3);
 check_double("%#.0g", 0.0);
 check_double("%#.0g", -0.0);
+*/
 /*
 check_double("%.8g", 23.375094499);
  check_double("%.8g", -985.765426499);
@@ -251,8 +273,7 @@ check_double("%.8g", 23.375094499);
  check_double("%.7g", -56.2012685);
  check_double("%.7g", 43.4399999);
  check_double("%.7g", -5.0299999);
-*/
-/*
+
     check_double("%e", 444444.444444444444);
     check_double("%e", 4.44444444444444444);    
     check_double("%10.2e", 444444.444444444444);
@@ -270,9 +291,7 @@ check_double("%.8g", 23.375094499);
     check_double("%e", 9223372036854775807);
     check_double("%g", 444444.444444444444);
     check_double("%10.2g", 444444.444444444444);
-*/
-
-   /*
+   
     check_double("%.3f", 0.4255);
     check_double("%10.3f", 1.6685);
     check_double("%10.3f", 9.9996);
@@ -293,8 +312,7 @@ check_double("%.8g", 23.375094499);
     check_double("%0-5.1f", -7.3);
     check_double("%#-5.0f", 0.0);    
     check_double("%+05.3f", 0.0);
-  */
-/*
+
     check_double("%g", 44.666);
     check_double("%g", 444444.666);
     check_double("%g", 44.66666);
@@ -362,7 +380,9 @@ check_double("%.8g", 23.375094499);
     check_double("%g", 0.0005654557);
     check_double("%g", 0.0005654002);
     check_double("%g", 10.0005654002);
-*/
+
+    system("leaks a.out");
+    */
 /*
 
     check_double("%.0f", 0.0);

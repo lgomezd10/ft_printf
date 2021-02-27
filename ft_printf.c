@@ -16,9 +16,6 @@
 
 const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 {
-	int d;
-	char c;
-
 	if (*str == '%')
 		ft_print_percent(ap, opt);
 	if (*str == 'c')
@@ -39,10 +36,11 @@ const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 		ft_save_len(ap, opt);
 	if (*str == 'f' || *str == 'e' || *str == 'g')
 		ft_print_double(ap, opt, *str);
-	return ((str + 1));
+	if (*str)
+		return ((str + 1));
+	else
+		return (str);
 }
-
-
 
 int		ft_printf(const char *format, ...)
 {
@@ -53,7 +51,7 @@ int		ft_printf(const char *format, ...)
 	opt.out = 0;
 	va_start(ap, format);
 	i = 0;
-	while (format[i])
+	while (format && format[i])
 	{
 		if (format[i] == '%')
 		{

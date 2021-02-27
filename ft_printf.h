@@ -41,7 +41,6 @@ void            ft_print_unsig(va_list ap, t_var *opt);
 void            ft_print_hex(va_list ap, t_var *opt, int upper);
 void            ft_fill_and_print(char *str, t_var *opt);
 char			*ft_to_hex(unsigned long long int nbr, int upper);
-char            *ft_utoa(unsigned int nbr);
 char			*ft_ultoa(unsigned long int nbr);
 char			*ft_llitoa(long long int n);
 char            *ft_pointer_str(unsigned long nbr, int upper);

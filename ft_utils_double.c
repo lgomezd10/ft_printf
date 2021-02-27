@@ -115,7 +115,10 @@ char	*ft_join(t_double *data, t_var *opt)
 	if (data->str_nbr && data->str_deci)
 		temp = ft_strjoin(data->str_nbr, data->str_deci);
 	if (data->str_deci)
+	{
 		free(data->str_deci);
+		data->str_deci = 0;
+	}
 	if (data->str_nbr)
 		free(data->str_nbr);
 	data->str_nbr = temp;

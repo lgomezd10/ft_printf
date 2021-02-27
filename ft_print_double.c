@@ -84,6 +84,8 @@ void	ft_load_data_double(va_list ap, t_double *data, t_var *opt)
 	data->isneg = (data->fnbr == 0.0) ? (1 / data->fnbr) != (1 / 0.0)
 	: data->fnbr < 0;
 	opt->fill = (!opt->right && opt->fill == '0') ? ' ' : opt->fill;
+	data->str_deci = 0;
+	data->str_nbr = 0;
 }
 
 void	ft_print_double(va_list ap, t_var *opt, char t)
@@ -100,10 +102,10 @@ void	ft_print_double(va_list ap, t_var *opt, char t)
 	str = (t == 'f') ? ft_ftoa(&data, opt) : 0;
 	str = (t == 'e') ? ft_dtoa(&data, opt) : str;
 	str = (t == 'g') ? ft_gtoa(&data, opt) : str;
-	if (opt->fill != '0' && before && (data.str_deci = ft_strjoin(before, str)))
+	if (opt->fill != '0' && before && (data.str_nbr = ft_strjoin(before, str)))
 	{
 		free(str);
-		str = data.str_deci;
+		str = data.str_nbr;
 	}
 	if (str && before && opt->fill == '0')
 		ft_print_data(&before, opt);
@@ -111,5 +113,8 @@ void	ft_print_double(va_list ap, t_var *opt, char t)
 	if (before)
 		free(before);
 	if (str)
+	{
 		free(str);
+		data.str_nbr = 0;
+	}
 }
