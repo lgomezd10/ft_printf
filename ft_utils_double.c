@@ -28,28 +28,38 @@ void	ft_add_one(t_double *data)
 void	ft_add_exp(char **str, int exp)
 {
 	char *str_exp;
+	char *temp;
 	char *out;
+	int len;
+	int isneg;
 
-	if (str && *str)
+	isneg = (exp < 0) ? 1 : 0;
+	exp = (exp < 0) ? exp * -1 : exp;
+	if (str && *str && (temp = ft_itoa(exp)))
 	{
-		str_exp = (char *)ft_calloc(sizeof(char), 5);
-		if (exp < 0)
+		len = ft_strlen(temp);
+		if ((str_exp = (char *)ft_calloc(sizeof(char), len + 4)))
 		{
-			ft_memcpy(str_exp, "e-", 2);
-			exp *= -1;
+			str_exp[2] = '0';
+			if (isneg)
+				ft_memcpy(str_exp, "e-", 2);
+			else
+				ft_memcpy(str_exp, "e+", 2);
+			if (len > 1)
+				ft_memcpy(&str_exp[2], temp, len);
+			else
+				ft_memcpy(&str_exp[3], temp, len);
+			out = ft_strjoin(*str, str_exp);
+			free(str_exp);
+			if (out)
+			{
+				free(*str);
+				*str = out;
+			}
 		}
-		else
-			ft_memcpy(str_exp, "e+", 2);
-		str_exp[2] = (exp / 10) + '0';
-		str_exp[3] = (exp % 10) + '0';
-		out = ft_strjoin(*str, str_exp);
-		free(str_exp);
-		if (out)
-		{
-			free(*str);
-			*str = out;
-		}
+		free(temp);
 	}
+	
 }
 
 void	ft_get_decimal(t_double *data, t_var *opt)
@@ -73,8 +83,6 @@ void	ft_get_decimal(t_double *data, t_var *opt)
 			opt->deci = (data->cut && plus) ? opt->deci + 1 : opt->deci;
 			data->fnbr -= digit;
 			data->str_deci[i++] = digit + '0';
-            //printf("NBR: %d, float: %.20Lf\n", digit, data->fnbr);
-
 		}
 		if (data->fnbr >= 0.5)
 			ft_add_one(data);
@@ -107,10 +115,9 @@ void	ft_clear_zeros(t_double *data, t_var *opt)
 
 char	*ft_join(t_double *data, t_var *opt)
 {
-	char *temp;
+	char *temp;	
 	
-	
-	data->str_nbr = ft_llitoa(data->nbr);
+	data->str_nbr = ft_ultoa(data->nbr);
 	ft_clear_zeros(data, opt);
 	if (data->str_nbr && data->str_deci)
 		temp = ft_strjoin(data->str_nbr, data->str_deci);

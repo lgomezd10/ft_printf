@@ -1,8 +1,6 @@
 #include "ft_double.h"
 #include <stdio.h>
 
-
-
 char	*ft_ftoa(t_double *data, t_var *opt)
 {
 	char *temp;
@@ -21,19 +19,32 @@ void	*ft_dtoa(t_double *data, t_var *opt)
 {
 	int exp;
 	char *temp;
+	int i = 0;
 
 	data->nbr = data->fnbr;
 	exp = 0;
 	temp = 0;
 	if (data->fnbr)
 	{
-		while (data->nbr > 9 || data->nbr == 0)
+		if (data->fnbr >= 10.0)
 		{
-			exp = (data->nbr == 0) ? exp - 1 : exp + 1;
-			data->fnbr = (data->nbr == 0) ? data->fnbr * 10 : data->fnbr / 10;
-			data->nbr = data->fnbr;
+			while (data->fnbr >= 10)
+			{
+				exp++;
+				data->fnbr = data->fnbr / 10;
+			}
+			
+		}
+		else if (data->fnbr < 1.0)
+		{
+			while (data->fnbr < 1.0)
+			{
+				exp--;
+				data->fnbr = data->fnbr * 10;
+			}
 		}
 	}
+	data->nbr = data->fnbr;
 	data->fnbr -= data->nbr;
 	data->str_nbr = 0;
 	ft_get_decimal(data, opt);
@@ -51,29 +62,32 @@ char	*ft_gtoa(t_double *data, t_var *opt)
 {
 	char	*temp;
 	int		len;
+	long double count;
 
 	temp = 0;
 	data->cut = 1;
-	data->nbr = data->fnbr;
 	opt->deci = (opt->dot) ? opt->deci : 6;
-	if ((data->str_nbr = ft_llitoa(data->nbr)))
+	count = data->fnbr;
+	len = 1;
+	while (count >= 10)
 	{
-		len = ft_strlen(data->str_nbr);
-		free(data->str_nbr);
-		data->str_nbr = 0;
-		if (data->fnbr && ((len > opt->deci && len > 1)|| data->fnbr < 0.0001))
-		{
-			opt->deci--;
-			temp = ft_dtoa(data, opt);
-		}
-		else
-		{
-			opt->deci = (data->nbr == 0) ? opt->deci : opt->deci - len;
-			opt->deci = (!data->nbr && !opt->deci) ? opt->deci + 1 : opt->deci;
-			temp = ft_ftoa(data, opt);
-		}
+		count = count / 10;
+		len++;
 	}
-	return (temp);
+	data->nbr = data->fnbr;
+	
+	if ((len > 20) || (data->fnbr && ((len > opt->deci && len > 1) || data->fnbr < 0.0001)))
+	{
+		opt->deci--;
+		temp = ft_dtoa(data, opt);
+	}
+	else
+	{
+		opt->deci = (data->nbr == 0) ? opt->deci : opt->deci - len;
+		opt->deci = (!data->nbr && !opt->deci) ? opt->deci + 1 : opt->deci;
+		temp = ft_ftoa(data, opt);
+	}
+	return (temp);	
 }
 
 void	ft_load_data_double(va_list ap, t_double *data, t_var *opt)
@@ -102,7 +116,7 @@ void	ft_print_double(va_list ap, t_var *opt, char t)
 	str = (t == 'f') ? ft_ftoa(&data, opt) : 0;
 	str = (t == 'e') ? ft_dtoa(&data, opt) : str;
 	str = (t == 'g') ? ft_gtoa(&data, opt) : str;
-	if (opt->fill != '0' && before && (data.str_nbr = ft_strjoin(before, str)))
+	if (str && opt->fill != '0' && before && (data.str_nbr = ft_strjoin(before, str)))
 	{
 		free(str);
 		str = data.str_nbr;

@@ -103,9 +103,9 @@ char	*ft_pointer_str(unsigned long nbr, int upper)
 	return (str);
 }
 
-char	*ft_ultoa(unsigned long int nbr)
+char	*ft_ultoa(unsigned long long int nbr)
 {
-	long int div;
+	unsigned long long int div;
 	int i;
 	char *str;
 

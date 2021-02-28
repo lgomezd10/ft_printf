@@ -30,7 +30,7 @@ void	ft_print_nbr(va_list ap, t_var *opt)
 		lld = va_arg(ap, long int);
 	before = ft_load_before(opt, lld < 0);
 	usig = (lld < 0) ? lld * -1 : lld;
-	temp = ft_llitoa(usig);
+	temp = ft_ultoa(usig);
 	ft_print_any_nbr(&before, &temp, opt, lld < 0);	
 	if (before)
 		free(before);
@@ -55,7 +55,8 @@ void	ft_print_unsig(va_list ap, t_var *opt)
 		else
 			free(temp);
 		ft_fill_and_print(str, opt);
-		free(str);
+		if (str)
+			free(str);
 	}
 }
 

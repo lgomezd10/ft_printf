@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "ft_printf.h"
+#include <float.h>
 
 void check_nbr(char *str, int dato)
 {
@@ -224,7 +225,7 @@ printf("signo loco %d num: %d\n", sign_bit, signo);
     desp = (cosaint >> 3);
     printf("cosa %u\n", desp);
     */
-
+/*
    check_percent("%#");
 check_percent("%hh");
 check_percent("%h");
@@ -245,7 +246,28 @@ len = printf("%*.*f", 3, 5, 45.62);
 printf("*len: %d\n", len);
 check_nbr("%10d\n", 43);
 check_str("%10.100s", "");
+*/
+/*
+printf("%.2000g\n", DBL_MIN);
+ft_printf("%.2000g\n", DBL_MIN);
+ft_printf("%.2000g\n", -DBL_MIN);
+printf("%.0g\n", 0.000000000000000000000000000049);
+ft_printf("%.0g\n", 0.000000000000000000000000000049);
+printf("%.0g\n", DBL_MAX);
+ft_printf("%.0g\n", DBL_MAX);
+*/
+printf("%g", 0.000039);
+check_double("%g", 0.000039);
+check_double("%g", 23.00041);
+check_double("%g", 9873.000001);
+check_double("%.2000g", -DBL_MIN);
+/*
+check_nbr("%llu\n", -1);
+printf("a ver %llu\n", (long long unsigned int)-1);
+*/
+//ft_printf("%.0g\n", DBL_MAX);
 /* TODO
+
    check_double("%#-5.3g", 0.0);
 check_double("%#-5.3g", -0.0);
 check_double("%#-5.3g", 7.3);
