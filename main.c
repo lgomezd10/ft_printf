@@ -14,7 +14,8 @@
 #include <stdarg.h>
 #include "ft_printf.h"
 #include <float.h>
-
+#include <limits.h>
+#define DBL_INF    0x7FF0000000000000
 void check_nbr(char *str, int dato)
 {
     static int item = 0;
@@ -256,14 +257,46 @@ ft_printf("%.0g\n", 0.000000000000000000000000000049);
 printf("%.0g\n", DBL_MAX);
 ft_printf("%.0g\n", DBL_MAX);
 */
+/*
 printf("%g", 0.000039);
 check_double("%g", 0.000039);
 check_double("%g", 23.00041);
 check_double("%g", 9873.000001);
+printf("printf %.2000g\n", -DBL_MIN);
 check_double("%.2000g", -DBL_MIN);
-/*
+ft_printf("%.0g\n", DBL_MAX);
+
 check_nbr("%llu\n", -1);
 printf("a ver %llu\n", (long long unsigned int)-1);
+*/
+/*
+double special; *((unsigned long *)(&special)) = DBL_INF;
+printf("PRUEBA: %g", 9218868437227405318.0);
+printf("G:%g\n", special);
+ft_printf("G: %g\n", special);
+*/
+/*
+printf("pF: %f\n", special);
+ft_printf("fF: %f\n", special);
+*/
+
+static double			mx_f = 0.625;
+static long				mx_li =  4223372036854775800;
+static long long		mx_lli = 3223372036654775200;
+static short			mx_hi = -3244;
+static char				mx_hhi = 'F';
+static unsigned int		mx_u = 235;
+static char				mx_c = 'G';
+static char			   *mx_s = "Hello, World!";
+static int				mx_i = 42;
+short int   si = 5;
+long int li = 4223372036854775800;
+
+ft_printf("%hd %ld %hhd %ld\n", si, li, si, li);
+printf("%hd %ld %hhd %ld\n", si, li, si, li);
+system("leaks a.out");
+/*
+printf("%ld\n", 9218868437227405318);
 */
 //ft_printf("%.0g\n", DBL_MAX);
 /* TODO

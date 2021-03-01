@@ -25,6 +25,33 @@ void	ft_add_one(t_double *data)
 	}
 }
 
+int		ft_get_exp(t_double *data)
+{
+	data->fnbr_exp = data->fnbr;
+	data->exp = 0;
+	if (data->fnbr_exp)
+	{
+		if (data->fnbr_exp >= 10.0)
+		{
+			while (data->fnbr_exp >= 10 && data->exp < 300)
+			{
+				data->exp++;
+				data->fnbr_exp = data->fnbr_exp / 10;
+			}
+			
+		}
+		else if (data->fnbr_exp < 1.0)
+		{
+			while (data->fnbr_exp < 1.0)
+			{
+				data->exp--;
+				data->fnbr_exp = data->fnbr_exp * 10;
+			}
+		}
+	}
+	return (data->exp);
+}
+
 void	ft_add_exp(char **str, int exp)
 {
 	char *str_exp;

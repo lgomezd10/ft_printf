@@ -18,28 +18,27 @@ const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 {
 	if (*str == '%')
 		ft_print_percent(ap, opt);
-	if (*str == 'c')
+	else if (*str == 'c')
 		ft_print_char(ap, opt);
-	if (*str == 's')
+	else if (*str == 's')
 		ft_print_str(ap, opt);
-	if (*str == 'p')
+	else if (*str == 'p')
 		ft_print_pointer(ap, opt);
-	if (*str == 'd' || *str == 'i')
+	else if (*str == 'd' || *str == 'i')
 		ft_print_nbr(ap, opt);
-	if (*str == 'u')
+	else if (*str == 'u')
 		ft_print_unsig(ap, opt);
-	if (*str == 'x')
+	else if (*str == 'x')
 		ft_print_hex(ap, opt, 0);
-	if (*str == 'X')
+	else if (*str == 'X')
 		ft_print_hex(ap, opt, 1);
-	if (*str == 'n')
+	else if (*str == 'n')
 		ft_save_len(ap, opt);
-	if (*str == 'f' || *str == 'e' || *str == 'g')
+	else if (*str == 'f' || *str == 'e' || *str == 'g')
 		ft_print_double(ap, opt, *str);
-	if (*str)
-		return ((str + 1));
 	else
 		return (str);
+	return(str + 1);
 }
 
 int		ft_printf(const char *format, ...)
