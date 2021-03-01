@@ -280,6 +280,9 @@ printf("pF: %f\n", special);
 ft_printf("fF: %f\n", special);
 */
 
+/*
+check_nbr("%#X", 345);
+check_nbr("%#x", 345);
 static double			mx_f = 0.625;
 static long				mx_li =  4223372036854775800;
 static long long		mx_lli = 3223372036654775200;
@@ -295,6 +298,7 @@ long int li = 4223372036854775800;
 ft_printf("%hd %ld %hhd %ld\n", si, li, si, li);
 printf("%hd %ld %hhd %ld\n", si, li, si, li);
 system("leaks a.out");
+*/
 /*
 printf("%ld\n", 9218868437227405318);
 */
@@ -310,7 +314,7 @@ check_double("%#-5.6g", -7.3);
 check_double("%#.0g", 0.0);
 check_double("%#.0g", -0.0);
 */
-/*
+
 check_double("%.8g", 23.375094499);
  check_double("%.8g", -985.765426499);
  check_double("%.8g", 0.0894255);
@@ -435,9 +439,11 @@ check_double("%.8g", 23.375094499);
     check_double("%g", 0.0005654557);
     check_double("%g", 0.0005654002);
     check_double("%g", 10.0005654002);
+    check_double("%g", 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005654002);
+
 
     system("leaks a.out");
-    */
+    
 /*
 
     check_double("%.0f", 0.0);

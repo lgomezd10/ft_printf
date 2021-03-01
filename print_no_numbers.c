@@ -42,7 +42,7 @@ void ft_print_percent(va_list ap, t_var *opt)
 	c = '%';
 	opt->len--;
 	if (opt->right)
-	{		
+	{
 		ft_fill_and_print("", opt);
 		ft_putchar_fd(c, 1);
 	}
@@ -59,17 +59,17 @@ void ft_print_str(va_list ap, t_var *opt)
 {
 	char *str;
 	char *delete;
-	
+
 	delete = 0;
 	opt->fill = ' ';
 	if (!(str = (char *)va_arg(ap, const char *)))
 	{
-		str = ft_strdup("(null)");
-		delete = str;
+		if ((str = ft_strdup("(null)")))
+			delete = str;
 	}
 	if (opt->dot)
 	{    
-		if ((str = ft_substr(str, 0, opt->deci)))
+		if (str && (str = ft_substr(str, 0, opt->deci)))
 		{
 			ft_fill_and_print(str, opt);
 			free(str);
@@ -87,7 +87,7 @@ void ft_print_pointer(va_list ap, t_var *opt)
 	char	*str;
 	char	*temp;
 	char	*before;
-	
+
 	p = va_arg(ap, void *);	
 	before = ft_strdup("0x");
 	if ((temp = ft_pointer_str((unsigned long)p, 0)))

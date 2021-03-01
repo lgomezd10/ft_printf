@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-
-
 
 void	ft_print_nbr(va_list ap, t_var *opt)
 {
@@ -63,9 +60,9 @@ void	ft_print_unsig(va_list ap, t_var *opt)
 void	ft_print_hex(va_list ap, t_var *opt, int upper)
 {
 	unsigned long long int	nbr;
-	char			*str;
-	char			*temp;
-	char			*before;
+	char					*str;
+	char					*temp;
+	char					*before;
 
 	if (!opt->islong)
 		nbr = va_arg(ap, unsigned int);

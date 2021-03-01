@@ -54,11 +54,10 @@ int		ft_get_exp(t_double *data)
 
 void	ft_add_exp(char **str, int exp)
 {
-	char *str_exp;
-	char *temp;
-	char *out;
-	int len;
-	int isneg;
+	char	*str_exp;
+	char	*temp;
+	int		len;
+	int		isneg;
 
 	isneg = (exp < 0) ? 1 : 0;
 	exp = (exp < 0) ? exp * -1 : exp;
@@ -68,25 +67,19 @@ void	ft_add_exp(char **str, int exp)
 		if ((str_exp = (char *)ft_calloc(sizeof(char), len + 4)))
 		{
 			str_exp[2] = '0';
-			if (isneg)
-				ft_memcpy(str_exp, "e-", 2);
-			else
-				ft_memcpy(str_exp, "e+", 2);
-			if (len > 1)
-				ft_memcpy(&str_exp[2], temp, len);
-			else
-				ft_memcpy(&str_exp[3], temp, len);
-			out = ft_strjoin(*str, str_exp);
-			free(str_exp);
-			if (out)
+			(isneg) ? ft_memcpy(str_exp, "e-", 2) : ft_memcpy(str_exp, "e+", 2);
+			(len > 1) ? ft_memcpy(&str_exp[2], temp, len): ft_memcpy(&str_exp[3], temp, len);
+			free(temp);
+			if ((temp = ft_strjoin(*str, str_exp)))
 			{
 				free(*str);
-				*str = out;
+				*str = temp;
 			}
+			free(str_exp);
 		}
-		free(temp);
+		else
+			free(temp);
 	}
-	
 }
 
 void	ft_get_decimal(t_double *data, t_var *opt)
