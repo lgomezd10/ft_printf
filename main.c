@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/26 11:48:47 by user42           ###   ########.fr       */
+/*   Updated: 2021/03/01 21:17:07 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,9 @@ int main(void)
 
     len = 0;
 
+    static char *s_hidden = "hi low\0don't print me lol\0";
+    check_str("%09s", s_hidden);
+    check_char("%09c", 'a');
 /********BONUS***********/
 printf("********BONUS**********\n");
 /*
@@ -303,18 +306,61 @@ system("leaks a.out");
 printf("%ld\n", 9218868437227405318);
 */
 //ft_printf("%.0g\n", DBL_MAX);
-/* TODO
+
+check_double("%g", -0.99999949);
+
 
    check_double("%#-5.3g", 0.0);
-check_double("%#-5.3g", -0.0);
+
 check_double("%#-5.3g", 7.3);
 check_double("%#-5.6g", 7.3);
 check_double("%#-5.3g", -7.3);
 check_double("%#-5.6g", -7.3);
 check_double("%#.0g", 0.0);
 check_double("%#.0g", -0.0);
-*/
+check_double("%.0g", -0.0);
+check_double("%+.0g", -0.0);
+check_double("%#-.0g", -0.0);
+check_double("%#.0g", -0.0);
+check_double("%#.0g", -0.0);
+check_double("%#-5.3g", -0.0);
+check_double("%#5.3g", -0.0);
 
+check_double("%g", 0.999999);
+
+check_nbr("% 042.41hhd", 45);
+
+  check_double("%.0g", -0.00032);
+    check_double("%.0g", 0.0032);
+    check_double("%.0g", 0.003);
+    check_double("%.0g", 0.0003);
+    check_double("%.0g", 0.00003);
+    check_double("%.0g", 0.000003);
+    check_double("%g", 0.003);
+    check_double("%g", 0.0003);
+    check_double("%g", 0.00003);
+    check_double("%g", 0.000003);
+    check_double("%g", -0.99999949);
+    check_double("%.0f", 2.5);
+    check_double("%.0f", -5.5);
+    check_double("%.0f", 5.5);
+    check_double("%.0f", 1.5);
+
+/*
+check_nbr("^.^/% 042.41hd^.^/", 1181573488);
+check_nbr("^.^/% 042.41hhd^.^/", 1181573488);
+check_nbr("^.^/%22.2hu^.^/", 1181573488);
+check_nbr("^.^/%22.2hx^.^/", 1181573488);
+check_nbr("%8.2hu", 1083232574);
+check_nbr("%22.2hu", 1181573488);
+check_nbr("%22.2hu", 1083232574);
+check_char("^.^/%16lc^.^/", (char)56);
+check_char("%lc", (char)173);
+check_char("^.^/%16c^.^/", (char)172);
+check_char("^.^/%16c^.^/", (char)56);
+check_char("^.^/%16lc^.^/", (char)56);
+*/
+/*
 check_double("%.8g", 23.375094499);
  check_double("%.8g", -985.765426499);
  check_double("%.8g", 0.0894255);
@@ -443,7 +489,7 @@ check_double("%.8g", 23.375094499);
 
 
     system("leaks a.out");
-    
+  */  
 /*
 
     check_double("%.0f", 0.0);
@@ -519,13 +565,38 @@ check_double("%.8g", 23.375094499);
 printf("********** l ll h hh **********\n");
 /*
     int a = 'a';
-    printf("%hhcFIN\n", (char)45);
-    printf("%hhsFIN\n", "hola");
-    printf("%hhdFIN\n", (char)45);
-    printf("%hhdFIN\n", (char)-45);
-    printf("%dFIN\n", (char)45);
-    printf("%hdFIN\n", (short)385);
-    printf("%hdFIN\n", (short)-385);
+    len = printf("%hhcFIN\n", (char)45);
+    printf("*len: %d\n", len);
+    len = ft_printf("%hhcFIN\n", (char)45);
+    printf("*len: %d\n", len);
+    len = printf("%cFIN\n", (char)45);
+    printf("*len: %d\n", len);
+    len = ft_printf("%cFIN\n", (char)45);
+    printf("*len: %d\n", len);
+    len = printf("%hhsFIN\n", "hola");
+    printf("*len: %d\n", len);
+    len = ft_printf("%hhsFIN\n", "hola");
+    printf("*len: %d\n", len);
+    len = printf("%hhdFIN\n", (char)45);
+    printf("*len: %d\n", len);
+    len = ft_printf("%hhdFIN\n", (char)45);
+    printf("*len: %d\n", len);
+    len = printf("%hhdFIN\n", (char)-45);
+    printf("*len: %d\n", len);
+    len = ft_printf("%hhdFIN\n", (char)-45);
+    printf("*len: %d\n", len);
+    len = printf("%dFIN\n", (char)45);
+    printf("*len: %d\n", len);
+    len = ft_printf("%dFIN\n", (char)45);
+    printf("*len: %d\n", len);
+   len =  printf("%hdFIN\n", (short)385);
+   printf("*len: %d\n", len);
+    len = ft_printf("%hdFIN\n", (short)385);
+    printf("*len: %d\n", len);
+    len = printf("%hdFIN\n", (short)-385);
+    printf("*len: %d\n", len);
+    len = ft_printf("%hdFIN\n", (short)-385);
+    printf("*len: %d\n", len);
 */
 /*
     ft_printf("PRUEBA i y d\n");
@@ -730,7 +801,21 @@ printf("********** l ll h hh **********\n");
     check_str("%-030.020s", "hello world");
     check_str("%030s", "hello world");
     check_str("%30.020s", "hello world");
-*/
+    check_str("%020s", "hello world");
+    check_str("%-020s", "hello world");
+    */
+   /*
+    check_char("%09lc", 'a');
+    check_char("%-09lc", 'a');
+
+    check_char("%09c", 172);
+    check_char("%-09c", 172);
+    check_char("42%-2lc42", 'I');
+
+    check_percent("%09%");
+    check_percent("%-09%");
+    */
+
 /*
     check_str("%+- 06.06s", "hello world");
     check_str("%+- \t 06.06s", "hello world");

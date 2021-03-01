@@ -61,8 +61,8 @@ char	*ft_gtoa(t_double *data, t_var *opt)
 	}
 	else
 	{
-		opt->deci = (data->nbr == 0) ? opt->deci : opt->deci - len;
 		opt->deci = (!data->nbr && !opt->deci) ? opt->deci + 1 : opt->deci;
+		opt->deci = (!data->nbr && data->fnbr) ? opt->deci : opt->deci - len;
 		temp = ft_ftoa(data, opt);
 	}
 	return (temp);	

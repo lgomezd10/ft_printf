@@ -52,6 +52,8 @@ void    ft_check_bonus(char c, t_var *opt)
         opt->space = 1;
 	if (c == 'l')
 		opt->islong +=1;
+	if (c == 'h')
+		opt->islong -= 1;
 }
 
 const char	*ft_get_flags(va_list ap, t_var *opt, const char *str)
@@ -66,7 +68,7 @@ const char	*ft_get_flags(va_list ap, t_var *opt, const char *str)
 			opt->right = 0;
 		if (str[i] == '.')
 			opt->dot = 1;
-		if (str[i] == '#' || str[i] == '+' || str[i] == ' ' || str[i] == 'l')
+		if (str[i] == '#' || str[i] == '+' || str[i] == ' ' || str[i] == 'l' ||  str[i] == 'h')
 			ft_check_bonus(str[i], opt);
 		if (str[i] == '0' && !opt->dot)
 			opt->fill = '0';

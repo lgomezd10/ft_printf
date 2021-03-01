@@ -1,0 +1,175 @@
+Test 4001 (bonus_f_rnd_half_to_even_02) : FAILED.
+    First line of code: {return test("%.0f", -4.5);}
+      expected output : "-4"
+      your output     : "-5"
+      expected (nonprintable as hex) : "-4"
+      actual   (nonprintable as hex) : "-5"
+
+Test 4003 (bonus_f_rnd_half_to_even_04) : FAILED.
+    First line of code: {return test("%.0f", -2.5);}
+      expected output : "-2"
+      your output     : "-3"
+      expected (nonprintable as hex) : "-2"
+      actual   (nonprintable as hex) : "-3"
+
+Test 4005 (bonus_f_rnd_half_to_even_06) : FAILED.
+    First line of code: {return test("%.0f", -0.5);}
+      expected output : "-0"
+      your output     : "-1"
+      expected (nonprintable as hex) : "-0"
+      actual   (nonprintable as hex) : "-1"
+
+Test 4006 (bonus_f_rnd_half_to_even_07) : FAILED.
+    First line of code: {return test("%.0f", 0.5);}
+      expected output : "0"
+      your output     : "1"
+      expected (nonprintable as hex) : "0"
+      actual   (nonprintable as hex) : "1"
+
+Test 4008 (bonus_f_rnd_half_to_even_09) : FAILED.
+    First line of code: {return test("%.0f", 2.5);}
+      expected output : "2"
+      your output     : "3"
+      expected (nonprintable as hex) : "2"
+      actual   (nonprintable as hex) : "3"
+
+Test 4010 (bonus_f_rnd_half_to_even_11) : FAILED.
+    First line of code: {return test("%.0f", 4.5);}
+      expected output : "4"
+      your output     : "5"
+      expected (nonprintable as hex) : "4"
+      actual   (nonprintable as hex) : "5"
+
+Test 4033 (bonus_e_rnd_half_to_even_02) : FAILED.
+    First line of code: {return test("%.0e", -4.5);}
+      expected output : "-4e+00"
+      your output     : "-5e+00"
+      expected (nonprintable as hex) : "-4e+00"
+      actual   (nonprintable as hex) : "-5e+00"
+
+Test 4035 (bonus_e_rnd_half_to_even_04) : FAILED.
+    First line of code: {return test("%.0e", -2.5);}
+      expected output : "-2e+00"
+      your output     : "-3e+00"
+      expected (nonprintable as hex) : "-2e+00"
+      actual   (nonprintable as hex) : "-3e+00"
+
+Test 4040 (bonus_e_rnd_half_to_even_09) : FAILED.
+    First line of code: {return test("%.0e", 2.5);}
+      expected output : "2e+00"
+      your output     : "3e+00"
+      expected (nonprintable as hex) : "2e+00"
+      actual   (nonprintable as hex) : "3e+00"
+
+Test 4042 (bonus_e_rnd_half_to_even_11) : FAILED.
+    First line of code: {return test("%.0e", 4.5);}
+      expected output : "4e+00"
+      your output     : "5e+00"
+      expected (nonprintable as hex) : "4e+00"
+      actual   (nonprintable as hex) : "5e+00"
+
+Test 4065 (bonus_g_rnd_half_to_even_02) : FAILED.
+    First line of code: {return test("%.0g", -4.5);}
+      expected output : "-4"
+      your output     : "-5"
+      expected (nonprintable as hex) : "-4"
+      actual   (nonprintable as hex) : "-5"
+
+Test 4067 (bonus_g_rnd_half_to_even_04) : FAILED.
+    First line of code: {return test("%.0g", -2.5);}
+      expected output : "-2"
+      your output     : "-3"
+      expected (nonprintable as hex) : "-2"
+      actual   (nonprintable as hex) : "-3"
+
+Test 4072 (bonus_g_rnd_half_to_even_09) : FAILED.
+    First line of code: {return test("%.0g", 2.5);}
+      expected output : "2"
+      your output     : "3"
+      expected (nonprintable as hex) : "2"
+      actual   (nonprintable as hex) : "3"
+
+Test 4074 (bonus_g_rnd_half_to_even_11) : FAILED.
+    First line of code: {return test("%.0g", 4.5);}
+      expected output : "4"
+      your output     : "5"
+      expected (nonprintable as hex) : "4"
+      actual   (nonprintable as hex) : "5"
+
+Test 4158 (bonus_g_rnd_9999_03) : FAILED.
+    First line of code: {return test("%.0g", -9.9);}
+      expected output : "-1e+01"
+      your output     : "-10"
+      expected (nonprintable as hex) : "-1e+01"
+      actual   (nonprintable as hex) : "-10"
+
+Test 4159 (bonus_g_rnd_9999_04) : FAILED.
+    First line of code: {return test("%.1g", -9.9);}
+      expected output : "-1e+01"
+      your output     : "-10"
+      expected (nonprintable as hex) : "-1e+01"
+      actual   (nonprintable as hex) : "-10"
+
+Test 4160 (bonus_g_rnd_9999_05) : FAILED.
+    First line of code: {return test("%.0g", -9.999);}
+      expected output : "-1e+01"
+      your output     : "-10"
+      expected (nonprintable as hex) : "-1e+01"
+      actual   (nonprintable as hex) : "-10"
+
+Test 4161 (bonus_g_rnd_9999_06) : FAILED.
+    First line of code: {return test("%.1g", -9.999);}
+      expected output : "-1e+01"
+      your output     : "-10"
+      expected (nonprintable as hex) : "-1e+01"
+      actual   (nonprintable as hex) : "-10"
+
+Test 4168 (bonus_g_rnd_9999_13) : FAILED.
+    First line of code: {return test("%.0g", -9.9);}
+      expected output : "-1e+01"
+      your output     : "-10"
+      expected (nonprintable as hex) : "-1e+01"
+      actual   (nonprintable as hex) : "-10"
+
+Test 4169 (bonus_g_rnd_9999_14) : FAILED.
+    First line of code: {return test("%.1g", -9.9);}
+      expected output : "-1e+01"
+      your output     : "-10"
+      expected (nonprintable as hex) : "-1e+01"
+      actual   (nonprintable as hex) : "-10"
+
+Test 4170 (bonus_g_rnd_9999_15) : FAILED.
+    First line of code: {return test("%.0g", -9.999);}
+      expected output : "-1e+01"
+      your output     : "-10"
+      expected (nonprintable as hex) : "-1e+01"
+      actual   (nonprintable as hex) : "-10"
+
+Test 4171 (bonus_g_rnd_9999_16) : FAILED.
+    First line of code: {return test("%.1g", -9.999);}
+      expected output : "-1e+01"
+      your output     : "-10"
+      expected (nonprintable as hex) : "-1e+01"
+      actual   (nonprintable as hex) : "-10"
+
+Test 4191 (notintsubject_o_neg_prec_star_01) : FAILED.
+    First line of code: {return test("%.*o", -3, 12345);}
+      expected output : "30071"
+      your output     : "o"
+      expected (nonprintable as hex) : "30071"
+      actual   (nonprintable as hex) : "o"
+
+Test 4192 (notintsubject_o_neg_prec_star_02) : FAILED.
+    First line of code: {return test("%.*o", -1, 12345);}
+      expected output : "30071"
+      your output     : "o"
+      expected (nonprintable as hex) : "30071"
+      actual   (nonprintable as hex) : "o"
+
+Test 4193 (notintsubject_o_neg_prec_star_03) : FAILED.
+    First line of code: {return test("%.*o", -1, 0);}
+      expected output : "0"
+      your output     : "o"
+      expected (nonprintable as hex) : "0"
+      actual   (nonprintable as hex) : "o"
+

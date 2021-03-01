@@ -6,11 +6,44 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:58 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/22 18:36:47 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/01 19:23:01 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdint.h>
+
+long  long  int ft_get_number(va_list ap, t_var *opt)
+{
+	long  long int nbr;
+	if (!opt->islong)
+		nbr = (long int)va_arg(ap, int);
+	else if (opt->islong == 1)
+		nbr = va_arg(ap, long int);
+	else if (opt->islong > 1)
+		nbr = va_arg(ap, long int);
+	else if (opt->islong == -1)
+		nbr = (short int)va_arg(ap, int);
+	else
+		nbr = (char)va_arg(ap, int);
+	return (nbr);
+}
+
+unsigned long  long  int ft_get_unsigned(va_list ap, t_var *opt)
+{
+	unsigned long  long int nbr;
+	if (!opt->islong)
+		nbr = (unsigned int)va_arg(ap, unsigned int);
+	else if (opt->islong == 1)
+		nbr = (unsigned long int)va_arg(ap, unsigned long int);
+	else if (opt->islong > 1)
+		nbr = va_arg(ap, unsigned long long int);
+	else if (opt->islong == -1)
+		nbr = (unsigned short int)va_arg(ap, unsigned int);
+	else
+		nbr = (unsigned char)va_arg(ap, unsigned int);
+	return (nbr);
+}
 
 void	ft_print_nbr(va_list ap, t_var *opt)
 {
@@ -19,12 +52,7 @@ void	ft_print_nbr(va_list ap, t_var *opt)
 	char					*temp;
 	char					*before;	
 	
-	if (!opt->islong)
-		lld = (long int)va_arg(ap, int);
-	else if (opt->islong == 1)
-		lld = va_arg(ap, long int);
-	else
-		lld = va_arg(ap, long int);
+	lld = ft_get_number(ap, opt);
 	before = ft_load_before(opt, lld < 0);
 	usig = (lld < 0) ? lld * -1 : lld;
 	temp = ft_ultoa(usig);
@@ -39,12 +67,7 @@ void	ft_print_unsig(va_list ap, t_var *opt)
 	char				*str;
 	char				*temp;
 
-	if (!opt->islong)
-		ud = va_arg(ap, unsigned int);
-	else if (opt->islong == 1)
-		ud = va_arg(ap, unsigned long int);
-	else
-		ud = va_arg(ap, unsigned long long int);
+	ud = ft_get_unsigned(ap, opt);
 	if ((temp = ft_ultoa(ud)))
 	{
 		if (!(str = ft_load_digit_nbr("", temp, opt)))
@@ -64,12 +87,7 @@ void	ft_print_hex(va_list ap, t_var *opt, int upper)
 	char					*temp;
 	char					*before;
 
-	if (!opt->islong)
-		nbr = va_arg(ap, unsigned int);
-	else if (opt->islong == 1)
-		nbr = va_arg(ap, unsigned long int);
-	else
-		nbr = va_arg(ap, unsigned long long int);
+	nbr = ft_get_unsigned(ap, opt);
 	before = (opt->hash && nbr && !upper) ? ft_strdup("0x") : 0;
 	before = (opt->hash && nbr && upper) ? ft_strdup("0X") : before;
 	if ((temp = ft_to_hex(nbr, upper)))
