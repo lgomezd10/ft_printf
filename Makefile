@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
+#    By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 15:11:25 by lgomez-d          #+#    #+#              #
-#    Updated: 2021/02/26 08:34:39 by user42           ###   ########.fr        #
+#    Updated: 2021/03/02 15:49:07 by lgomez-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ RM		= rm -f
 
 FLAGS	= -c -Wall -Wextra -Werror
 
-SRCS	= ft_printf.c handle_flags.c print_no_numbers.c print_numbers.c utils.c \
-handle_number.c ft_print_double.c ft_utils_double.c ft_utils2_double.c
+SRCS	= ft_printf.c ft_handle_flags.c ft_print_no_numbers.c ft_print_numbers.c \
+ft_utils.c ft_handle_number.c ft_print_double.c ft_utils_double.c ft_utils2_double.c
 
 OBJS		= ${SRCS:.c=.o}
 

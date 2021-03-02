@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_no_numbers.c                                 :+:      :+:    :+:   */
+/*   ft_print_no_numbers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:41 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/03/01 19:32:53 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/02 18:48:53 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <unistd.h>
 
-void ft_print_char(va_list ap, t_var *opt)
+void	ft_print_char(va_list ap, t_var *opt)
 {
 	char c;
 
 	c = (char)va_arg(ap, int);
 	opt->len--;
 	if (opt->right)
-	{		
+	{
 		ft_fill_and_print("", opt);
 		ft_putchar_fd(c, 1);
 	}
@@ -34,7 +32,7 @@ void ft_print_char(va_list ap, t_var *opt)
 	opt->out++;
 }
 
-void ft_print_percent(va_list ap, t_var *opt)
+void	ft_print_percent(va_list ap, t_var *opt)
 {
 	char c;
 
@@ -54,7 +52,7 @@ void ft_print_percent(va_list ap, t_var *opt)
 	opt->out++;
 }
 
-void ft_print_str(va_list ap, t_var *opt)
+void	ft_print_str(va_list ap, t_var *opt)
 {
 	char *str;
 	char *delete;
@@ -67,7 +65,7 @@ void ft_print_str(va_list ap, t_var *opt)
 			delete = str;
 	}
 	if (opt->dot)
-	{    
+	{
 		if (str && (str = ft_substr(str, 0, opt->deci)))
 		{
 			ft_fill_and_print(str, opt);
@@ -80,16 +78,16 @@ void ft_print_str(va_list ap, t_var *opt)
 		free(delete);
 }
 
-void ft_print_pointer(va_list ap, t_var *opt)
+void	ft_print_pointer(va_list ap, t_var *opt)
 {
 	void	*p;
 	char	*str;
 	char	*temp;
 	char	*before;
 
-	p = va_arg(ap, void *);	
+	p = va_arg(ap, void *);
 	before = ft_strdup("0x");
-	if ((temp = ft_pointer_str((unsigned long)p, 0)))
+	if ((temp = ft_to_hex((unsigned long long)p, 0)))
 	{
 		if (!(str = ft_load_digit_nbr(before, temp, opt)))
 			str = temp;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils_double.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 15:25:49 by lgomez-d          #+#    #+#             */
+/*   Updated: 2021/03/02 16:12:59 by lgomez-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_double.h"
 
 void	ft_get_decimal(t_double *data, t_var *opt)
@@ -5,7 +17,7 @@ void	ft_get_decimal(t_double *data, t_var *opt)
 	int		i;
 	int		digit;
 	int		plus;
-	
+
 	plus = (!data->nbr && data->fnbr) ? 1 : 0;
 	if ((data->str_deci = (char *)ft_calloc(sizeof(char), opt->deci + 6)))
 	{
@@ -53,8 +65,8 @@ void	ft_clear_zeros(t_double *data, t_var *opt)
 
 char	*ft_join(t_double *data, t_var *opt)
 {
-	char *temp;	
-	
+	char *temp;
+
 	data->str_nbr = ft_ultoa(data->nbr);
 	ft_clear_zeros(data, opt);
 	if (data->str_nbr && data->str_deci)

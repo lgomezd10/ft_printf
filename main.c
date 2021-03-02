@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/03/01 21:17:07 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/02 16:23:06 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -749,7 +749,7 @@ printf("********** l ll h hh **********\n");
     check_nbr("%5d", 0);
 */
     printf("********* UNSIGNED **********\n");
-
+/*
     check_nbr("%u", 265);
     check_nbr("%u", 15);
     check_nbr("%u", 1000);
@@ -785,7 +785,7 @@ printf("********** l ll h hh **********\n");
     check_nbr("%+u", 343566);
     check_nbr("%#20.15u", 343566);
     check_nbr("%#020.0u", 0);
-
+*/
     printf("**********STR*************\n");
 
 /*
@@ -941,7 +941,7 @@ len = printf("%p%p%p%p%p%p%p%p%p%p%p%p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,
 printf("*len: %d\n", len);
 */
 
-/*
+
     char a01 = 'a';
     char a02= 'a';
     char a03 = 'a';
@@ -956,12 +956,12 @@ printf("*len: %d\n", len);
     printf("*len: %d\n", len);
     len = printf("%p%p%p", &a01, &a02, &a03);
     printf("*len: %d\n\n", len);
-*/
-/*
 
-    len = ft_printf("%.5p", 0);
+
+
+    len = ft_printf("%.5lp", 0);
     printf("*len: %d\n", len);
-    len = printf("%.5p", 0);
+    len = printf("%.5lp", 0);
     printf("*len: %d\n\n", len);
 
     len = ft_printf("%.0p", 0);
@@ -1015,7 +1015,7 @@ printf("*len: %d\n", len);
     printf("*len: %d\n", len);
     len = printf("%9.3p", 1234);
     printf("*len: %d\n\n", len);
-*/
+
 /*******/
 
 /*

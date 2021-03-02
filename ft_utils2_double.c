@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils2_double.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 16:31:16 by lgomez-d          #+#    #+#             */
+/*   Updated: 2021/03/02 18:40:04 by lgomez-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_double.h"
 
 void	ft_add_one(t_double *data)
@@ -48,6 +60,19 @@ int		ft_get_exp(t_double *data)
 	return (data->exp);
 }
 
+void	ft_copy_exp(char *dest, char *src, int isneg, int len)
+{
+	if (isneg)
+		ft_memcpy(dest, "e-", 2);
+	else
+		ft_memcpy(dest, "e+", 2);
+	dest[2] = '0';
+	if (len > 1)
+		ft_memcpy(&dest[2], src, len);
+	else
+		ft_memcpy(&dest[3], src, len);
+}
+
 void	ft_add_exp(char **str, int exp)
 {
 	char	*str_exp;
@@ -62,9 +87,7 @@ void	ft_add_exp(char **str, int exp)
 		len = ft_strlen(temp);
 		if ((str_exp = (char *)ft_calloc(sizeof(char), len + 4)))
 		{
-			str_exp[2] = '0';
-			(isneg) ? ft_memcpy(str_exp, "e-", 2) : ft_memcpy(str_exp, "e+", 2);
-			(len > 1) ? ft_memcpy(&str_exp[2], temp, len): ft_memcpy(&str_exp[3], temp, len);
+			ft_copy_exp(str_exp, temp, isneg, len);
 			free(temp);
 			if ((temp = ft_strjoin(*str, str_exp)))
 			{

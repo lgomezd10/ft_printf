@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:05 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/24 09:59:47 by user42           ###   ########.fr       */
+/*   Updated: 2021/03/02 16:30:16 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	ft_fill_and_print(char *str, t_var *opt)
 {
 	int len;
 	int rest;
 	int i;
-   
+
 	if (str)
 	{
 		len = ft_strlen(str);
@@ -37,6 +36,7 @@ void	ft_fill_and_print(char *str, t_var *opt)
 char	ft_get_char(unsigned int nbr, int upper)
 {
 	char c;
+
 	if (nbr < 10)
 		c = nbr + '0';
 	else
@@ -51,36 +51,9 @@ char	ft_get_char(unsigned int nbr, int upper)
 
 char	*ft_to_hex(unsigned long long int nbr, int upper)
 {
-	unsigned long long int div;
-	int i;
-	char *str;
-
-	div = 1;
-	i = 1;
-	while (nbr / div > 15)
-	{
-		div *= 16;
-		i++;
-	}
-	str = (char *)ft_calloc(sizeof(char), i + 1);
-	if (str)
-	{
-		i = 0;
-		while (div > 0)
-		{
-			str[i++] = ft_get_char(nbr / div, upper);
-			nbr = nbr % div;
-			div = div / 16;
-		}
-	}
-	return (str);
-}
-
-char	*ft_pointer_str(unsigned long nbr, int upper)
-{
-	unsigned long div;
-	int i;
-	char *str;
+	unsigned long long int	div;
+	int						i;
+	char					*str;
 
 	div = 1;
 	i = 1;
@@ -105,9 +78,9 @@ char	*ft_pointer_str(unsigned long nbr, int upper)
 
 char	*ft_ultoa(unsigned long long int nbr)
 {
-	unsigned long long int div;
-	int i;
-	char *str;
+	unsigned long long int	div;
+	int						i;
+	char					*str;
 
 	div = 1;
 	i = 1;
@@ -129,7 +102,7 @@ char	*ft_ultoa(unsigned long long int nbr)
 	return (str);
 }
 
-void ft_print_data(char **str, t_var *opt)
+void	ft_print_data(char **str, t_var *opt)
 {
 	int len;
 

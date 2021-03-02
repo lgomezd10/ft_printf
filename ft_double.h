@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_double.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 15:29:25 by lgomez-d          #+#    #+#             */
+/*   Updated: 2021/03/02 16:06:27 by lgomez-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_DOUBLE_H
 # define FT_DOUBLE_H
 # include "ft_printf.h"
-# define MAX_SUPPORT 1.79769313486231571e+308/*9218868437227405318.0*/
-
+# define MAX_SUPPORT 1.79769313486231571e+308
 
 typedef long long int			t_llint;
 typedef unsigned long long int	t_ullint;
@@ -14,6 +25,7 @@ typedef struct					s_double
 	int			isneg;
 	char		*str_nbr;
 	char		*str_deci;
+	char		*before;
 	int			cut;
 	int			exp;
 }								t_double;

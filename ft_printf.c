@@ -6,20 +6,18 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:15:56 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/02/24 19:59:21 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/02 18:48:53 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
 
-void ft_save_len(va_list ap, t_var *opt)
+void		ft_save_len(va_list ap, t_var *opt)
 {
-    int *len;
+	int *len;
 
-    len = va_arg(ap, int *);
-    *len = opt->out;
+	len = va_arg(ap, int *);
+	*len = opt->out;
 }
 
 const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
@@ -46,10 +44,10 @@ const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 		ft_print_double(ap, opt, *str);
 	else
 		return (str);
-	return(str + 1);
+	return (str + 1);
 }
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		i;

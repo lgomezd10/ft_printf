@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_double.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 15:55:00 by lgomez-d          #+#    #+#             */
+/*   Updated: 2021/03/02 16:08:44 by lgomez-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_double.h"
-#include <stdio.h>
 
 char	*ft_ftoa(t_double *data, t_var *opt)
 {
@@ -80,31 +91,31 @@ void	ft_load_data_double(va_list ap, t_double *data, t_var *opt)
 	data->str_nbr = 0;
 	if (!opt->dot)
 		opt->deci = 6;
+	data->fnbr = (data->isneg) ? data->fnbr * -1 : data->fnbr;
+	data->before = ft_load_before(opt, data->isneg);
 }
 
 void	ft_print_double(va_list ap, t_var *opt, char t)
 {
 	char		*str;
-	char		*before;
 	t_double	data;
 
 	ft_load_data_double(ap, &data, opt);
-	before = ft_load_before(opt, data.isneg);
-	data.fnbr = (data.isneg) ? data.fnbr * -1 : data.fnbr;
 	str = (data.fnbr <= MAX_SUPPORT && t == 'f') ? ft_ftoa(&data, opt) : 0;
 	str = (data.fnbr <= MAX_SUPPORT && t == 'e') ? ft_dtoa(&data, opt) : str;
 	str = (data.fnbr <= MAX_SUPPORT && t == 'g') ? ft_gtoa(&data, opt) : str;
 	str = (data.fnbr > MAX_SUPPORT) ? ft_strdup("inf") : str;
-	if (str && opt->fill != '0' && before && (data.str_nbr = ft_strjoin(before, str)))
+	if (str && opt->fill != '0' && data.before &&
+	(data.str_nbr = ft_strjoin(data.before, str)))
 	{
 		free(str);
 		str = data.str_nbr;
 	}
-	if (str && before && opt->fill == '0')
-		ft_print_data(&before, opt);
+	if (str && data.before && opt->fill == '0')
+		ft_print_data(&data.before, opt);
 	ft_fill_and_print(str, opt);
-	if (before)
-		free(before);
+	if (data.before)
+		free(data.before);
 	if (str)
 	{
 		free(str);

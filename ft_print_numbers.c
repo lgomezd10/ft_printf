@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_numbers.c                                    :+:      :+:    :+:   */
+/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:11:58 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/03/01 19:23:01 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/02 16:10:50 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdint.h>
 
 long long int			ft_get_number(va_list ap, t_var *opt)
 {
@@ -49,16 +48,16 @@ unsigned long long int	ft_get_unsigned(va_list ap, t_var *opt)
 
 void					ft_print_nbr(va_list ap, t_var *opt)
 {
-	long long int 			lld;
+	long long int			lld;
 	unsigned long long int	usig;
 	char					*temp;
-	char					*before;	
-	
+	char					*before;
+
 	lld = ft_get_number(ap, opt);
 	before = ft_load_before(opt, lld < 0);
 	usig = (lld < 0) ? lld * -1 : lld;
 	temp = ft_ultoa(usig);
-	ft_print_any_nbr(&before, &temp, opt, lld < 0);	
+	ft_print_any_nbr(&before, &temp, opt, lld < 0);
 	if (before)
 		free(before);
 }
