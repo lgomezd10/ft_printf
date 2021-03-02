@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_double.h"
-#include <stdio.h>
 
 void	ft_get_decimal(t_double *data, t_var *opt)
 {
