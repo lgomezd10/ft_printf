@@ -14,6 +14,14 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
+void ft_save_len(va_list ap, t_var *opt)
+{
+    int *len;
+
+    len = va_arg(ap, int *);
+    *len = opt->out;
+}
+
 const char	*ft_print_variable(const char *str, va_list ap, t_var *opt)
 {
 	if (*str == '%')

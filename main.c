@@ -306,7 +306,7 @@ system("leaks a.out");
 printf("%ld\n", 9218868437227405318);
 */
 //ft_printf("%.0g\n", DBL_MAX);
-
+/*
 check_double("%g", -0.99999949);
 
 
@@ -345,7 +345,7 @@ check_nbr("% 042.41hhd", 45);
     check_double("%.0f", -5.5);
     check_double("%.0f", 5.5);
     check_double("%.0f", 1.5);
-
+*/
 /*
 check_nbr("^.^/% 042.41hd^.^/", 1181573488);
 check_nbr("^.^/% 042.41hhd^.^/", 1181573488);
@@ -746,9 +746,10 @@ printf("********** l ll h hh **********\n");
     check_nbr("%.0d", 0);
     check_nbr("%5.2d", 0);
     check_nbr("%5.0d", 0);
-/
+    check_nbr("%5d", 0);
+*/
     printf("********* UNSIGNED **********\n");
-/*
+
     check_nbr("%u", 265);
     check_nbr("%u", 15);
     check_nbr("%u", 1000);
@@ -776,7 +777,15 @@ printf("********** l ll h hh **********\n");
     ft_printf("funo %*u dos\n", 20, h);
     printf("puno %*u dos\n", 20, h);
 
-*/
+    check_nbr("%lu", -343566);
+    check_nbr("%llu", -343566);
+    check_nbr("%hu", -343566);
+    check_nbr("%hhu", -343566);
+    check_nbr("% u", 343566);
+    check_nbr("%+u", 343566);
+    check_nbr("%#20.15u", 343566);
+    check_nbr("%#020.0u", 0);
+
     printf("**********STR*************\n");
 
 /*

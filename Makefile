@@ -21,7 +21,7 @@ RM		= rm -f
 FLAGS	= -c -Wall -Wextra -Werror
 
 SRCS	= ft_printf.c handle_flags.c print_no_numbers.c print_numbers.c utils.c \
-handle_number.c print_bonus.c ft_print_double.c ft_utils_double.c
+handle_number.c ft_print_double.c ft_utils_double.c ft_utils2_double.c
 
 OBJS		= ${SRCS:.c=.o}
 

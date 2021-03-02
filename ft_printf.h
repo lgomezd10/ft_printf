@@ -18,16 +18,16 @@
 
 typedef struct  s_var
 {
-	int right;
-	int len;
-	int deci;
-	char fill;
-	int dot;
-	int hash;
-	int sign;
-	int space;
-	int islong;
-	int out;
+	int		right;
+	int		len;
+	int		deci;
+	char	fill;
+	int		dot;
+	int		hash;
+	int		sign;
+	int		space;
+	int		islong;
+	int		out;
 }               t_var;
 
 int             ft_printf(const char *format, ...);

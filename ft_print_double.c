@@ -3,12 +3,12 @@
 
 char	*ft_ftoa(t_double *data, t_var *opt)
 {
-	char *temp;
-	int exp;
+	char	*temp;
+	int		exp;
 
 	temp = 0;
-	exp = (!data->fnbr_exp) ? ft_get_exp(data) : data->exp;	
-	data->nbr = data->fnbr;	
+	exp = (!data->fnbr_exp) ? ft_get_exp(data) : data->exp;
+	data->nbr = data->fnbr;
 	data->fnbr -= data->nbr;
 	data->str_nbr = 0;
 	ft_get_decimal(data, opt);
@@ -18,9 +18,8 @@ char	*ft_ftoa(t_double *data, t_var *opt)
 
 void	*ft_dtoa(t_double *data, t_var *opt)
 {
-	int exp;
-	char *temp;
-	int i = 0;
+	int		exp;
+	char	*temp;
 
 	exp = 0;
 	temp = 0;
@@ -42,10 +41,10 @@ void	*ft_dtoa(t_double *data, t_var *opt)
 
 char	*ft_gtoa(t_double *data, t_var *opt)
 {
-	char	*temp;
-	int		len;
-	long double count;
-	int		exp;
+	char		*temp;
+	int			len;
+	long double	count;
+	int			exp;
 
 	temp = 0;
 	data->cut = 1;
@@ -53,7 +52,7 @@ char	*ft_gtoa(t_double *data, t_var *opt)
 	count = data->fnbr;
 	exp = ft_get_exp(data);
 	len = (exp < 0) ? 1 : exp + 1;
-	data->nbr = data->fnbr;	
+	data->nbr = data->fnbr;
 	if (data->fnbr && ((len > opt->deci && len > 1) || data->fnbr < 0.0001))
 	{
 		opt->deci--;
@@ -65,7 +64,7 @@ char	*ft_gtoa(t_double *data, t_var *opt)
 		opt->deci = (!data->nbr && data->fnbr) ? opt->deci : opt->deci - len;
 		temp = ft_ftoa(data, opt);
 	}
-	return (temp);	
+	return (temp);
 }
 
 void	ft_load_data_double(va_list ap, t_double *data, t_var *opt)

@@ -13,9 +13,10 @@
 #include "ft_printf.h"
 #include <stdint.h>
 
-long  long  int ft_get_number(va_list ap, t_var *opt)
+long long int			ft_get_number(va_list ap, t_var *opt)
 {
-	long  long int nbr;
+	long long int nbr;
+
 	if (!opt->islong)
 		nbr = (long int)va_arg(ap, int);
 	else if (opt->islong == 1)
@@ -29,9 +30,10 @@ long  long  int ft_get_number(va_list ap, t_var *opt)
 	return (nbr);
 }
 
-unsigned long  long  int ft_get_unsigned(va_list ap, t_var *opt)
+unsigned long long int	ft_get_unsigned(va_list ap, t_var *opt)
 {
-	unsigned long  long int nbr;
+	unsigned long long int nbr;
+
 	if (!opt->islong)
 		nbr = (unsigned int)va_arg(ap, unsigned int);
 	else if (opt->islong == 1)
@@ -45,7 +47,7 @@ unsigned long  long  int ft_get_unsigned(va_list ap, t_var *opt)
 	return (nbr);
 }
 
-void	ft_print_nbr(va_list ap, t_var *opt)
+void					ft_print_nbr(va_list ap, t_var *opt)
 {
 	long long int 			lld;
 	unsigned long long int	usig;
@@ -61,7 +63,7 @@ void	ft_print_nbr(va_list ap, t_var *opt)
 		free(before);
 }
 
-void	ft_print_unsig(va_list ap, t_var *opt)
+void					ft_print_unsig(va_list ap, t_var *opt)
 {
 	unsigned long int	ud;
 	char				*str;
@@ -80,7 +82,7 @@ void	ft_print_unsig(va_list ap, t_var *opt)
 	}
 }
 
-void	ft_print_hex(va_list ap, t_var *opt, int upper)
+void					ft_print_hex(va_list ap, t_var *opt, int upper)
 {
 	unsigned long long int	nbr;
 	char					*str;
