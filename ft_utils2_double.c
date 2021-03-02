@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:31:16 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/03/02 18:40:04 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/02 20:18:46 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_get_exp(t_double *data)
 	{
 		if (data->fnbr_exp >= 10.0)
 		{
-			while (data->fnbr_exp >= 10 && data->exp < 300)
+			while (data->fnbr_exp >= 10 && data->exp <= 308)
 			{
 				data->exp++;
 				data->fnbr_exp = data->fnbr_exp / 10;

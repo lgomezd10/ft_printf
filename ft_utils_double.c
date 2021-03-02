@@ -6,11 +6,12 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:25:49 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/03/02 16:12:59 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/02 19:21:58 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_double.h"
+#include <stdio.h>
 
 void	ft_get_decimal(t_double *data, t_var *opt)
 {
@@ -34,7 +35,7 @@ void	ft_get_decimal(t_double *data, t_var *opt)
 			data->fnbr -= digit;
 			data->str_deci[i++] = digit + '0';
 		}
-		if (data->fnbr >= 0.5)
+		if ((data->fnbr >= 0.5 && (data->nbr % 2)) || data->fnbr > 0.5)
 			ft_add_one(data);
 	}
 }

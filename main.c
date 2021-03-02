@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:12:20 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/03/02 16:23:06 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/02 20:17:09 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,49 @@ printf("********BONUS**********\n");
 */
 
 printf("************ REAL ***********\n");
+
+
+check_double("%g", 0.0001);
+check_double("%g", 0.0002);
+check_double("%g", 0.00009999);
+check_double("%g", 0.00008999);
+
+check_double("%.0f", -4.5);
+check_double("%.0g", -4.5);
+check_double("%.0f", 4.5);
+check_double("%.0g", 4.5);
+check_double("this %.1g scientific notation", 1.5);
+check_double("%.1g", 7.5);
+check_double("%.0f", -5.5);
+check_double("%.0f", 1.5);
+check_double("%.0f", 2.5);
+check_double("%.0f", 4.5);
+check_double("%.0f", 5.5); 
+check_double("%.0f", 6.5);
+check_double("%.0f", 7.5);
+check_double("%.0f", 8.5);
+check_double("%.0f", 9.5);
+check_double("%.0f", 10.5);
+check_double("%.0f", 0.5);
+check_double("%f", 9.5);
+check_double("%f", 10.5);
+check_double("%.0f", 100.5);
+check_double("%.0f", 101.5);
+check_double("%.2f", 4.665);
+check_double("%.2f", 5.675);
+check_double("%.0g", -9.9);
+check_double("%.1g", -9.9);
+check_double("%.0g", 9.9);
+check_double("%.1g", 9.9);
+check_double("%.0g", 7.9);
+check_double("%.1g", 9.7);
+check_double("%.2g", 9.7);
+check_double("%.3g", 9.7);
+check_double("%.1g", 10);
+check_double("%.0g", 10);
+check_double("%.1g", -0.00032);
+//printf("%Lf\n", LDBL_MAX);
+
 
 /*
     float f1;
@@ -940,7 +983,7 @@ printf("*len: %d\n", len);
 len = printf("%p%p%p%p%p%p%p%p%p%p%p%p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);
 printf("*len: %d\n", len);
 */
-
+/*
 
     char a01 = 'a';
     char a02= 'a';
@@ -1015,7 +1058,7 @@ printf("*len: %d\n", len);
     printf("*len: %d\n", len);
     len = printf("%9.3p", 1234);
     printf("*len: %d\n\n", len);
-
+*/
 /*******/
 
 /*

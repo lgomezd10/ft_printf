@@ -6,7 +6,7 @@
 /*   By: lgomez-d <lgomez-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:55:00 by lgomez-d          #+#    #+#             */
-/*   Updated: 2021/03/02 16:08:44 by lgomez-d         ###   ########.fr       */
+/*   Updated: 2021/03/02 20:16:38 by lgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,23 @@
 char	*ft_ftoa(t_double *data, t_var *opt)
 {
 	char	*temp;
-	int		exp;
 
 	temp = 0;
-	exp = (!data->fnbr_exp) ? ft_get_exp(data) : data->exp;
 	data->nbr = data->fnbr;
 	data->fnbr -= data->nbr;
 	data->str_nbr = 0;
 	ft_get_decimal(data, opt);
+	data->exp = 0;
+	if (data->cut && opt->deci < 2 && data->nbr == 10)
+	{
+		data->nbr = 1;
+		data->exp = 1;
+	}
 	temp = ft_join(data, opt);
+	if (data->cut && data->exp)
+	{
+		ft_add_exp(&temp, 1);
+	}
 	return (temp);
 }
 
@@ -84,6 +92,7 @@ void	ft_load_data_double(va_list ap, t_double *data, t_var *opt)
 	data->fnbr_exp = 0.0;
 	data->nbr = 0;
 	data->cut = 0;
+	data->exp = 0;
 	data->isneg = (data->fnbr == 0.0) ? (1 / data->fnbr) != (1 / 0.0)
 	: data->fnbr < 0;
 	opt->fill = (!opt->right && opt->fill == '0') ? ' ' : opt->fill;
